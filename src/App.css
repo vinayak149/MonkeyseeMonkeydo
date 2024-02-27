@@ -1,128 +1,38 @@
-/* Reset some basic elements */
-body,
-h1,
-h2,
-h3,
-p,
-form,
-input,
-select,
-textarea,
-button {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  background-color: #f4f4f4;
-  color: #333;
-  padding: 20px;
-}
-
-.container {
-  max-width: 1100px;
-  margin: auto;
-  overflow: hidden;
-  padding: 0 20px;
-}
-
-.header {
-  background: #333;
-  color: #fff;
-  padding-bottom: 10px;
-  margin-bottom: 15px;
-}
-
-.header h1 {
-  padding: 20px 0;
-}
-
-ul {
-  list-style-type: none;
   margin: 0;
-  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  color: #333;
-  text-decoration: none;
-}
-
-/* Navigation Styles */
-.navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #333;
-  color: #fff;
-}
-
-.navbar a {
-  color: #fff;
-  padding: 10px 15px;
-  text-decoration: none;
-}
-
-/* Form and Input Styles */
-form {
-  background: #fff;
+.app-container {
   padding: 20px;
-  border-radius: 5px;
-  margin-top: 20px;
 }
 
-form input[type="text"],
-form select,
-form textarea {
-  width: 100%;
-  padding: 8px;
-  margin: 10px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+.nav-bar {
+  background-color: #282c34;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-form button {
-  width: 100%;
-  background-color: #5cb85c;
+.nav-link {
   color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-form button:hover {
-  background-color: #45a049;
-}
-
-/* Utility Classes */
-.text-center {
-  text-align: center;
-}
-
-.mt-20 {
-  margin-top: 20px;
-}
-
-/* Adjustments for links */
-.link-button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 15px;
-  text-align: center;
-  display: inline-block;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.link-button:hover {
-  background-color: #0056b3;
   text-decoration: none;
-  color: white;
+  margin-right: 15px;
+}
+
+.nav-link:last-child {
+  margin-right: 0;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.main-content {
+  margin-top: 20px;
 }
