@@ -1,39 +1,30 @@
-import React from 'react';
-import './PanelistDashboard.css'; // Make sure to create and import the CSS file
+import React, { useState } from 'react';
+import IdeaReviewForm from './IdeaReviewForm'; // Import the IdeaReviewForm component
 
-class PanelistDashboard extends React.Component {
-  state = {
-    // Mock data for demonstration; you would fetch real data from the backend in a real app
-    statistics: {
-      totalSubmissions: 42,
-      averageRating: 4.5,
-      topSubmission: 'Eco-Friendly Urban Transport',
-    },
+function PanelistDashboard() {
+  // Mock data for demonstration; you would fetch real data from the backend in a real app
+  const [ideas, setIdeas] = useState([
+    { id: 1, title: 'Idea 1', description: 'Description of Idea 1' },
+    { id: 2, title: 'Idea 2', description: 'Description of Idea 2' },
+    // Add more ideas as needed
+  ]);
+
+  const handleSubmitReview = (review) => {
+    // Here you can handle the submission of the review data, e.g., send it to the backend for processing
+    console.log('Review submitted:', review);
+    // Update UI or perform any other actions based on the review submission
   };
 
-  render() {
-    const { totalSubmissions, averageRating, topSubmission } = this.state.statistics;
-    
-    return (
-      <div className="panelist-dashboard">
-        <h2>Panelist Dashboard</h2>
-        <div className="statistics">
-          <div className="stat-item">
-            <label>Total Submissions</label>
-            <div>{totalSubmissions}</div>
-          </div>
-          <div className="stat-item">
-            <label>Average Rating</label>
-            <div>{averageRating}</div>
-          </div>
-          <div className="stat-item">
-            <label>Top Submission</label>
-            <div>{topSubmission}</div>
-          </div>
-        </div>
+  return (
+    <div className="panelist-dashboard">
+      <h2>Panelist Dashboard</h2>
+      <div className="ideas-list">
+        {ideas.map((idea) => (
+          <IdeaReviewForm key={idea.id} idea={idea} onSubmitReview={handleSubmitReview} />
+        ))}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default PanelistDashboard;

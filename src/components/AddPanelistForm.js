@@ -1,29 +1,52 @@
+// AddPanelistForm.js
 import React, { useState } from 'react';
 
-const AddPanelistForm = ({ onAddPanelist }) => {
-  const [panelistName, setPanelistName] = useState('');
+function AddPanelistForm() {
+  const [panelist, setPanelist] = useState({
+    name: '',
+    email: '',
+    role: ''
+  });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    onAddPanelist(panelistName);
-    setPanelistName(''); // Reset form after submission
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setPanelist({ ...panelist, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Here you would typically send the panelist data to your backend for processing
+    console.log("Panelist added:", panelist);
+    alert("Panelist added successfully!");
+    // Implement the API call to save the panelist using fetch or axios
+    // Reset form fields after submission
+    setPanelist({
+      name: '',
+      email: '',
+      role: ''
+    });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="panelistName">Panelist Name:</label>
-        <input
-          id="panelistName"
-          type="text"
-          value={panelistName}
-          onChange={(e) => setPanelistName(e.target.value)}
-          required
-        />
-      </div>
-      <button type="submit">Add Panelist</button>
-    </form>
+    <div className="add-panelist-form">
+      <h2>Add Panelist</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Name:</label>
+          <input type="text" name="name" value={panelist.name} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>Email:</label>
+          <input type="email" name="email" value={panelist.email} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>Role:</label>
+          <input type="text" name="role" value={panelist.role} onChange={handleChange} required />
+        </div>
+        <button type="submit">Add Panelist</button>
+      </form>
+    </div>
   );
-};
+}
 
 export default AddPanelistForm;

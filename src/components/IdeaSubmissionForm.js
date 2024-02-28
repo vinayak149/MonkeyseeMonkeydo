@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+
 const IdeaSubmissionForm = ({ deadline, onSubmit }) => {
   const [teamMembers, setTeamMembers] = useState([{ name: '' }]);
   const [idea, setIdea] = useState({ title: '', description: '', domain: '' });
