@@ -1,0 +1,27 @@
+.home-container {
+  position: relative;
+  height: 100vh; /* Set the height of the container to 100% of the viewport height */
+}
+
+.background-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  left: 0;
+  display: flexbox;
+
+  z-index: -1; /* Make sure it's behind the content */
+  background-image: url("C:\Users\abhirup.datta\Downloads\MonkeyseeMonkeydo-master\MonkeyseeMonkeydo-master\src\components\abstract_network_connections_background_1806.jpg"); /* Replace with the path to your image */
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.9; /* Adjust the opacity as needed */
+}
+
+.content {
+  position: relative;
+  z-index: 1; /* Ensure it's above the background image */
+  text-align: center;
+  padding: 100px;
+  color: white; /* Adjust text color for better visibility */
+}
