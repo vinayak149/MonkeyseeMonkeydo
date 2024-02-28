@@ -11,7 +11,7 @@ const Home = () => {
 
   
   return (
-  <div>
+  <div className="home">
     <h1>Welcome to the Hackathon Management System</h1>
     <Link to="/ideas/new">Submit a New Idea</Link>
     {/* If listing ideas, provide an edit link like below */}
