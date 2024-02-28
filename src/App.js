@@ -11,6 +11,7 @@ import AddPanelistForm from './components/AddPanelistForm'; // Assuming you have
 import AssignIdeaForm from './components/AssignIdeaForm'; // Assuming you have this component
 import Login from './components/Login';
 import SignUp from './components/Signup';
+import ParticleBackground from './components/ParticleBackground';
 
 // Import other necessary styles and components
 
