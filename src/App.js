@@ -5,12 +5,11 @@ import Navbar from './components/Navbar';
 import ParticipantDashboard from './components/ParticipantDashboard';
 import JudgeDashboard from './components/JudgeDashboard';
 import PanelistDashboard from './components/PanelistDashboard';
-import IdeaSubmissionForm from './components/IdeaSubmissionForm'; // Ensure this path is correct
+import IdeaSubmissionForm from './components/IdeaSubmissionForm';
 import Dashboard from './components/Dashboard';
-import AddPanelistForm from './components/AddPanelistForm'; // Assuming you have this component
-import AssignIdeaForm from './components/AssignIdeaForm'; // Assuming you have this component
-
-// Import other necessary styles and components
+import AddPanelistForm from './components/AddPanelistForm';
+import AssignIdeaForm from './components/AssignIdeaForm';
+import ParticleBackground from './components/ParticleBackground'; // Import ParticleBackground component
 
 function App() {
   // Set your submission deadline here
@@ -26,6 +25,8 @@ function App() {
 
   return (
     <Router>
+      {/* Include ParticleBackground component here */}
+      <ParticleBackground />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -38,7 +39,6 @@ function App() {
         <Route path="/add-panelist" element={<AddPanelistForm />} />
         <Route path="/assign-idea" element={<AssignIdeaForm />} />
         {/* Define other routes */}
-        {/* Define other routes as needed */}
         <Route path="/submit-idea" element={
           <IdeaSubmissionForm 
             deadline={deadline} 
