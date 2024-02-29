@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import "./ideaReviewForm.css"
 function IdeaReviewForm({ idea, onSubmitReview }) {
   const [score, setScore] = useState('');
   const [feedback, setFeedback] = useState('');

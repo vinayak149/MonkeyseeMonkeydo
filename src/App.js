@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar.js';
 import ParticipantDashboard from './components/ParticipantDashboard';
 import JudgeDashboard from './components/JudgeDashboard';
 import PanelistDashboard from './components/PanelistDashboard';
@@ -35,7 +35,7 @@ function App() {
       <Routes>
         <Route path='/auth-container' element={<Login/>}/>
         <Route path='/auth-con' element={<SignUp/>}/>
-        <Route path='/' element={<Login/>}/>
+        <Route path='/' element={<Home/>}/>
         <Route path="/home" element={<Home />} />
         <Route path="/participant-dashboard" element={<ParticipantDashboard />} />
         <Route path="/judge-dashboard" element={<JudgeDashboard />} />

@@ -2,7 +2,9 @@
 .panelist-dashboard {
     padding: 20px;
 }
-
+.idea-list{
+    padding: 100px!important;
+}
 .statistics {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

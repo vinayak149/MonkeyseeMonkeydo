@@ -10,16 +10,17 @@ const Navbar = () => {
           Hackathon<span>Hub</span>
         </Link>
         <ul className="nav-menu">
+           <li className="nav-item">
+            <Link to="/home" className="nav-links">Home</Link>
+          </li>
         <li className="nav-item">
             <Link to="/auth-container" className="nav-links">Login</Link>
           </li>
           <li className="nav-item">
             <Link to="/auth-con" className="nav-links">Signup</Link>
           </li>
-          <li className="nav-item">
-            <Link to="/home" className="nav-links">Home</Link>
-          </li>
-          <li className="nav-item">
+         
+          {/* <li className="nav-item">
             <Link to="/participant-dashboard" className="nav-links">Participant Dashboard</Link>
           </li>
           <li className="nav-item">
@@ -27,7 +28,7 @@ const Navbar = () => {
           </li>
           <li className="nav-item">
             <Link to="/panelist-dashboard" className="nav-links">Panelist Dashboard</Link>
-          </li>
+          </li> */}
           {/* Add additional nav items as needed */}
         </ul>
       </div>

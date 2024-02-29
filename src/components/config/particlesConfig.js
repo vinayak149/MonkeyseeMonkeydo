@@ -505,4 +505,4 @@ const particlesConfig = {
     }
   }
 
-export default particlesConfig
+export default particlesConfig;

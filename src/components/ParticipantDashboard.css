@@ -4,7 +4,9 @@
     border: 1px solid #ccc;
     border-radius: 8px;
 }
-
+.participant-board{
+    padding:100px;
+}
 .dashboard-heading {
     color: #333;
     margin-bottom: 20px;

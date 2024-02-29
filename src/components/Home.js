@@ -1,24 +1,23 @@
 import React from 'react';
-import { useNavigate ,Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import './Home.css';
+import ParticleBackground from './ParticleBackground';
 
 
 const Home = () => {
-  const navigate = useNavigate();
-
-  const redirectToIdeaSubmission = () => {
-    navigate('/submit-idea'); // Ensure this path matches the route defined for IdeaSubmissionForm
-  };
-
-  
   return (
-  <div className="home">
-    <h1>Welcome to the Hackathon Management System</h1>
-    <Link to="/ideas/new">Submit a New Idea</Link>
-    {/* If listing ideas, provide an edit link like below */}
-    {/* <Link to={`/ideas/edit/${ideaId}`}>Edit</Link> */}
-  </div>
-);
-  
+    <div className="home">
+      <ParticleBackground />
+      <div className="content">
+        <h1 className="title-heading">Welcome to the Hackathon Management System</h1>
+        <Link className='button' to="/ideas/new">Submit a New Idea</Link>
+      </div>
+      <video autoPlay loop muted className="background-video video-overlay">
+        <source src="videos/hack.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  );
 };
 
 export default Home;

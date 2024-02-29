@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-
-
+import "./IdeaSubmissionForm.css"
 const IdeaSubmissionForm = ({ deadline, onSubmit }) => {
   const [teamMembers, setTeamMembers] = useState([{ name: '' }]);
   const [idea, setIdea] = useState({ title: '', description: '', domain: '' });
@@ -65,6 +64,7 @@ const IdeaSubmissionForm = ({ deadline, onSubmit }) => {
   };
 
   return (
+    <div className='submission-form'>
     <form onSubmit={handleSubmit}>
       <h2>{ideaId ? 'Edit Idea' : 'Submit New Idea'}</h2>
       {teamMembers.map((member, index) => (
@@ -116,6 +116,7 @@ const IdeaSubmissionForm = ({ deadline, onSubmit }) => {
         {ideaId ? 'Update Idea' : 'Submit Idea'}
       </button>
     </form>
+    </div>
   );
 };
 

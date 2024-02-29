@@ -41,7 +41,7 @@ function ParticipantDashboard() {
   };
 
   return (
-    <div>
+    <div className='participant-board'> 
       <h2>Welcome to Your Dashboard, Participant!</h2>
       <p>This is your participant dashboard. From here, you can:</p>
       <div>

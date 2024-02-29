@@ -7,7 +7,10 @@
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
+.submission-form{
+    margin-top:100px;
+    padding:10px 500px;
+}
 .formTitle {
     text-align: center;
     color: #333;
