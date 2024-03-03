@@ -1,26 +1,6 @@
 {
-<<<<<<< HEAD
-  "name": "project",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vinayak149/MonkeyseeMonkeydo.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/vinayak149/MonkeyseeMonkeydo/issues"
-  },
-  "homepage": "https://github.com/vinayak149/MonkeyseeMonkeydo#readme"
-=======
   "dependencies": {
     "framer-motion": "^11.0.6",
     "styled-components": "^6.1.8"
   }
->>>>>>> c8efbf7f03dfbe164c23181ec5f8804a9a18ef81
 }
