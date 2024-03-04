@@ -20,7 +20,7 @@ const Navbar = () => {
             <Link to="/auth-con" className="nav-links">Signup</Link>
           </li>
          
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link to="/participant-dashboard" className="nav-links">Participant Dashboard</Link>
           </li>
           <li className="nav-item">
@@ -28,7 +28,7 @@ const Navbar = () => {
           </li>
           <li className="nav-item">
             <Link to="/panelist-dashboard" className="nav-links">Panelist Dashboard</Link>
-          </li>
+          </li> */}
           
         </ul>
       </div>
