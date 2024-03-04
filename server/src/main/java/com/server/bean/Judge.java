@@ -1,36 +1,23 @@
 package com.server.bean;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "participants")
-public class Participant {
+@Document(collection = "judges")
+public class Judge {
 
     @Id
     private String id;
-
     private String name;
     private String email;
-    
-    @DBRef
-    private Idea idea;
 
-    public Participant( String name, String email, Idea idea) {
-        
+    public Judge(String name, String email) {
         this.name = name;
         this.email = email;
-        this.idea = idea;
     }
-
-    
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -49,11 +36,7 @@ public class Participant {
         this.email = email;
     }
 
-    public Idea getIdea() {
-        return idea;
-    }
-
-    public void setIdea(Idea idea) {
-        this.idea = idea;
+    public void setId(String id) {
+        this.id = id;
     }
 }
