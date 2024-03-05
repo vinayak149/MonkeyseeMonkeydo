@@ -9,7 +9,7 @@ import IdeaSubmissionForm from '../IdeaSubmissionForm';
 import AddPanelistForm from '../AddPanelistForm';
 import AssignIdeaForm from '../AssignIdeaForm';
 import Login from '../Login/Login';
-import SignUp from '../Signup/Signup';
+import Signup from '../Signup/Signup';
 // import PanelistDashboard from './components/Dashboard/PanelistDashboard.js'
 // import IdeaSubmissionForm from './components/IdeaSubmissionForm';
 // import Dashboard from './components/Dashboard';
@@ -30,8 +30,8 @@ function Routing() {
         <Router>
         {/* <Navbar /> */}
         <Routes>
-          <Route path='Login' element={<Login/>}/>
-          <Route path='/auth-con' element={<SignUp/>}/>
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/auth-con' element={<Signup/>}/>
           <Route path='/' element={<Home/>}/>
           <Route path="/home" element={<Home />} />
           <Route path="/judge-dashboard" element={<JudgeDashboard />} />

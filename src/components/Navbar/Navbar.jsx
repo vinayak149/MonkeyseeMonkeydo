@@ -10,11 +10,8 @@ const Navbar = () => {
           MonkeySee<span>MonkeyDo</span>
         </Link>
         <ul className="nav-menu">
-          <li className="nav-item">
-            <Link to="/participant-board" className="nav-links">ParticipantDashboard</Link>
-          </li>
         <li className="nav-item">
-            <Link to="Login" className="nav-links">Login</Link>
+            <Link to="/login" className="nav-links">Login</Link>
           </li>
           <li className="nav-item">
             <Link to="/auth-con" className="nav-links">Signup</Link>
