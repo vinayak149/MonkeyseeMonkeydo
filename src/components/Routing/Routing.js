@@ -10,6 +10,7 @@ import AddPanelistForm from '../AddPanelistForm';
 import AssignIdeaForm from '../AssignIdeaForm';
 import Login from '../Login/Login';
 import Signup from '../Signup/Signup';
+import { AccountBox } from '../Account/account';
 // import PanelistDashboard from './components/Dashboard/PanelistDashboard.js'
 // import IdeaSubmissionForm from './components/IdeaSubmissionForm';
 // import Dashboard from './components/Dashboard';
@@ -31,6 +32,7 @@ function Routing() {
         {/* <Navbar /> */}
         <Routes>
           <Route path='/login' element={<Login/>}/>
+          <Route path='/auth' element={<AccountBox/>}/>
           <Route path='/auth-con' element={<Signup/>}/>
           <Route path='/' element={<Home/>}/>
           <Route path="/home" element={<Home />} />
