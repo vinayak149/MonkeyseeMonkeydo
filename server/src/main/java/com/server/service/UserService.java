@@ -17,7 +17,8 @@ public class UserService {
 
     public User registerUser(User user) {
         // Set a default role (you can customize this based on your requirements)
-        user.setRole("PARTICIPANT");
+        if(user.getRole() == null) 
+        	user.setRole("PARTICIPANT");
         return userRepository.save(user);
     }
 
