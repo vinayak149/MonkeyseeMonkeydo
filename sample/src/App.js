@@ -1,22 +1,21 @@
+import "./App.css";
+import styled from "styled-components";
+import { AccountBox } from "./components/accountBox";
 
-import './App.css';
-import React,{useState,useEffect} from 'react';
-import { AccountBox } from './components/accountBox'
+const AppContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 function App() {
-  const [data,setData] = useState([]);
-  useEffect(()=>{
-    fetch('http://localhost:8080/participants')
-    .then(response=> response.json())
-    .then(result =>setData(result))
-    .catch(error=>console.error('Error Fetching',error));
-  },[]);
-  console.log(data)
   return (
-    <div className="App">
-      <header className="App-header">
+    <AppContainer>
       <AccountBox />
-      </header>
-    </div>
+    </AppContainer>
   );
 }
 

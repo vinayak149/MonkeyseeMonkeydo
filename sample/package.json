@@ -1,7 +1,30 @@
 {
-    "dependencies": {
-      "framer-motion": "^11.0.6",
-      "styled-components": "^6.1.8"
-    }
+  "name": "project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "react-scripts start"
+  },
+  "dependencies": {
+    "framer-motion": "^11.0.6",
+    "react-scripts": "^5.0.1",
+    "styled-components": "^6.1.8",
+    "web-vitals": "^3.5.2"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
-  
+}
