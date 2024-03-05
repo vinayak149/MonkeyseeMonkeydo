@@ -28,7 +28,7 @@ function Routing() {
   return (
     <div>
         <Router>
-        <Navbar />
+        {/* <Navbar /> */}
         <Routes>
           <Route path='Login' element={<Login/>}/>
           <Route path='/auth-con' element={<SignUp/>}/>

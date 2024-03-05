@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
+import Navbar from './Navbar/Navbar';
 import MyParticles from './Particles/Particles';
 
 const Home = () => {
@@ -13,8 +14,7 @@ const Home = () => {
 
   return (
     <div className="home">
-      <MyParticles/>
-      <div className="content">
+    <Navbar/><MyParticles /><div className="content">
         <h1 className={`title-heading ${showTitle ? 'show' : ''}`}>
           Welcome to the Hackathon Management System
         </h1>

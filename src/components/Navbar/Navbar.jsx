@@ -4,8 +4,8 @@ import './Navbar.css'; // Make sure to create and import the CSS file
 
 const Navbar = () => {
   return (
-    <nav className="navbar">
-      <div className="navbar-container">
+    <nav className="navbar flex min-h-screen flex-col z-10">
+      <div className="navbar-container h-14 bg-gradient-to-r from-cyan-500 to-blue-500">
         <Link to="/" className="navbar-logo">
           MonkeySee<span>MonkeyDo</span>
         </Link>
