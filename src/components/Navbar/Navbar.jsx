@@ -11,11 +11,9 @@ const Navbar = () => {
         </Link>
         <ul className="nav-menu">
         <li className="nav-item">
-            <Link to="/login" className="nav-links">Login</Link>
+            <Link to="/auth" className="nav-links">Login</Link>
           </li>
-          <li className="nav-item">
-            <Link to="/auth-con" className="nav-links">Signup</Link>
-          </li>
+          
          
           {/* <li className="nav-item">
             <Link to="/participant-dashboard" className="nav-links">Participant Dashboard</Link>

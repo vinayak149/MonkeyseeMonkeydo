@@ -19,7 +19,7 @@ const Home = () => {
         <h1 className={`title-heading ${showTitle ? 'show' : ''}`}>
           Welcome to the Hackathon Management System
         </h1>
-        <Link className="button" to="/login">
+        <Link className="button" to="/auth">
           Submit Idea
         </Link>
       </div>
