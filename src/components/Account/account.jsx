@@ -4,7 +4,7 @@ import { LoginForm } from "./loginForm.jsx";
 import { motion } from "framer-motion";
 import { AccountContext } from "./accountContext.js";
 import { SignupForm } from "./signupForm.jsx";
-import {forgotPassword} from "./forgotPassword.jsx"
+import {forgotPassword, ForgotPasswordForm} from "./forgotPassword.jsx"
 import MyParticles from '../Particles/Particles';
 
 const BoxContainer = styled.div`
@@ -127,11 +127,11 @@ export function AccountBox(props) {
   const switchToForgotPass = () => {
     playExpandingAnimation();
     setTimeout(() => {
-      setActive("signin");
+      setActive("forgotpass");
     }, 400);
   };
 
-  const contextValue = { switchToSignup, switchToSignin };
+  const contextValue = { switchToSignup, switchToSignin, switchToForgotPass };
 
   return (
     <div className="auth-container">
@@ -159,10 +159,18 @@ export function AccountBox(props) {
               <SmallText>Please sign-up to continue!</SmallText>
             </HeaderContainer>
           )}
+          {active === "forgotpass" && (
+            <HeaderContainer>
+              <HeaderText>Forgot</HeaderText>
+              <HeaderText>Password?</HeaderText>
+              <SmallText>Set your new password!</SmallText>
+            </HeaderContainer>
+          )}
         </TopContainer>
         <InnerContainer>
           {active === "signin" && <LoginForm />}
           {active === "signup" && <SignupForm />}
+          {active === "forgotpass" && <ForgotPasswordForm/>}
         </InnerContainer>
       </BoxContainer>
     </AccountContext.Provider>

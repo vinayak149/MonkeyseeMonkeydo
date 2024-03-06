@@ -9,9 +9,10 @@ import {
 } from "./common";
 import { Marginer } from "./marginer/index.jsx";
 import { AccountContext } from "./accountContext.js";
+import { ForgotPasswordForm } from "./forgotPassword";
 
 export function LoginForm(props) {
-  const { switchToSignup } = useContext(AccountContext);
+  const { switchToSignup, switchToForgotPass } = useContext(AccountContext);
 
   return (
     <BoxContainer>
@@ -20,13 +21,13 @@ export function LoginForm(props) {
         <Input type="password" placeholder="Password" />
       </FormContainer>
       <Marginer direction="vertical" margin={10} />
-      <MutedLink href="#">Forget your password?</MutedLink>
+      <MutedLink href="#" onClick={switchToForgotPass}>Forget your password?</MutedLink>
       <Marginer direction="vertical" margin="1.6em" />
       <SubmitButton type="submit" >LogIn</SubmitButton>
       <Marginer direction="vertical" margin="1em" />
-      <MutedLink href="#">
+      <MutedLink href="#" >
         Don't have an accoun?{" "}
-        <BoldLink href="#" onClick={switchToSignup}>
+        <BoldLink href="#" >
           Signup
         </BoldLink>
       </MutedLink>

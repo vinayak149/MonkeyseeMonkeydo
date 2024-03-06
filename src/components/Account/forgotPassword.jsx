@@ -10,8 +10,8 @@ import {
 import { Marginer } from "./marginer/index.jsx";
 import { AccountContext } from "./accountContext.js";
 
-export function SignupForm(props) {
-  const { switchToForgotPass } = useContext(AccountContext);
+export function ForgotPasswordForm(props) {
+    const { switchToSignin } = useContext(AccountContext);
 
   return (
     <BoxContainer>
@@ -26,7 +26,7 @@ export function SignupForm(props) {
       <Marginer direction="vertical" margin="1em" />
       <MutedLink href="#">
         Already have an account?
-        <BoldLink href="#" onClick={switchToForgotPass}>
+        <BoldLink href="#" onClick={switchToSignin}>
           Signin
         </BoldLink>
       </MutedLink>
