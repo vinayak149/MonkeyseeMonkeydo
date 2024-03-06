@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from '../Home';
 import Navbar from '../Navbar/Navbar';
-import ParticipantDashboard from '../Dashboard/ParticipantDashboard';
+import ParticipantDashboard from '../Dashboard/Participant/ParticipantDashboard';
 import JudgeDashboard from '../Dashboard/JudgeDashboard';
 import PanelistDashboard from '../Dashboard/PanelistDashboard';
 import IdeaSubmissionForm from '../IdeaSubmissionForm';
@@ -38,7 +38,7 @@ function Routing() {
           <Route path="/home" element={<Home />} />
           <Route path="/judge-dashboard" element={<JudgeDashboard />} />
           <Route path="/panelist-dashboard" element={<PanelistDashboard />} />
-          <Route path="/participant-board" element={<ParticipantDashboard />} />
+          <Route path="/dashboard" element={<ParticipantDashboard />} />
           <Route path="/ideas/new" element={<IdeaSubmissionForm deadline={deadline} onSubmit={handleIdeaSubmit} />} />
           <Route path="/ideas/edit/:ideaId" element={<IdeaSubmissionForm deadline={deadline} onSubmit={handleIdeaSubmit} />} />
           <Route path="/add-panelist" element={<AddPanelistForm />} />
