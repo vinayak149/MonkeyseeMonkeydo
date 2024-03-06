@@ -10,10 +10,10 @@ const Navbar = () => {
           MonkeySee<span>MonkeyDo</span>
         </Link>
         <ul className="nav-menu">
-          <li className="nav-item">
-            <Link to="/login" className="nav-links">Login / Signup</Link>
+          {/* <li className="nav-item">
+            <Link to="/login" className="nav-links">Login / Signup</Link> */}
         <li className="nav-item">
-            <Link to="/auth" className="nav-links">Login</Link>
+            <Link to="/auth" className="nav-links">Login / Signup</Link>
           </li>
           {/* Other menu items can be added here */}
           
