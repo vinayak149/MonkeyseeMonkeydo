@@ -6,28 +6,28 @@ import {
   Input,
   MutedLink,
   SubmitButton,
-} from "./common";
+} from "./common.jsx";
 import { Marginer } from "./marginer/index.jsx";
 import { AccountContext } from "./accountContext.js";
 
-export function LoginForm(props) {
-  const { switchToSignup } = useContext(AccountContext);
+export function SignupForm(props) {
+  const { switchToForgotPass } = useContext(AccountContext);
 
   return (
     <BoxContainer>
       <FormContainer>
+        <Input type="text" inputMode="numeric" placeholder="OTP" />
         <Input type="email" placeholder="Email" />
-        <Input type="password" placeholder="Password" />
+        <Input type="password" placeholder="New Password" />
+        <Input type="password" placeholder="Confirm Password" />
       </FormContainer>
       <Marginer direction="vertical" margin={10} />
-      <MutedLink href="#">Forget your password?</MutedLink>
-      <Marginer direction="vertical" margin="1.6em" />
-      <SubmitButton type="submit" >LogIn</SubmitButton>
+      <SubmitButton type="submit">Signup</SubmitButton>
       <Marginer direction="vertical" margin="1em" />
       <MutedLink href="#">
-        Don't have an accoun?{" "}
-        <BoldLink href="#" onClick={switchToSignup}>
-          Signup
+        Already have an account?
+        <BoldLink href="#" onClick={switchToForgotPass}>
+          Signin
         </BoldLink>
       </MutedLink>
     </BoxContainer>

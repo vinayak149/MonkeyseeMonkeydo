@@ -4,6 +4,7 @@ import { LoginForm } from "./loginForm.jsx";
 import { motion } from "framer-motion";
 import { AccountContext } from "./accountContext.js";
 import { SignupForm } from "./signupForm.jsx";
+import {forgotPassword} from "./forgotPassword.jsx"
 import MyParticles from '../Particles/Particles';
 
 const BoxContainer = styled.div`
@@ -117,6 +118,13 @@ export function AccountBox(props) {
   };
 
   const switchToSignin = () => {
+    playExpandingAnimation();
+    setTimeout(() => {
+      setActive("signin");
+    }, 400);
+  };
+
+  const switchToForgotPass = () => {
     playExpandingAnimation();
     setTimeout(() => {
       setActive("signin");
