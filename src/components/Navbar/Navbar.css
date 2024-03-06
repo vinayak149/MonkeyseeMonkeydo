@@ -9,27 +9,20 @@
     top: 0;
     z-index: 10;
     transition: background 0.4s ease;
-    
-    
-}
-.navbar:hover{
-    background-color: rgba(245, 245, 245, 0.5); ; /* Set the background color */
 }
 
 .navbar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100%; /* Change to height: 100% */
+    height: 100%;
     width: 100%;
     max-width: 1500px;
-    padding: 20 20px;
-    background-color: #e5e5f7;
-    background-color: #e8bdec;
-    opacity: 0.3;
-    background-image:  linear-gradient(30deg, #6713e5 12%, transparent 12.5%, transparent 87%, #6713e5 87.5%, #6713e5), linear-gradient(150deg, #6713e5 12%, transparent 12.5%, transparent 87%, #6713e5 87.5%, #6713e5), linear-gradient(30deg, #6713e5 12%, transparent 12.5%, transparent 87%, #6713e5 87.5%, #6713e5), linear-gradient(150deg, #6713e5 12%, transparent 12.5%, transparent 87%, #6713e5 87.5%, #6713e5), linear-gradient(60deg, #6713e577 25%, transparent 25.5%, transparent 75%, #6713e577 75%, #6713e577), linear-gradient(60deg, #6713e577 25%, transparent 25.5%, transparent 75%, #6713e577 75%, #6713e577);
-    background-size: 56px 98px;
-    background-position: 0 0, 0 0, 28px 49px, 28px 49px, 0 0, 28px 49px;
+    padding: 20px;
+    background-color: #0a192f;
+    /* Updated to requested color */
+    color: white;
+    /* Ensure text is readable */
 }
 
 .navbar-logo {
@@ -44,7 +37,6 @@
 
 .navbar-logo:hover {
     transform: scale(1.1);
-    
 }
 
 .nav-menu {
@@ -70,13 +62,15 @@
 }
 
 .nav-links:hover {
-    color: #4b59f7;
-    border-bottom: 2px solid #4b59f7;
+    color:#ffd700;
+    /* Consider changing to match new color scheme if desired */
+    border-bottom: 2px solid #ffd700;
 }
 
 @media screen and (max-width: 960px) {
     .navbar {
         background: rgba(0, 0, 0, 0.8);
+        /* Consider updating for responsiveness */
     }
 
     .nav-menu {
@@ -86,12 +80,8 @@
         top: 80px;
         width: 100%;
         background: #333;
-        opacity: 0; /* Hide menu initially */
+        /* Consider updating for responsiveness */
         transition: opacity 0.5s ease;
-    }
-
-    .nav-menu.active {
-        opacity: 1; /* Show menu when active */
     }
 
     .nav-item {
