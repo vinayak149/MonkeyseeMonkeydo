@@ -27,7 +27,7 @@ const Home = () => {
         <p className="description">
          Join our internal hackathon to innovate, collaborate, and bring creative solutions to life alongside colleagues. Your ideas matter. Let's build something amazing together.
         </p>
-        <Link className="button highlight-button" to="/login">
+        <Link className="button highlight-button" to="/auth">
           Submit Your Idea Now
         </Link>
       </div>
