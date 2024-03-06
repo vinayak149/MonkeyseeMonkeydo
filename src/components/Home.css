@@ -1,89 +1,84 @@
-/* .home {
-    position: static;
+
+@keyframes typing {
+    0% {
+        width: 0;
+    }
+    50% {
+        width: 100%;
+    }
+    100% {
+        width: 0;
+    }
+}
+
+@keyframes blink-caret {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: #F0F0F0;
+    }
 }
 
 .title-heading {
-    color: transparent;
-    position: relative;
+    border-right: .15em solid #F0F0F0;
+    font-size: 2em;
+    margin: 0 auto;
     white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    /* Adjust the timing as needed */
+    animation: typing 8s steps(40, end) infinite, blink-caret .75s step-end infinite;
+    /* The `typing` duration is now 8s to include both typing out and erasing text, 
+       making the animation loop with typing and erasing effect. */
+    color: #F0F0F0;
 }
 
-.title-heading.show {
-    color: white;
-    animation: revealText 2.0s forwards;
+@keyframes typing {
+    0% {
+        width: 0;
+    }
+
+    50% {
+        width: 100%;
+    }
+
+    100% {
+        width: 0;
+    }
 }
 
-@keyframes revealText {
-    from { width: 0; }
-    to { width: 100%; }
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: #F0F0F0;
+    }
 }
 
+.title-heading {
+    border-right: .15em solid #F0F0F0;
+    font-size: 2em;
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    /* Adjust the timing as needed */
+    animation: typing 8s steps(40, end) infinite, blink-caret .75s step-end infinite;
+    /* The `typing` duration is now 8s to include both typing out and erasing text, 
+       making the animation loop with typing and erasing effect. */
+    color: #F0F0F0;
+}
 
-.content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+/* Ensure the rest of your CSS matches your design requirements */
+.home {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    z-index: 1;
-}
-
-.emoticons {
-    margin-top: 20px;
-}
-
-.emoticon {
-    font-size: 50px;
-    cursor: pointer;
-    margin: 0 10px;
-    text-decoration: none;
-    color: #fff;
-}
-
-.emoticon:hover {
-    transform: scale(1.2);
-}
-
-.button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-.button:hover {
-    background-color: #0056b3;
-}
- */
-
- .home {
-    position: relative;
-}
-
-.title-heading {
-    color: transparent;
-    position: relative;
-    white-space: nowrap;
-}
-
-.title-heading.show {
-    color: white;
-    animation: revealText 2.0s forwards;
-}
-
-@keyframes revealText {
-    from { width: 0; }
-    to { width: 100%; }
+    min-height: 100vh;
 }
 
 .content {
@@ -93,37 +88,32 @@
     align-items: center;
     text-align: center;
     z-index: 1;
+    flex: 1;
+    padding: 20px;
+    color: #EAEAEA;
 }
 
-.emoticons {
-    margin-top: 20px;
-}
-
-.emoticon {
-    font-size: 50px;
-    cursor: pointer;
-    margin: 0 10px;
-    text-decoration: none;
-    color: #fff;
-}
-
-.emoticon:hover {
-    transform: scale(1.2);
+.description {
+    font-size: 1.2em;
+    max-width: 80%;
+    margin-bottom: 20px;
+    color: #EAEAEA;
+    /* Adjust color to fit your theme */
 }
 
 .button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
+    padding: 15px 30px;
+    background-color: #4CAF50;
+    color: #FFFFFF;
     text-decoration: none;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
 
 .button:hover {
-    background-color: #0056b3;
+    background-color: #45A049;
 }
+
+/* Add additional CSS based on your existing styles */

@@ -31,7 +31,7 @@ function Routing() {
         <Router>
         {/* <Navbar /> */}
         <Routes>
-          <Route path='/login' element={<Login/>}/>
+          {/* <Route path='/login' element={<Login/>}/> */}
           <Route path='/auth' element={<AccountBox/>}/>
           <Route path='/auth-con' element={<Signup/>}/>
           <Route path='/' element={<Home/>}/>
