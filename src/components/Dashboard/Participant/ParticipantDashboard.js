@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import './ParticipantDashboard.css';
-import Timer from './Timer';
+import React, { useState, useEffect } from "react";
+import "./ParticipantDashboard.css";
+import Timer from "./Timer";
+import Widget from "./Widget";
+// import MyParticles from '../../Particles/Particles';
+// import CircularProgress from '@mui/joy/CircularProgress';
 
 const ParticipantDashboard = () => {
   const [dashboardData, setDashboardData] = useState({
-    teamName: '',
+    teamName: "",
     totalCompetitors: 0,
-    hackathonTimeRemaining: '',
-    projectSubmissionTimeRemaining: '',
-    projectStatus: '',
+    hackathonTimeRemaining: "",
+    projectSubmissionTimeRemaining: "",
+    projectStatus: "",
     teamMembers: [],
-    projectName: '',
-    projectDescription: '',
+    projectName: "",
+    projectDescription: "",
     projectCompletionPercentage: 0,
   });
 
@@ -24,11 +27,11 @@ const ParticipantDashboard = () => {
   useEffect(() => {
     const fetchDashboardData = async () => {
       // Simulate fetching dashboard data
-      const response = await fetch('/api/dashboard');
+      const response = await fetch("/api/dashboard");
       const dashboard = await response.json();
-      const teamResponse = await fetch('/api/team-info');
+      const teamResponse = await fetch("/api/team-info");
       const teamInfo = await teamResponse.json();
-      const projectStatusResponse = await fetch('/api/project-status');
+      const projectStatusResponse = await fetch("/api/project-status");
       const projectStatus = await projectStatusResponse.json();
 
       setDashboardData({
@@ -43,83 +46,85 @@ const ParticipantDashboard = () => {
 
   // Note: No need for a second useEffect with an empty dependency array as shown in your initial code
   return (
-            <div style={{ backgroundColor: "#040720" }}>
-              <div className="container">
-                <div className="boxes">
-                  <div className="line1">
-                    <div
-                      className="box1"
-                      style={{ backgroundColor: "rgba(40, 85, 233,0.5)" }}
-                    >
-                      <h2>Team Name</h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                        commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                      </p>
-                    </div>
-                    <div className="box2" style={{ backgroundColor: "#576CBC" }}>
-                      <h2>Total Competitors</h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                        commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                      </p>
-                    </div>
-                  </div>
-                  <div className="line2">
-                    <div className="box3" style={{ backgroundColor: "#576CBC" }}>
-                      <h2>Hackathon Timer </h2>
-                      <Timer />
-                      {/* targetTime={time.hackathonEndTime}/> */}
-                    </div>
-                    <div
-                      className="box4"
-                      style={{ backgroundColor: "rgba(254, 83, 83, 0.75)" }}
-                    >
-                      <h2>Project Submission Timer</h2>
-                      <Timer />
-                      {/* targetTime={time.projectSubmissionEndTime} */}
-                    </div>
-                  </div>
-                </div>
-                <div className="box5" style={{ backgroundColor: "#19376D" }}>
-                  <h2>Active</h2>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                    commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                  </p>
-                </div>
-                <div className="box6" style={{ backgroundColor: "#A5D7E8" }}>
-                  <h2>Status of Projected Submitted</h2>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                    commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                  </p>
-                </div>
-              </div>
-              <div className="team">
-                <div className="members">
-                  <h1>Team Members</h1>
-                  <p>Name 1</p>
-                  <p>Name 2</p>
-                  <p>Name 3</p>
-                  <p>Name 4</p>
-                </div>
-                <div className="project">
-                  <h1>Project Name</h1>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                    commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                    penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                    Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-                    Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
-                  </p>
-                  <p>FIle upload space</p>
-                </div>
-              </div>
+    <div style={{ backgroundColor: "#040720" }}>
+      {/* <MyParticles/> */}
+      <div className="container">
+        <div className="boxes">
+          <div className="line1">
+            <div
+              className="box1"
+              style={{ backgroundColor: "rgba(40, 85, 233,0.5)" }}
+            >
+              <h2>Team Name</h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+                commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+              </p>
             </div>
-          );
-        };
-         
-        export default ParticipantDashboard;
+            <div className="box2" style={{ backgroundColor: "#576CBC" }}>
+              <h2>Total Competitors</h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+                commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+              </p>
+            </div>
+          </div>
+          <div className="line2">
+            <div className="box3" style={{ backgroundColor: "#576CBC" }}>
+              <h2>Hackathon Timer </h2>
+              <Timer />
+              {/* targetTime={time.hackathonEndTime}/> */}
+            </div>
+            <div
+              className="box4"
+              style={{ backgroundColor: "rgba(254, 83, 83, 0.75)" }}
+            >
+              <h2>Project Submission Timer</h2>
+              <Timer />
+              {/* targetTime={time.projectSubmissionEndTime} */}
+            </div>
+          </div>
+        </div>
+        <div className="box5" style={{ backgroundColor: "#19376D" }}>
+          <h2>Active</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+            commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+          </p>
+        </div>
+        <div className="box6" style={{ backgroundColor: "#A5D7E8" }}>
+          <h2>Status of Projected Submitted</h2>
+          <div style={{ position: "relative" }}>
+            <span style={{ position: "absolute", top: "10px", left: "2px" }}>
 
-  
+            </span>
+            <Widget />
+          </div>
+        </div>
+      </div>
+      <div className="team">
+        <div className="members">
+          <h1>Team Members</h1>
+          <p>Name 1</p>
+          <p>Name 2</p>
+          <p>Name 3</p>
+          <p>Name 4</p>
+        </div>
+        <div className="project">
+          <h1>Project Name</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+            commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+            penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+            Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
+          </p>
+
+          <p>FIle upload space</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ParticipantDashboard;
