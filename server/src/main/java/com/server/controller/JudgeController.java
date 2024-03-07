@@ -7,6 +7,7 @@ import com.server.service.JudgeService;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/judge")
 public class JudgeController {
 
-    private final IdeaService ideaService;
+    private  IdeaService ideaService;
     private JudgeService judgeService;
 
     @Autowired
@@ -61,21 +62,46 @@ public class JudgeController {
     
     
     
-    @PutMapping("/giverating/{ideaId}")
-    public ResponseEntity<String> updateRatingAndFeedback(
+    @PutMapping("{judgeId}/giverating/{ideaId}")
+    public ResponseEntity<String> updateRatingAndFeedback(@PathVariable String judgeId,
             @PathVariable String ideaId,
             @RequestBody Map<String, Object> requestBody) {
 
         if (requestBody.containsKey("rating") && requestBody.containsKey("feedback")) {
-            double rating = (double) requestBody.get("rating");
-            String feedback = (String) requestBody.get("feedback");
+            Object ratingObject = requestBody.get("rating");
+            Object feedbackObject = requestBody.get("feedback");
 
-            ideaService.updateRatingAndFeedback(ideaId, rating, feedback);
-            return ResponseEntity.ok("Rating and Feedback updated successfully");
+            if (ratingObject instanceof Double && feedbackObject instanceof String) {
+                double rating = (double) ratingObject;
+                String feedback = (String) feedbackObject;
+
+                Optional<Judge> judgeOptional = judgeService.getJudgeById(judgeId);
+                Idea idea = ideaService.getIdeaById(ideaId);
+
+                if (judgeOptional.isPresent() && idea != null) {
+                    Judge judge = judgeOptional.get();
+
+                    // Set the ratedBy field in the Idea
+                    idea.setRatedBy(judge.getName());
+                    ideaService.updateIdea(ideaId, idea);
+
+                    // Update the Idea with the new rating and feedback
+                    ideaService.updateRatingAndFeedback(ideaId, rating, feedback);
+
+                    return ResponseEntity.ok("Rating and Feedback updated successfully");
+                } else {
+                    return ResponseEntity.badRequest().body("Invalid judge or idea ID");
+                }
+            } else {
+                return ResponseEntity.badRequest().body("Invalid types for rating or feedback");
+            }
         } else {
             return ResponseEntity.badRequest().body("Rating and Feedback are required in the request payload");
         }
     }
+
+
+
 
 
 

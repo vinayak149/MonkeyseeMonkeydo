@@ -1,7 +1,6 @@
 package com.server.bean;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "ideas")
@@ -13,8 +12,15 @@ public class Idea {
     private String description;
     private double rating;
     private String feedback;
+    private String suggestion;
+    private String status;
+    private String ratedBy;
+    private String reviewedBy;
     
-    public Idea(String title, String description) {
+
+   
+
+	public Idea(String title, String description) {
         this.title = title;
         this.description = description;
     }
@@ -55,15 +61,48 @@ public class Idea {
         this.feedback = feedback;
     }
 
-	public void setId(String id) {
-		this.id=id;
-		
-	}
-	
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void updateRatingAndFeedback(double newRating, String newFeedback) {
-		this.rating=newRating;
-		this.feedback=newFeedback;
+    public void updateRatingAndFeedback(double newRating, String newFeedback) {
+        this.rating = newRating;
+        this.feedback = newFeedback;
+    }
+
+    public String getSuggestion() {
+        return suggestion;
+    }
+
+    public void setSuggestion(String suggestion) {
+        this.suggestion = suggestion;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    public void updateSuggestionAndStatus(String newSuggestion,String newStatus)
+    {
+    	this.suggestion=newSuggestion;
+    	this.status=newStatus;
+    }
+    public String getRatedBy() {
+		return ratedBy;
 	}
-		
+
+	public void setRatedBy(String ratedBy) {
+		this.ratedBy = ratedBy;
+	}
+
+	public String getReviewedBy() {
+		return reviewedBy;
+	}
+
+	public void setReviewedBy(String reviewedBy) {
+		this.reviewedBy = reviewedBy;
+	}
 }
