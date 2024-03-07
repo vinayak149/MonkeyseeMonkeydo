@@ -1,146 +1,125 @@
-// import React, { useState } from 'react';
-// import './ParticipantDashboard.css'; // Make sure to create a corresponding CSS file
-// import RecentActivitySection from './RecentActivitySession';
-
-// // Header component
-// const Header = ({ title }) => (
-//   <div className="header">
-//     <h1>{title}</h1>
-//     {/* Add more header content */}
-//   </div>
-// );
-
-// // Card component
-// const Card = ({ title, value, additionalInfo }) => {
-//   const [isClicked, setIsClicked] = useState(true);
-
-//   const handleClick = () => {
-//     setIsClicked(!isClicked);
-//   };
-
-//   return (
-//     <div
-//       className={`card ${isClicked ? 'clicked' : ''}`}
-//       onClick={handleClick}
-//     >
-//       <h2>{title}</h2>
-//       <p>{value}</p>
-//       <small>{additionalInfo}</small>
-//     </div>
-//   );
-// };
-
-// // Circular progress component (dummy - actual implementation would require SVG or a library)
-// const CircularProgress = ({ percentage }) => (
-//   <div className="circular-progress">
-//     {percentage}%
-//   </div>
-// );
-
-// // Dashboard component
-// const ParticipantDashboard = () => (
-//   <div className="dashboard">
-//     <div className="main-content">
-//       <Header title="Dashboard" />
-//       <div className="cards">
-//         <Card
-//           title="Total tasks"
-//           value="100"
-//           additionalInfo="+20 added this week"
-//         />
-//         <Card
-//           title="Total Candidate"
-//           value="500"
-//           additionalInfo="+30 added this week"
-//         />
-//         <Card
-//           title="5:30"
-//           value="Avg.Time"
-//           additionalInfo="+0.20s added this week"
-//         />
-//         <Card
-//           title="Total tasks"
-//           value="100"
-//           additionalInfo="+20 added this week"
-//         />
-//       </div>
-//       <CircularProgress percentage={2} />
-//       {/* Add more components as needed */}
-//       <RecentActivitySection />
-//     </div>
-//   </div>
-// );
-
-// export default ParticipantDashboard;
-
 import React, { useState, useEffect } from 'react';
-import './ParticipantDashboard.css'; // Ensure this CSS file is updated with the styles provided later
-// Assuming RecentActivitySection is correctly implemented elsewhere
-import RecentActivitySection from './RecentActivitySession';
-// import CircularProgress from 'react-circular-progressbar';
-import { CircularProgressbar as CircularProgress } from 'react-circular-progressbar';
-
-
-// Simulated fetch function for demonstration purposes
-const fetchData = async () => {
-  // Replace this with actual API call
-  return {
-    cards: [
-      { title: "Total tasks", value: "120", additionalInfo: "+20 added this week" },
-      { title: "Total Candidates", value: "500", additionalInfo: "+30 added this week" },
-      { title: "Average Time", value: "5:30", additionalInfo: "+0.20s added this week" }
-    ],
-    progress: 75, // Example progress value
-  };
-};
-
-const Header = ({ title }) => (
-  <div className="header">
-    <h1>{title}</h1>
-  </div>
-);
-
-const Card = ({ title, value, additionalInfo }) => {
-  const [isClicked, setIsClicked] = useState(false);
-
-  const handleClick = () => {
-    setIsClicked(!isClicked);
-  };
-
-  return (
-    <div className={`card ${isClicked ? 'clicked' : ''}`} onClick={handleClick}>
-      <h2>{title}</h2>
-      <p>{value}</p>
-      <small>{additionalInfo}</small>
-    </div>
-  );
-};
+import './ParticipantDashboard.css';
+import Timer from './Timer';
 
 const ParticipantDashboard = () => {
-  const [cardsData, setCardsData] = useState([]);
-  const [progress, setProgress] = useState(0);
+  const [dashboardData, setDashboardData] = useState({
+    teamName: '',
+    totalCompetitors: 0,
+    hackathonTimeRemaining: '',
+    projectSubmissionTimeRemaining: '',
+    projectStatus: '',
+    teamMembers: [],
+    projectName: '',
+    projectDescription: '',
+    projectCompletionPercentage: 0,
+  });
+
+  // Moved outside the fetchDashboardData function
+  // const [time, setTime] = useState({
+  //   hackathonEndTime: '2024-03-09T00:00:00.000Z', // Placeholder, replace with real data
+  //   projectSubmissionEndTime: '2024-03-09T00:00:00.000Z', // Placeholder, replace with real data
+  // });
 
   useEffect(() => {
-    fetchData().then(data => {
-      setCardsData(data.cards);
-      setProgress(data.progress);
-    });
+    const fetchDashboardData = async () => {
+      // Simulate fetching dashboard data
+      const response = await fetch('/api/dashboard');
+      const dashboard = await response.json();
+      const teamResponse = await fetch('/api/team-info');
+      const teamInfo = await teamResponse.json();
+      const projectStatusResponse = await fetch('/api/project-status');
+      const projectStatus = await projectStatusResponse.json();
+
+      setDashboardData({
+        ...dashboard,
+        ...teamInfo,
+        ...projectStatus,
+      });
+    };
+
+    fetchDashboardData();
   }, []);
 
+  // Note: No need for a second useEffect with an empty dependency array as shown in your initial code
   return (
-    <div className="dashboard">
-      <Header title="Dashboard" />
-      <div className="cards">
-        {cardsData.map((card, index) => (
-          <Card key={index} title={card.title} value={card.value} additionalInfo={card.additionalInfo} />
-        ))}
-      </div>
-      <div style={{width: 100, height: 100}}>
-        <CircularProgress value={progress} text={`${progress}%`} />
-      </div>
-      <RecentActivitySection />
-    </div>
-  );
-};
+            <div style={{ backgroundColor: "#040720" }}>
+              <div className="container">
+                <div className="boxes">
+                  <div className="line1">
+                    <div
+                      className="box1"
+                      style={{ backgroundColor: "rgba(40, 85, 233,0.5)" }}
+                    >
+                      <h2>Team Name</h2>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+                        commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+                      </p>
+                    </div>
+                    <div className="box2" style={{ backgroundColor: "#576CBC" }}>
+                      <h2>Total Competitors</h2>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+                        commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+                      </p>
+                    </div>
+                  </div>
+                  <div className="line2">
+                    <div className="box3" style={{ backgroundColor: "#576CBC" }}>
+                      <h2>Hackathon Timer </h2>
+                      <Timer />
+                      {/* targetTime={time.hackathonEndTime}/> */}
+                    </div>
+                    <div
+                      className="box4"
+                      style={{ backgroundColor: "rgba(254, 83, 83, 0.75)" }}
+                    >
+                      <h2>Project Submission Timer</h2>
+                      <Timer />
+                      {/* targetTime={time.projectSubmissionEndTime} */}
+                    </div>
+                  </div>
+                </div>
+                <div className="box5" style={{ backgroundColor: "#19376D" }}>
+                  <h2>Active</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+                    commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+                  </p>
+                </div>
+                <div className="box6" style={{ backgroundColor: "#A5D7E8" }}>
+                  <h2>Status of Projected Submitted</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+                    commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+                  </p>
+                </div>
+              </div>
+              <div className="team">
+                <div className="members">
+                  <h1>Team Members</h1>
+                  <p>Name 1</p>
+                  <p>Name 2</p>
+                  <p>Name 3</p>
+                  <p>Name 4</p>
+                </div>
+                <div className="project">
+                  <h1>Project Name</h1>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+                    commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+                    penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                    Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+                    Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
+                  </p>
+                  <p>FIle upload space</p>
+                </div>
+              </div>
+            </div>
+          );
+        };
+         
+        export default ParticipantDashboard;
 
-export default ParticipantDashboard;
+  
