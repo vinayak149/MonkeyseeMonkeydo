@@ -12,5 +12,9 @@ export const AuthService = () => {
     });
   }
 
+  function register(email, password) {
+    
+  }
+
   return { login };
 };
