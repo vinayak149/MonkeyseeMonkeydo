@@ -1,5 +1,6 @@
 import { useFetchWrapper } from "../utils/fetchWrapper"
 
+// const link = "http://localhost:8080"
 export const PanelistService = () => {
     const fetchWrapper = useFetchWrapper()
     const baseURL = 'panelist'

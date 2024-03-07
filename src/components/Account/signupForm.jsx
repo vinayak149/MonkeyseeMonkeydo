@@ -33,3 +33,8 @@ export function SignupForm(props) {
     </BoxContainer>
   );
 }
+
+// username
+// email 
+// password 
+// otp 

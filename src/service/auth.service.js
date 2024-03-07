@@ -12,8 +12,9 @@ export const AuthService = () => {
     });
   }
 
-  function register(email, password) {
-    
+  function register(data) {
+    let url = `${baseURL}/register`;
+    return fetchWrapper.post(url, data);
   }
 
   return { login };
