@@ -18,8 +18,6 @@ public class Idea {
     private String reviewedBy;
     
 
-   
-
 	public Idea(String title, String description) {
         this.title = title;
         this.description = description;
