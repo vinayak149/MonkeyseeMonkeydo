@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Home.css'; // Ensure this points to the correct CSS file
 import Navbar from './Navbar/Navbar';
 import MyParticles from './Particles/Particles';
-import PrizeSection from './PrizeSection';
+import About from './About';
 
 const Home = () => {
   const [showTitle, setShowTitle] = useState(false);
@@ -31,7 +31,7 @@ const Home = () => {
         <Link className="button highlight-button" to="/auth">
           Submit Your Idea Now
         </Link>
-        <PrizeSection/>
+        <About/>
       </div>
     </div>
   );
