@@ -10,8 +10,8 @@ const prizes = [
     { id: 5, title: "Abhirup Datta", description: "" },
     { id: 6, title: "Ajin AN", description: "" },
     { id: 7, title: "Aman Raj", description: "" },
-    { id: 8, title: "Pabba Nithin Kumar Goud", description: "" },
-    { id: 9, title: "Gandhivaram Nithish Kumar Reddy", description: "" },
+    { id: 8, title: "Pabba Nithin Kumar", description: "" },
+    { id: 9, title: "Gandhivaram Nithish", description: "" },
     { id: 10, title: "Nithish Soorya SS", description: "" },
     { id: 11, title: "Jasbinder Singh", description: "" },
     { id: 12, title: "Shaik Anas Moinuddin", description: "" }
