@@ -1,39 +1,3 @@
-
-@keyframes typing {
-    0% {
-        width: 0;
-    }
-    50% {
-        width: 100%;
-    }
-    100% {
-        width: 0;
-    }
-}
-
-@keyframes blink-caret {
-    from, to {
-        border-color: transparent;
-    }
-    50% {
-        border-color: #F0F0F0;
-    }
-}
-
-.title-heading {
-    border-right: .15em solid #F0F0F0;
-    font-size: 2em;
-    margin: 0 auto;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 0;
-    /* Adjust the timing as needed */
-    animation: typing 8s steps(40, end) infinite, blink-caret .75s step-end infinite;
-    /* The `typing` duration is now 8s to include both typing out and erasing text, 
-       making the animation loop with typing and erasing effect. */
-    color: #F0F0F0;
-}
-
 @keyframes typing {
     0% {
         width: 0;
@@ -63,18 +27,15 @@
 .title-heading {
     border-right: .15em solid #F0F0F0;
     font-size: 2em;
-    margin: 0 auto;
+    margin: 100px auto 0;
+    /* Adjusted to add margin at the top for gap */
     white-space: nowrap;
     overflow: hidden;
     width: 0;
-    /* Adjust the timing as needed */
     animation: typing 8s steps(40, end) infinite, blink-caret .75s step-end infinite;
-    /* The `typing` duration is now 8s to include both typing out and erasing text, 
-       making the animation loop with typing and erasing effect. */
     color: #F0F0F0;
 }
 
-/* Ensure the rest of your CSS matches your design requirements */
 .home {
     display: flex;
     flex-direction: column;
@@ -91,14 +52,15 @@
     flex: 1;
     padding: 20px;
     color: #EAEAEA;
+    padding-top: 80px;
+    /* Adjusted to ensure gap between navbar and content */
 }
 
 .description {
     font-size: 1.2em;
     max-width: 80%;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     color: #EAEAEA;
-    /* Adjust color to fit your theme */
 }
 
 .button {
@@ -115,5 +77,3 @@
 .button:hover {
     background-color: #45A049;
 }
-
-/* Add additional CSS based on your existing styles */
