@@ -3,6 +3,8 @@ import "./ParticipantDashboard.css";
 import Timer from "./Timer";
 import Widget from "./Widget";
 import AnimatedNumber from "./AnimatedNumber";
+import Navbar2 from "../../Navbar/Navbar2";
+
 // import MyParticles from '../../Particles/Particles';
 // import CircularProgress from '@mui/joy/CircularProgress';
 
@@ -49,6 +51,7 @@ const ParticipantDashboard = () => {
   return (
     <div style={{ backgroundColor: "#040720" }}>
       {/* <MyParticles/> */}
+      <Navbar2/>
       <div className="container">
         <div className="boxes">
           <div className="line1">

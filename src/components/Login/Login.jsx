@@ -26,6 +26,8 @@ const Login = () => {
     };
 
     return (
+        <div>
+          
         <div className="auth-container">
             <MyParticles />
             <div className="auths-card">
@@ -57,6 +59,7 @@ const Login = () => {
                 </form>
                 {error && <div className="error">{error}</div>}
             </div>
+        </div>
         </div>
     );
 }

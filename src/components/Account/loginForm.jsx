@@ -9,8 +9,8 @@ import {
 } from "./common";
 import { Marginer } from "./marginer/index.jsx";
 import { AccountContext } from "./accountContext.js";
-import { ForgotPasswordForm } from "./forgotPassword";
-
+// import { ForgotPasswordForm } from "./forgotPassword";
+// import Navbar2 from "../Navbar/Navbar2.jsx";
 export function LoginForm(props) {
   const { switchToSignup, switchToForgotPass } = useContext(AccountContext);
 
