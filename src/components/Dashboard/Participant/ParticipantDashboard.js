@@ -95,9 +95,9 @@ const ParticipantDashboard = () => {
         <div className="box6" style={{ backgroundColor: "#A5D7E8" }}>
           <h2>Status of Projected Submitted</h2>
           <div style={{ position: "relative" }}>
-            <span style={{ position: "absolute", top: "10px", left: "2px" }}>
-
-            </span>
+            <span
+              style={{ position: "absolute", top: "10px", left: "2px" }}
+            ></span>
             <Widget />
           </div>
         </div>
