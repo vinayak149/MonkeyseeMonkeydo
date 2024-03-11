@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import '../RegistrationPage/RegistrationPage.css';
+import Navbar2 from '../Navbar/Navbar2'; 
+import MyParticles from '../Particles/Particles.js'
 
 function RegistrationForm() {
   const [formData, setFormData] = useState({
     teamName: '',
-    participants: Array(3).fill({ name: '', email: '' }), // Start with 3 participants
+    participants: [{ name: '', email: '' }], // Start with 1 participant
     problemStatement: '',
     problemDescription: '',
     domain: '',
@@ -29,12 +31,15 @@ function RegistrationForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Validation for compulsory fields
-    const areParticipantsValid = formData.participants.slice(0, 3).every(p => p.name && p.email);
-    const isFormValid = formData.teamName && areParticipantsValid && formData.problemStatement && formData.problemDescription && formData.domain;
+    // Validation for compulsory first three participants
+    const areFirstThreeParticipantsValid = formData.participants.slice(0, 3).every((p, index) => {
+      // Only the first three participants are required to have name and email
+      return index < 3 ? p.name && p.email : true;
+    });
+    const isFormValid = formData.teamName && areFirstThreeParticipantsValid && formData.problemStatement && formData.problemDescription && formData.domain;
 
     if (!isFormValid) {
-      alert('Please fill in all required fields.');
+      alert('Please fill in all required fields for the team and at least the first three participants.');
       return;
     }
 
@@ -55,6 +60,9 @@ function RegistrationForm() {
   const calculateRemainingCharacters = (text, maxLength) => maxLength - text.length;
 
   return (
+    <div>
+      <MyParticles/>
+      <Navbar2/>
     <form onSubmit={handleSubmit} className="registrationForm">
       <h2>Registration Form</h2>
 
@@ -76,7 +84,7 @@ function RegistrationForm() {
             id={`name-${index}`}
             value={participant.name}
             onChange={(e) => handleChange(e, 'name', index)}
-            required={index < 3}
+            required={index < 3} // Require name for first three participants
           />
 
           <label htmlFor={`email-${index}`}>Email</label>
@@ -85,7 +93,7 @@ function RegistrationForm() {
             id={`email-${index}`}
             value={participant.email}
             onChange={(e) => handleChange(e, 'email', index)}
-            required={index < 3}
+            required={index < 3} // Require email for first three participants
           />
         </div>
       ))}
@@ -138,7 +146,8 @@ function RegistrationForm() {
       </select>
 
       <button type="submit">Submit</button>
-    </form>
+    </form> 
+    </div>
   );
 }
 

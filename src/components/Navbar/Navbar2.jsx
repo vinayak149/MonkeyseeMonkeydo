@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css'; // Make sure to create and import the CSS file
-import monkeyGif from './Monkey.gif'; // Import your GIF file
- 
+import monkeyGif from './Monkey.gif'
+
 const Navbar = () => {
   return (
     <nav className="navbar flex min-h-screen flex-col z-10">
@@ -13,14 +13,11 @@ const Navbar = () => {
           <img src={monkeyGif} alt="Monkey GIF" className="gif" /> {/* Use the imported monkeyGif variable as the src */}
         </Link>
         <ul className="nav-menu">
-          <li className="nav-item">
-            <Link to="/auth" className="nav-links">Login / Signup</Link>
-          </li>
-          {/* Other menu items can be added here */}
+          {/* You can add other links here */}
         </ul>
       </div>
     </nav>
   );
 };
- 
+
 export default Navbar;
