@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { AccountContext } from "./accountContext.js";
 import { SignupForm } from "./signupForm.jsx";
 import {forgotPassword, ForgotPasswordForm} from "./forgotPassword.jsx"
+import OtpInput from "./OtpInput.jsx"
 import MyParticles from '../Particles/Particles';
 
 const BoxContainer = styled.div`
@@ -131,7 +132,14 @@ export function AccountBox(props) {
     }, 400);
   };
 
-  const contextValue = { switchToSignup, switchToSignin, switchToForgotPass };
+  const switchToOtp = () => {
+    playExpandingAnimation();
+    setTimeout(() => {
+      setActive("otp");
+    }, 400);
+  };
+
+  const contextValue = { switchToSignup, switchToSignin, switchToForgotPass, switchToOtp };
 
   return (
     <div className="auth-container">
@@ -166,11 +174,19 @@ export function AccountBox(props) {
               <SmallText>Set your new password!</SmallText>
             </HeaderContainer>
           )}
+          {active === "otp" && (
+            <HeaderContainer>
+              <HeaderText>Type</HeaderText>
+              <HeaderText>In OTP</HeaderText>
+              <SmallText>Verify yourself!</SmallText>
+            </HeaderContainer>
+          )}
         </TopContainer>
         <InnerContainer>
           {active === "signin" && <LoginForm />}
           {active === "signup" && <SignupForm />}
           {active === "forgotpass" && <ForgotPasswordForm/>}
+          {active === "otp" && <OtpInput/>}
         </InnerContainer>
       </BoxContainer>
     </AccountContext.Provider>

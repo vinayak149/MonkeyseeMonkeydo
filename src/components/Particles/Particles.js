@@ -64,7 +64,7 @@ const MyParticles = () => {
                                 default: "bounce",
                             },
                             random: false,
-                            speed: 6,
+                            speed: 3,
                             straight: false,
                         },
                         number: {

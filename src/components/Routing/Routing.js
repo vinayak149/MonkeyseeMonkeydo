@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from '../Home';
 import Navbar from '../Navbar/Navbar';
 import ParticipantDashboard from '../Dashboard/Participant/ParticipantDashboard';
-import JudgeDashboard from '../Dashboard/JudgeDashboard';
-import PanelistDashboard from '../Dashboard/PanelistDashboard';
+// import JudgeDashboard from '../Dashboard/JudgeDashboard';
+// import PanelistDashboard from '../Dashboard/PanelistDashboard';
 import IdeaSubmissionForm from '../IdeaSubmissionForm';
 import AddPanelistForm from '../AddPanelistForm';
 import AssignIdeaForm from '../AssignIdeaForm';
@@ -36,8 +36,8 @@ function Routing() {
           <Route path='/auth-con' element={<Signup/>}/>
           <Route path='/' element={<Home/>}/>
           <Route path="/home" element={<Home />} />
-          <Route path="/judge-dashboard" element={<JudgeDashboard />} />
-          <Route path="/panelist-dashboard" element={<PanelistDashboard />} />
+          {/* <Route path="/judge-dashboard" element={<JudgeDashboard />} /> */}
+          {/* <Route path="/panelist-dashboard" element={<PanelistDashboard />} /> */}
           <Route path="/dashboard" element={<ParticipantDashboard />} />
           <Route path="/ideas/new" element={<IdeaSubmissionForm deadline={deadline} onSubmit={handleIdeaSubmit} />} />
           <Route path="/ideas/edit/:ideaId" element={<IdeaSubmissionForm deadline={deadline} onSubmit={handleIdeaSubmit} />} />

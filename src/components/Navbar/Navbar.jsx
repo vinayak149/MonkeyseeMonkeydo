@@ -13,7 +13,9 @@ const Navbar = () => {
           {/* <li className="nav-item">
             <Link to="/login" className="nav-links">Login / Signup</Link> */}
         <li className="nav-item">
+            
             <Link to="/auth" className="nav-links">Login / Signup</Link>
+            {/* <link to="" className='nav-links'> Logout</link> */}
           </li>
           {/* Other menu items can be added here */}
           
