@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.server.bean.Idea;
 import com.server.bean.Participant;
+import com.server.bean.Team;
 import com.server.service.ParticipantService;
  
  
@@ -29,8 +30,7 @@ public class ParticipantController {
     public ParticipantController(ParticipantService participantService) {
         this.participantService = participantService;
     }
-    
-    @CrossOrigin
+ 
     @GetMapping
     public ResponseEntity<List<Participant>> getAllParticipants() {
         List<Participant> participants = participantService.getAllParticipants();
@@ -59,5 +59,25 @@ public class ParticipantController {
     public ResponseEntity<Void> deleteParticipant(@PathVariable String id) {
         participantService.deleteParticipant(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    
+    @GetMapping("/dashboard/{id}/progress")
+    public ResponseEntity<String> dashBoardProgress(@PathVariable String id){
+    	try {
+    	Participant participant = participantService.findByEmail(id);
+    	Team team = participant.getTeam();
+    	Idea idea = team.getIdea();
+    	String progress="0";
+    	if(idea.getTitle()!=null) {
+    		progress =  "40";
+    			if(idea.getRating()>0) {
+    				progress = "60";
+    		}
+    	}
+    	return new ResponseEntity<String>(progress,HttpStatus.OK);
+    	}
+    	catch(Exception e) {
+    		return new ResponseEntity<String>(e.toString(),HttpStatus.BAD_REQUEST);
+    	}
     }
 }

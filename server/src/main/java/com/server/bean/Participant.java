@@ -13,17 +13,27 @@ public class Participant {
     private String name;
     private String email;
     
+    
     @DBRef
-    private Idea idea;
-
-    public Participant( String name, String email, Idea idea) {
-        
-        this.name = name;
-        this.email = email;
-        this.idea = idea;
+    private Team team;
+    
+    public Participant()
+    {
+    	
     }
 
-    
+    public Participant(String name, String email,  Team team) {
+    	
+        this.name = name;
+        this.email = email;
+        this.team = team;
+        
+    }
+    public Participant(String name, String email) {
+        this.name = name;
+        this.email = email;
+        
+    }
 
     public String getId() {
         return id;
@@ -49,11 +59,13 @@ public class Participant {
         this.email = email;
     }
 
-    public Idea getIdea() {
-        return idea;
+    
+
+    public Team getTeam() {
+        return team;
     }
 
-    public void setIdea(Idea idea) {
-        this.idea = idea;
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }

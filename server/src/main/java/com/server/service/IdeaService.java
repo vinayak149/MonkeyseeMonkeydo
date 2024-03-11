@@ -61,8 +61,7 @@ public class IdeaService {
         }
 
         public Idea updateIdea(String id, Idea idea) {
-            // Implement update logic here
-            // Make sure to set the ID of the new idea object
+           
             idea.setId(id);
             return ideaRepository.save(idea);
         }

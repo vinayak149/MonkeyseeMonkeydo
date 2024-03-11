@@ -8,4 +8,6 @@ import com.server.bean.Participant;
  
 @Repository
 public interface ParticipantRepo extends MongoRepository<Participant, String> {
+	Participant findByNameAndEmail(String name, String email);
+	Participant findByEmail(String email);
 }

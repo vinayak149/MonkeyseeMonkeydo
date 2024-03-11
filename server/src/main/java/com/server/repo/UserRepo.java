@@ -10,5 +10,5 @@ public interface UserRepo extends MongoRepository<User, String> {
     User findByUsername(String username);
     User findByEmail(String email);
     User save(User user);
-
+    
 }

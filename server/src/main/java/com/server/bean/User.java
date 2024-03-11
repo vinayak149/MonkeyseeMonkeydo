@@ -12,12 +12,16 @@ public class User {
 
     private String username;
     private String password;
-    private String email; // Corrected variable name to follow conventions
+    private String email; 
     private String role;
     private String otp;
     public String getOtp() {
 		return otp;
 	}
+    public User()
+    {
+    	
+    }
 
 	public void setOtp(String otp) {
 		this.otp = otp;

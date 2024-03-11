@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.server.bean.Idea;
 import com.server.bean.Participant;
+import com.server.bean.User;
 import com.server.repo.IdeaRepo;
 import com.server.repo.ParticipantRepo;
 
@@ -34,10 +35,7 @@ public class ParticipantService {
 
     public Participant addParticipant(Participant participant) {
         // Save the Idea first to get the generated ID
-        Idea savedIdea = ideaRepository.save(participant.getIdea());
-
-        // Set the saved Idea in the Participant and save the Participant
-        participant.setIdea(savedIdea);
+       
         Participant savedParticipant = participantRepository.save(participant);
 
         return savedParticipant;
@@ -50,14 +48,12 @@ public class ParticipantService {
             Participant existingParticipant = optionalExistingParticipant.get();
 
             // Update the fields based on your requirements
+            existingParticipant.setTeam(updatedParticipant.getTeam());
             existingParticipant.setName(updatedParticipant.getName());
             existingParticipant.setEmail(updatedParticipant.getEmail());
 
             // Save the updated Idea (if needed)
-            Idea updatedIdea = updatedParticipant.getIdea();
-            if (updatedIdea != null) {
-                existingParticipant.setIdea(ideaRepository.save(updatedIdea));
-            }
+           
 
             // Save the updated Participant
             return participantRepository.save(existingParticipant);
@@ -65,8 +61,21 @@ public class ParticipantService {
 
         return null; // Participant with the given ID not found
     }
+    
+
 
     public void deleteParticipant(String id) {
         participantRepository.deleteById(id);
     }
+    public void saveParticipant(Participant participant)
+    {
+    	participantRepository.save(participant);
+    }
+    public Participant findByEmail(String email) {
+        return participantRepository.findByEmail(email);
+    }
+    public Participant findByUsernameAndEmail(String username, String email) {
+        return participantRepository.findByNameAndEmail(username, email);
+    }
+    
 }
