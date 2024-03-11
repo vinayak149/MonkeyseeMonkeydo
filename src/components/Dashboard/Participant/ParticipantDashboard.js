@@ -51,14 +51,11 @@ const ParticipantDashboard = () => {
   return (
     <div style={{ backgroundColor: "#040720" }}>
       {/* <MyParticles/> */}
-      <Navbar2/>
+      <Navbar2 />
       <div className="container">
         <div className="boxes">
           <div className="line1">
-            <div
-              className="box1"
-              style={{ backgroundColor: "#008080" }}
-            >
+            <div className="box1" style={{ backgroundColor: "#008080" }}>
               <h2>Team Name</h2>
               <p>
                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
@@ -68,7 +65,7 @@ const ParticipantDashboard = () => {
             <div className="box2" style={{ backgroundColor: "#576CBC" }}>
               <h2>Total Competitors</h2>
               <p>
-              <AnimatedNumber number={dashboardData.totalCompetitors} />
+                <AnimatedNumber number={dashboardData.totalCompetitors} />
               </p>
             </div>
           </div>
@@ -89,11 +86,8 @@ const ParticipantDashboard = () => {
           </div>
         </div>
         <div className="box5" style={{ backgroundColor: "#008080" }}>
-          <h2>Active</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-          </p>
+          <h2>Project Submission</h2>
+          <p>Kindly Submit your code here.</p>
         </div>
         <div className="box6" style={{ backgroundColor: "#A5D7E8" }}>
           <h2>Status of Projected Submitted</h2>
@@ -122,8 +116,6 @@ const ParticipantDashboard = () => {
             Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
             Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
           </p>
-
-          <p>FIle upload space</p>
         </div>
       </div>
     </div>
