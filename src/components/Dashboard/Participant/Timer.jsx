@@ -191,7 +191,7 @@
 import React, { useState, useEffect } from "react";
 
 const Timer = () => {
-  const finalDateIST = new Date("2024-03-08T15:30:00");
+  const finalDateIST = new Date("2024-03-13T15:30:00");
   const finalEpochTimeIST = Math.floor(finalDateIST.getTime() / 1000);
 
   const [remDays, setRemDays] = useState("00");

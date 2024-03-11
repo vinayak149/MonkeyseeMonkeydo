@@ -10,7 +10,7 @@
     z-index: 10;
     transition: background 0.4s ease;
 }
-
+ 
 .navbar-container {
     display: flex;
     justify-content: space-between;
@@ -24,7 +24,7 @@
     color: white;
     /* Ensure text is readable */
 }
-
+ 
 .navbar-logo {
     color: #fff;
     cursor: pointer;
@@ -34,23 +34,23 @@
     align-items: center;
     transition: transform 0.2s ease;
 }
-
+ 
 .navbar-logo:hover {
     transform: scale(1.1);
 }
-
+ 
 .nav-menu {
     display: flex;
     align-items: center;
     list-style: none;
     text-align: center;
 }
-
+ 
 .nav-item {
     height: 80px;
     border-bottom: 2px solid transparent;
 }
-
+ 
 .nav-links {
     color: #fff;
     display: flex;
@@ -60,19 +60,52 @@
     height: 100%;
     transition: color 0.3s ease;
 }
-
+ 
 .nav-links:hover {
     color:#ffd700;
     /* Consider changing to match new color scheme if desired */
     border-bottom: 2px solid #ffd700;
 }
-
+.small-text {
+    font-size: 0.8em;
+    /* Set smaller font size for MonkeySee */
+}
+.logo-container {
+    display: flex;
+    align-items: flex-end;
+    /* Align items to the bottom */
+}
+ 
+.monkey-see {
+    font-size: 0.8em;
+    /* Set smaller font size for MonkeySee */
+    color: #fff;
+    /* Example color */
+    margin-right: 5px;
+    /* Add some margin to the right of MonkeySee */
+}
+ 
+.big-text {
+    color: #fff;
+    /* Example color */
+    margin-left: 5px;
+    /* Add some margin between MonkeySee and MonkeyDo */
+}
+ 
+.gif {
+    width: 40px;
+    /* Set width for the GIF */
+    margin-left: 10px;
+    /* Add some margin between MonkeyDo and the GIF */
+}
+ 
+ 
 @media screen and (max-width: 960px) {
     .navbar {
         background: rgba(0, 0, 0, 0.8);
         /* Consider updating for responsiveness */
     }
-
+ 
     .nav-menu {
         display: flex;
         flex-direction: column;
@@ -83,11 +116,11 @@
         /* Consider updating for responsiveness */
         transition: opacity 0.5s ease;
     }
-
+ 
     .nav-item {
         border: none;
     }
-
+ 
     .nav-links {
         padding: 2rem;
     }
