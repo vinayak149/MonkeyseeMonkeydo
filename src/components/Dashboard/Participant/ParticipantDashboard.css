@@ -70,8 +70,48 @@
   margin: 3vh 2vh;
   border-radius: 10px;
 }
+@keyframes typing {
+  0% {
+      width: 0;
+  }
 
-/* responsive design css starts*/
+  50% {
+      width: 100%;
+  }
+
+  100% {
+      width: 0;
+  }
+}
+
+/* @keyframes blink-caret {
+
+  from,
+  to {
+      border-color: transparent;
+  }
+
+  50% {
+      border-color: #F0F0F0;
+  }
+}
+
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05); 
+  }
+} */
+
+/* Hover effect */
+.box1:hover, .box2:hover, .box3:hover, .box4:hover, .box5:hover, .box6:hover , .members:hover, .project:hover{
+  animation: bounce 0.5s ease forwards;
+  /* animation: typing 2s steps(40, end) infinite, blink-caret .15s step-end infinite */
+}
+
 
 @media only screen and (max-width: 768px) {
   .container {

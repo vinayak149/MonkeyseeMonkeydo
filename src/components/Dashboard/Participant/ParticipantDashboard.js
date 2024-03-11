@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./ParticipantDashboard.css";
 import Timer from "./Timer";
 import Widget from "./Widget";
+import AnimatedNumber from "./AnimatedNumber";
 // import MyParticles from '../../Particles/Particles';
 // import CircularProgress from '@mui/joy/CircularProgress';
 
@@ -53,7 +54,7 @@ const ParticipantDashboard = () => {
           <div className="line1">
             <div
               className="box1"
-              style={{ backgroundColor: "rgba(40, 85, 233,0.5)" }}
+              style={{ backgroundColor: "#008080" }}
             >
               <h2>Team Name</h2>
               <p>
@@ -64,8 +65,7 @@ const ParticipantDashboard = () => {
             <div className="box2" style={{ backgroundColor: "#576CBC" }}>
               <h2>Total Competitors</h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+              <AnimatedNumber number={dashboardData.totalCompetitors} />
               </p>
             </div>
           </div>
@@ -85,7 +85,7 @@ const ParticipantDashboard = () => {
             </div>
           </div>
         </div>
-        <div className="box5" style={{ backgroundColor: "#19376D" }}>
+        <div className="box5" style={{ backgroundColor: "#008080" }}>
           <h2>Active</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
