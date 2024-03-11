@@ -70,7 +70,7 @@
   margin: 3vh 2vh;
   border-radius: 10px;
 }
-@keyframes typing {
+/* @keyframes typing {
   0% {
       width: 0;
   }
@@ -82,7 +82,7 @@
   100% {
       width: 0;
   }
-}
+} */
 
 /* @keyframes blink-caret {
 
@@ -95,7 +95,7 @@
       border-color: #F0F0F0;
   }
 }
-
+*/
 
 @keyframes bounce {
   0%, 100% {
@@ -104,7 +104,7 @@
   50% {
     transform: scale(1.05); 
   }
-} */
+} 
 
 /* Hover effect */
 .box1:hover, .box2:hover, .box3:hover, .box4:hover, .box5:hover, .box6:hover , .members:hover, .project:hover{
