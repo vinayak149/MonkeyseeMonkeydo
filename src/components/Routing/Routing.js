@@ -10,7 +10,9 @@ import AddPanelistForm from '../AddPanelistForm';
 import AssignIdeaForm from '../AssignIdeaForm';
 import Login from '../Login/Login';
 import Signup from '../Signup/Signup';
-import { AccountBox } from '../Account/account';
+import { AccountBox } from '../Account/account'; 
+import RegistrationPage from '../RegistrationPage/RegistrationPage.js';
+
 // import PanelistDashboard from './components/Dashboard/PanelistDashboard.js'
 // import IdeaSubmissionForm from './components/IdeaSubmissionForm';
 // import Dashboard from './components/Dashboard';
@@ -43,6 +45,7 @@ function Routing() {
           <Route path="/ideas/edit/:ideaId" element={<IdeaSubmissionForm deadline={deadline} onSubmit={handleIdeaSubmit} />} />
           <Route path="/add-panelist" element={<AddPanelistForm />} />
           <Route path="/assign-idea" element={<AssignIdeaForm />} />
+          <Route path="/register" element={<RegistrationPage/>} />
           <Route path="/submit-idea" element={
             <IdeaSubmissionForm 
               deadline={deadline} 

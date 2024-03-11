@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+body {
+  background-color: #f6f8fb; 
+  color: #333; 
+  font-family: Quicksand, sans-serif;
+  line-height: 1.6; 
+}
+
+.registrationForm {
+  width: 80%; 
+  max-width: 800px; 
+  margin: 50px auto;
+  padding: 40px;
+  background-color: #fff; 
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+}
+
+.registrationForm h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #0d84a3; 
+  font-weight: 600; 
+  font-size: 24px; 
+}
+
+.registrationForm label {
+  display: block;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #556877; 
+  font-weight: 500; 
+}
+
+.registrationForm input[type="text"],
+.registrationForm input[type="email"],
+.registrationForm textarea,
+.registrationForm select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: 2px solid #d9e2ec; 
+  background-color: #f3f7fc; 
+  color: #333; 
+  border-radius: 4px; 
+  font-size: 16px; 
+  transition: border-color 0.3s; 
+}
+
+.registrationForm input:focus,
+.registrationForm textarea:focus,
+.registrationForm select:focus {
+  border-color: #5f9edc; 
+  outline: none; 
+}
+
+.registrationForm textarea {
+  resize: none; 
+  min-height: 120px; 
+}
+
+.registrationForm button,
+.addParticipantButton {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  background-color: #00b894; 
+  color: #fff; 
+  border: none;
+  border-radius: 4px; 
+  cursor: pointer;
+  font-size: 16px; 
+  font-weight: 600; 
+  transition: background-color 0.3s; 
+}
+
+.registrationForm button:hover,
+.addParticipantButton:hover {
+  background-color: #019979; 
+}
+
+.textarea-container {
+  position: relative;
+}
+
+.textarea-container .words-left {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  font-size: 14px;
+  color: #778ca3; 
+}
+
+.requiredIndicator {
+  color: #ff4d4f; 
+  font-size: 16px; 
+}
+
+.aboveIndicator {
+  position: absolute;
+  top: -20px;
+  right: 0;
+  font-size: 16px; 
+}
+
+.participantNumber {
+  display: inline-block;
+  position: relative;
+}
+
+.number {
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .registrationForm {
+    width: 90%; 
+    padding: 30px; 
+    margin: 30px auto; 
+  }
+}
