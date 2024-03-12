@@ -72,32 +72,6 @@
   margin: 3vh 2vh;
   border-radius: 10px;
 }
-/* @keyframes typing {
-  0% {
-      width: 0;
-  }
-
-  50% {
-      width: 100%;
-  }
-
-  100% {
-      width: 0;
-  }
-} */
-
-/* @keyframes blink-caret {
-
-  from,
-  to {
-      border-color: transparent;
-  }
-
-  50% {
-      border-color: #F0F0F0;
-  }
-}
-*/
 
 @keyframes bounce {
   0%,
