@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./JudgeDashboard.css";
-import Timer from "../Participant/Timer";
+// import Timer from "../Participant/Timer";
 import Navbar2 from "../../Navbar/Navbar2";
 import axios from "axios";
 
