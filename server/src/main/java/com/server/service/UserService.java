@@ -14,72 +14,63 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    private  UserRepo userRepository;
-    private ParticipantRepo participantRepo;
-    private JudgeRepo judgeRepo;
-    private PanelistRepo panelistRepo;
+	private UserRepo userRepository;
+	private ParticipantRepo participantRepo;
+	private JudgeRepo judgeRepo;
+	private PanelistRepo panelistRepo;
 
-    @Autowired
-    public UserService(UserRepo userRepository,ParticipantRepo participantRepo, JudgeRepo judgeRepo,PanelistRepo panelistRepo) {
-        this.userRepository = userRepository;
-        this.participantRepo=participantRepo;
-        this.judgeRepo=judgeRepo;
-        this.panelistRepo=panelistRepo;
-    }
+	@Autowired
+	public UserService(UserRepo userRepository, ParticipantRepo participantRepo, JudgeRepo judgeRepo,
+			PanelistRepo panelistRepo) {
+		this.userRepository = userRepository;
+		this.participantRepo = participantRepo;
+		this.judgeRepo = judgeRepo;
+		this.panelistRepo = panelistRepo;
+	}
 
-    public User registerUser(User user) {
-        if (user.getRole() == null) {
-            user.setRole("PARTICIPANT");
-        }
+	public User registerUser(User user) {
+		if (user.getRole() == null) {
+			user.setRole("PARTICIPANT");
+		}
 
-        User savedUser = userRepository.save(user);
+		User savedUser = userRepository.save(user);
 
-        // Create instances of Judge and Panelist before the switch statement
-        Judge judge = null;
-        Panelist panelist = null;
+		// Create instances of Judge and Panelist before the switch statement
+		Judge judge = null;
+		Panelist panelist = null;
 
-        // Based on the user's role, save to the corresponding repository
-        switch (user.getRole()) {
-            case "PARTICIPANT":
-                Participant participant = new Participant(user.getUsername(), user.getEmail(), null);
-                participantRepo.save(participant);
-                break;
-            case "JUDGE":
-                judge = new Judge(user.getUsername(), user.getEmail());
-                judgeRepo.save(judge);
-                break;
-            case "PANELIST":
-                panelist = new Panelist(user.getUsername(),user.getEmail());
-                panelistRepo.save(panelist);
-                break;
-        }
+		// Based on the user's role, save to the corresponding repository
+		switch (user.getRole()) {
+		case "PARTICIPANT":
+			Participant participant = new Participant(user.getUsername(), user.getEmail(), null);
+			participantRepo.save(participant);
+			break;
+		case "JUDGE":
+			judge = new Judge(user.getUsername(), user.getEmail());
+			judgeRepo.save(judge);
+			break;
+		case "PANELIST":
+			panelist = new Panelist(user.getUsername(), user.getEmail());
+			panelistRepo.save(panelist);
+			break;
+		}
 
-        // Additional logic for handling the saved user, if needed
-        return savedUser;
-    }
-    
-    public void updateUserPassword(String username, String password) {
-            User user = userRepository.findByUsername(username);
-            if (user != null) {
-                // Set the new password directly without encoding (not recommended)
-                user.setPassword(password);
-                userRepository.save(user);
-            }
-        }
+		// Additional logic for handling the saved user, if needed
+		return savedUser;
+	}
 
+	public User getUserByUsername(String username) {
+		return userRepository.findByUsername(username);
+	}
 
-    public User getUserByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
-    public void SaveUser(User user)
-    {
-    	userRepository.save(user);
-    }
-    
-    public User getUserByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
-    
+	public void SaveUser(User user) {
+		userRepository.save(user);
+	}
+
+	public User getUserByEmail(String email) {
+		return userRepository.findByEmail(email);
+	}
+
 	public User findByEmail(String email) {
 		// TODO Auto-generated method stub
 		return userRepository.findByEmail(email);

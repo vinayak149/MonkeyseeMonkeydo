@@ -37,6 +37,12 @@ public class Team {
         this.participants = new ArrayList<>();
     }
 
+	public Panelist getPanelist() {
+		return panelist;
+	}
+	public void setPanelist(Panelist panelist) {
+		this.panelist = panelist;
+	}
 	public String getId() {
 		return id;
 	}

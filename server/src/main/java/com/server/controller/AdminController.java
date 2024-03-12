@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController {
 	@PostMapping("/admin/assignPanelist")
 	public ResponseEntity<String> assignPanelist(){
-		
+	
 	return null;	
 	}
 }
