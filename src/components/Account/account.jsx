@@ -9,20 +9,21 @@ import OtpInput from "./OtpInput.jsx"
 import MyParticles from '../Particles/Particles';
 
 const BoxContainer = styled.div`
-  width: 280px;
-  min-height: 550px;
+  width: 320px;
+  min-height: 500px;
   display: flex;
   flex-direction: column;
   border-radius: 19px;
-  background-color: #fff;
+  background-color: rgba(10, 25, 47, 0.95);
   box-shadow: 0 0 2px rgba(15, 15, 15, 0.28);
   position: relative;
   overflow: hidden;
+  border: 2px solid rgba(200, 200, 200, 0.3);
 `;
 
 const TopContainer = styled.div`
   width: 100%;
-  height: 250px;
+  height: 220px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -40,12 +41,7 @@ const BackDrop = styled(motion.div)`
   transform: rotate(60deg);
   top: -290px;
   left: -70px;
-  background: rgb(241, 196, 15);
-  background: linear-gradient(
-    58deg,
-    rgba(241, 196, 15, 1) 20%,
-    rgba(243, 172, 18, 1) 100%
-  );
+  background: #112240;
 `;
 
 const HeaderContainer = styled.div`
@@ -58,13 +54,13 @@ const HeaderText = styled.h2`
   font-size: 30px;
   font-weight: 600;
   line-height: 1.24;
-  color: #fff;
+  color: #ccd6f6;
   z-index: 10;
   margin: 0;
 `;
 
 const SmallText = styled.h5`
-  color: #fff;
+  color: #8892b0;
   font-weight: 500;
   font-size: 11px;
   z-index: 10;
@@ -77,6 +73,7 @@ const InnerContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 1.8em;
+  margin-top: -50px; /* Adjusted margin to move the inner container up */
 `;
 
 const backdropVariants = {
@@ -99,7 +96,6 @@ const expandingTransition = {
   duration: 2.3,
   stiffness: 30,
 };
-
 export function AccountBox(props) {
   const [isExpanded, setExpanded] = useState(false);
   const [active, setActive] = useState("signin");

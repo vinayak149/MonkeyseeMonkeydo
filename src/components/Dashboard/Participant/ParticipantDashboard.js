@@ -26,6 +26,29 @@ const ParticipantDashboard = () => {
   //   hackathonEndTime: '2024-03-09T00:00:00.000Z', // Placeholder, replace with real data
   //   projectSubmissionEndTime: '2024-03-09T00:00:00.000Z', // Placeholder, replace with real data
   // });
+  const [dragging, setDragging] = useState(false); // New state for drag status
+  const [files, setFiles] = useState([]); // New state for uploaded files
+
+  // Handle Drag and Drop
+  const handleDrag = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setDragging(true);
+    } else if (e.type === "dragleave" || e.type === "drop") {
+      setDragging(false);
+    }
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragging(false);
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      setFiles([...files, ...e.dataTransfer.files]);
+      e.dataTransfer.clearData();
+    }
+  };
 
   useEffect(() => {
     const fetchDashboardData = async () => {
