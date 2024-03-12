@@ -108,7 +108,7 @@ const ParticipantDashboard = () => {
           <p>Name 4</p>
         </div>
         <div className="project">
-          <h1>Project Name</h1>
+          <h1>Project Description</h1>
           <p>
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
             commodo ligula eget dolor. Aenean massa. Cum sociis natoque
