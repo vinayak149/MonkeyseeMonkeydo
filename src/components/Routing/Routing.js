@@ -12,6 +12,7 @@ import Login from '../Login/Login';
 import Signup from '../Signup/Signup';
 import { AccountBox } from '../Account/account'; 
 import RegistrationPage from '../RegistrationPage/RegistrationPage.js';
+import PanelistDashboard from '../Dashboard/Participant/PanelistDashboard/PanelistDashboard.jsx';
 
 // import PanelistDashboard from './components/Dashboard/PanelistDashboard.js'
 // import IdeaSubmissionForm from './components/IdeaSubmissionForm';
@@ -41,6 +42,7 @@ function Routing() {
           {/* <Route path="/judge-dashboard" element={<JudgeDashboard />} /> */}
           {/* <Route path="/panelist-dashboard" element={<PanelistDashboard />} /> */}
           <Route path="/dashboard" element={<ParticipantDashboard />} />
+          <Route path='/panelist' element={<PanelistDashboard/>}/>
           <Route path="/ideas/new" element={<IdeaSubmissionForm deadline={deadline} onSubmit={handleIdeaSubmit} />} />
           <Route path="/ideas/edit/:ideaId" element={<IdeaSubmissionForm deadline={deadline} onSubmit={handleIdeaSubmit} />} />
           <Route path="/add-panelist" element={<AddPanelistForm />} />

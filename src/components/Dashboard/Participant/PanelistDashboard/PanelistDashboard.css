@@ -1,0 +1,67 @@
+.Box {
+    display: flex;
+    flex-direction: column; /* Ensure children are stacked vertically */
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+  }
+  
+  .Heading {
+    text-align: center;
+    color: white; /* Assuming you want white text */
+    width: 100%;
+  }
+  
+  .TotalCandidates {
+    text-align: center;
+    color: white; /* Assuming you want white text */
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  th {
+    background-color: #04AA6D;
+    color: white;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+
+  }
+  
+  button {
+    margin-right: 5px;
+  }
+  .customTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .customTable th, .customTable td {
+    text-align: left;
+    padding: 10px 70px; /* Adjust the padding as needed */
+    border-bottom: 1px solid #ccc;
+  }
+  
+  /* Add more styles here for aesthetics as per the dribble link */
+  button {
+    background-color: #04AA6D; /* Green background */
+    color: white; /* White text */
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  

@@ -9,7 +9,8 @@ function App() {
     <div className="App">
       {/* <MyParticles/> */}
       <Routing/>
-      <div><Footer/>
+      <div>
+        <Footer/>
       </div>
     </div>
   );
