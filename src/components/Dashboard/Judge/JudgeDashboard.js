@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import "./PanelistDashboard.css";
-import Timer from "../Timer";
-import Navbar2 from "../../../Navbar/Navbar2";
+import "./JudgeDashboard.css";
+import Timer from "../Participant/Timer";
+import Navbar2 from "../../Navbar/Navbar2";
 import axios from "axios";
 
 // import MyParticles from '../../Particles/Particles';
 // import CircularProgress from '@mui/joy/CircularProgress';
 
   // Note: No need for a second useEffect with an empty dependency array as shown in your initial code
-  function PanelistDashboard (){
+  function JudgeDashboard (){
         const [teams, setTeams] = useState([]);
       
         // Fetch teams from the backend
@@ -39,10 +39,10 @@ import axios from "axios";
   return (
     <div style={{ backgroundColor: "#040720" }}>
       {/* <MyParticles/> */}
-      {/* <Navbar2 /> */}
+      <Navbar2 />
         <div className="Box">
             <div style={{backgroundColor: "Black"}} className="Heading">
-                <h1>Panelist Dashboard</h1>
+                <h1>Judge Dashboard</h1>
             </div>
             <div className="TotalCandidates">
                 <h2>Total Candidates</h2>
@@ -83,4 +83,4 @@ import axios from "axios";
     </div>
   );
 }
-export default PanelistDashboard;
+export default JudgeDashboard;

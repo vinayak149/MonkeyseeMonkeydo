@@ -1,0 +1,110 @@
+.Box {
+    display: flex;
+    flex-direction: column;
+    /* Ensure children are stacked vertically */
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+}
+
+.Heading {
+    text-align: center;
+    color: white;
+    /* Assuming you want white text */
+    width: 100%;
+}
+
+.TotalCandidates {
+    text-align: center;
+    color: white;
+    /* Assuming you want white text */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #04AA6D;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+
+}
+
+button {
+    margin-right: 5px;
+}
+
+.customTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.customTable th,
+.customTable td {
+    text-align: left;
+    padding: 10px 70px;
+    /* Adjust the padding as needed */
+    border-bottom: 1px solid #ccc;
+}
+
+/* Add more styles here for aesthetics as per the dribble link */
+button {
+    background-color: #04AA6D;
+    /* Green background */
+    color: white;
+    /* White text */
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+
+.review-link {
+    display: inline-block;
+    background-color: #21d4fd;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-left: 5px;
+    /* Adjust spacing between buttons and link */
+    transition: background-color 0.3s;
+}
+
+.review-link:hover {
+    background-color: #0d8ecf;
+}
+
+.content-above-footer {
+    margin-top: 20px;
+    /* Adjust based on your layout */
+    padding: 20px;
+    background-color: #f0f0f0;
+    /* Light background for visibility */
+    border-radius: 8px;
+    color: #333;
+    /* Dark text color for contrast */
+    text-align: center;
+}
+
+/* Ensure footer doesn't overlap content */
+.app-footer {
+    margin-top: 30px;
+    /* Adjust as necessary */
+}
