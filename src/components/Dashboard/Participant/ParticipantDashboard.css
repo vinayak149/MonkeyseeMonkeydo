@@ -3,6 +3,7 @@
   max-width: 100%;
   z-index: 10;
 }
+
 .boxes {
   display: flex;
   width: 50%;
@@ -17,6 +18,7 @@
   margin: 2vh 2vh;
   border-radius: 10px;
 }
+
 .box1 h2,
 .box2 h2,
 .box3 h2,
@@ -26,6 +28,7 @@
   color: #fff;
   padding: 10px;
 }
+
 .box1 p,
 .box2 p,
 .box3 p,
@@ -35,10 +38,12 @@
   color: #ccc;
   padding-left: 2px;
 }
+
 .team {
   display: flex;
   margin: 1vh 1vh;
 }
+
 .members,
 .project {
   flex: 1;
@@ -48,23 +53,28 @@
   min-width: 45%;
   margin-bottom: 1.7rem;
 }
+
 .members h1,
 .project h1 {
   color: #fff;
   padding: 10px;
 }
+
 .members p,
 .project p {
   color: #ccc;
   padding-left: 15px;
 }
+
 .team {
   justify-content: space-between;
   margin-bottom: 0.001rem;
 }
+
 .members p {
   margin-bottom: 10px;
 }
+
 .box5,
 .box6 {
   max-width: 50vh;
@@ -74,10 +84,12 @@
 }
 
 @keyframes bounce {
+
   0%,
   100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.05);
   }
@@ -115,5 +127,27 @@
   .box1,
   .box2 {
     padding: 0.5rem;
+  }
+}
+
+.line2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* Adjust this as needed */
+}
+
+.box3,
+.box4,
+.box6 {
+  /* Ensure these boxes can shrink or grow as needed, but you might want to set a flex-basis */
+  flex: 1;
+  min-width: 250px;
+  /* Example min-width; adjust as needed for your design */
+}
+
+@media only screen and (max-width: 768px) {
+  .line2 {
+    flex-direction: column;
   }
 }

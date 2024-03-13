@@ -4,10 +4,10 @@ import Timer from "./Timer";
 import Widget from "./Widget";
 import AnimatedNumber from "./AnimatedNumber";
 import Navbar2 from "../../Navbar/Navbar2";
-
+ 
 // import MyParticles from '../../Particles/Particles';
 // import CircularProgress from '@mui/joy/CircularProgress';
-
+ 
 const ParticipantDashboard = () => {
   const [dashboardData, setDashboardData] = useState({
     teamName: "",
@@ -20,7 +20,7 @@ const ParticipantDashboard = () => {
     projectDescription: "",
     projectCompletionPercentage: 0,
   });
-
+ 
   // Moved outside the fetchDashboardData function
   // const [time, setTime] = useState({
   //   hackathonEndTime: '2024-03-09T00:00:00.000Z', // Placeholder, replace with real data
@@ -28,7 +28,7 @@ const ParticipantDashboard = () => {
   // });
   const [dragging, setDragging] = useState(false); // New state for drag status
   const [files, setFiles] = useState([]); // New state for uploaded files
-
+ 
   // Handle Drag and Drop
   const handleDrag = (e) => {
     e.preventDefault();
@@ -39,7 +39,7 @@ const ParticipantDashboard = () => {
       setDragging(false);
     }
   };
-
+ 
   const handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -49,7 +49,7 @@ const ParticipantDashboard = () => {
       e.dataTransfer.clearData();
     }
   };
-
+ 
   useEffect(() => {
     const fetchDashboardData = async () => {
       // Simulate fetching dashboard data
@@ -59,17 +59,17 @@ const ParticipantDashboard = () => {
       const teamInfo = await teamResponse.json();
       const projectStatusResponse = await fetch("/api/project-status");
       const projectStatus = await projectStatusResponse.json();
-
+ 
       setDashboardData({
         ...dashboard,
         ...teamInfo,
         ...projectStatus,
       });
     };
-
+ 
     fetchDashboardData();
   }, []);
-
+ 
   // Note: No need for a second useEffect with an empty dependency array as shown in your initial code
   return (
     <div style={{ backgroundColor: "#040720" }}>
@@ -144,5 +144,5 @@ const ParticipantDashboard = () => {
     </div>
   );
 };
-
+ 
 export default ParticipantDashboard;
