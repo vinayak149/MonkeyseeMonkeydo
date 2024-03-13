@@ -136,7 +136,7 @@ import axios from "axios";
         <tr>
           <th>Team Name</th>
           <th>Team ID</th>
-          <th>Project Description</th>
+          <th>Status</th>
           <th>Review</th>
         </tr>
       </thead>
