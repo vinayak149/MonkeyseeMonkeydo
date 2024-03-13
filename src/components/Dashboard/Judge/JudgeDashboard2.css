@@ -1,0 +1,116 @@
+.judge-dashboard {
+    background-color: #040720;
+    font-family: Quicksand, sans-serif;
+    padding: 20px;
+}
+
+ .judge-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.project-info,
+.scoring {
+    flex: 1;
+    background-color: #0a192f;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px;
+    min-width: 300px;
+    /* Adjust as necessary */
+}
+
+.project-details,
+.project-files,
+.scoring {
+    margin-bottom: 20px;
+}
+
+.project-details h2,
+.project-files h2,
+.scoring h2 {
+    color: #fff;
+    padding: 10px 0;
+}
+
+.project-files .file-link,
+.project-details p,
+.project-files a {
+    color: #21d4fd;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.score-slider {
+    margin-bottom: 20px;
+}
+
+.score-slider label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.score-slider input[type='range'] {
+    width: 100%;
+}
+
+button {
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45A049;
+}
+
+/* Responsive design adjustments */
+@media only screen and (max-width: 768px) {
+    .container {
+        display: block;
+        /* Stack the containers on smaller screens */
+    }
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: center;
+    /* Center the buttons if they have a smaller width */
+    padding: 20px;
+    margin-top: 20px;
+    /* Adjust based on your layout */
+    gap: 20px;
+    /* Adds space between buttons */
+}
+
+.prev-button,
+.next-button {
+    background-color: #21d4fd;
+    /* Button color */
+    color: white;
+    /* Text color */
+    border: none;
+    border-radius: 20px;
+    /* Makes the buttons rounded */
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    width: 120px;
+    /* Sets a specific width for the buttons */
+}
+
+.prev-button:hover,
+.next-button:hover {
+    background-color: #0d8ecf;
+    /* Darker shade for hover effect */
+    transform: scale(1.05);
+    /* Slightly increase button size on hover */
+}
