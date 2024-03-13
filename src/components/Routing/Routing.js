@@ -13,10 +13,9 @@ import Signup from '../Signup/Signup';
 import { AccountBox } from '../Account/account'; 
 import RegistrationPage from '../RegistrationPage/RegistrationPage.js';
 import PanelistDashboard from '../Dashboard/Participant/PanelistDashboard/PanelistDashboard.jsx';
-import AdminDashboard from '../Dashboard/Participant/AdminDashboard/AdminDashboard.jsx';
+import AdminDashboard from '../Dashboard/Admin Dashboard/AdminDashboard.js';
 import JudgeDashboard from '../Dashboard/Judge/JudgeDashboard.js';
 import JudgeDashboard2 from '../Dashboard/Judge/JudgeDashboard2.js';
-
 // import PanelistDashboard from './components/Dashboard/PanelistDashboard.js'
 // import IdeaSubmissionForm from './components/IdeaSubmissionForm';
 // import Dashboard from './components/Dashboard';
@@ -44,7 +43,7 @@ function Routing() {
           <Route path="/home" element={<Home />} />
           <Route path="/dashboard" element={<ParticipantDashboard />} />
           <Route path='/panelist' element={<PanelistDashboard/>}/>
-          <Route path="/admin" element={<AdminDashboard/>}/>
+          <Route path='/admin' element={<AdminDashboard/>}/>
           <Route path="/judge" element={<JudgeDashboard/>}/>
           <Route path="/judge2" element={<JudgeDashboard2/>}/>
           <Route path="/ideas/new" element={<IdeaSubmissionForm deadline={deadline} onSubmit={handleIdeaSubmit} />} />
