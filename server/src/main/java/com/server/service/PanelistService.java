@@ -1,7 +1,10 @@
 package com.server.service;
 
 import com.server.bean.Panelist;
+import com.server.bean.Team;
 import com.server.repo.PanelistRepo;
+import com.server.repo.TeamRepo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,4 +37,5 @@ public class PanelistService {
     public Panelist updatePanelist(Panelist panelist) {
         return panelistRepository.save(panelist);
     }
+    
 }

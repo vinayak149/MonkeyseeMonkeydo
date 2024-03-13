@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/teams")
@@ -32,6 +33,10 @@ public class TeamController {
     public List<Team> getallTeams() {
         return teamService.getAllTeams();
     }
+    @GetMapping("/getTeambyPanelist/{id}")
+    public List<Team> getTeambyPanelist(@PathVariable String id){
+  	  return teamService.getTeamByPanelist(id);
+    }
 
     @PostMapping("/add-participant/{teamId}")
     public ResponseEntity<String> addParticipantToTeam(@PathVariable String teamId, @RequestBody Participant participant) {
@@ -40,14 +45,15 @@ public class TeamController {
             if (team != null) {
                 // Check if the participant already exists by username and email
                 Participant existingParticipant = participantService.findByEmail(participant.getEmail());
-
+ 
                 if (existingParticipant != null) {
                     // Participant exists, add them to the team
                     existingParticipant.setTeam(team);
                     team.getParticipants().add(existingParticipant);
+                    // Update both the participant and the team
+                    participantService.updateParticipant(existingParticipant.getId(), existingParticipant);
                     teamService.updateTeam(teamId, team);
-                    participantService.updateParticipant(existingParticipant.getId(),existingParticipant);
-
+ 
                     return ResponseEntity.ok("Participant added to the team successfully");
                 } else {
                     // Participant not found, you can choose to handle this case
@@ -59,7 +65,7 @@ public class TeamController {
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("An error occurred while adding the participant to the team");
+                .body("An error occurred while adding the participant to the team");
         }
     }
 
@@ -97,26 +103,34 @@ public class TeamController {
 
     @PostMapping("/add")
     public ResponseEntity<String> addTeam(@RequestBody Team team) {
+    	Team existingTeam = teamService.findByTeamName(team.getTeamName());
         if (team.getTeamName() == null || team.getTeamName().isEmpty()) {
             return ResponseEntity.badRequest().body("Team name should not be empty!!");
         }
+        else if (existingTeam!=null) {
+        	return ResponseEntity.badRequest().body("Team already exist");
 
+		}
+ 
         try {
             // Save the team to the database
             Team savedTeam = teamService.saveTeam(team);
-
+ 
             return ResponseEntity.ok("Team added successfully with ID: " + savedTeam.getId());
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred while adding the team");
         }
     }
-
-
-
-
-
-
+    
+    @PutMapping("/edit")
+    public ResponseEntity<String> updateTeamName(@RequestBody Map<String, String> teamNames)
+    {
+    	Team savedTeam = teamService.findByTeamName(teamNames.get("existingTeamName"));
+    	savedTeam.setTeamName(teamNames.get("updatedTeamName"));
+    	teamService.updateTeam(savedTeam.getId(), savedTeam);
+    	return ResponseEntity.ok("Team name has been Changed Successfully!!");
+    }
     
    
 }

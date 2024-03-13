@@ -13,20 +13,12 @@ public class Panelist {
     private String id;
     private String name;
     private String email;
-    @DBRef
-    private List<Team> teams;
-   
+    public Panelist() {
+    	
+    }
 	public Panelist(String name, String email) {
         this.name = name;
         this.email = email;
-        
-    }
-
-
-	public Panelist(String name, String email,List<Team> teams) {
-        this.name = name;
-        this.email = email;
-        this.teams = teams;
         
     }
 
@@ -49,13 +41,6 @@ public class Panelist {
     public void setEmail(String email) {
         this.email = email;
     }
-    public List<Team> getTeams() {
-		return teams;
-	}
-
-	public void setTeams(List<Team> teams) {
-		this.teams = teams;
-	}
 }
    
 

@@ -30,22 +30,21 @@ public class TeamService {
 
     public void updateTeam(String teamId, Team updatedTeam) {
         Optional<Team> optionalExistingTeam = teamRepo.findById(teamId);
-
+ 
         if (optionalExistingTeam.isPresent()) {
             Team existingTeam = optionalExistingTeam.get();
-
-            // Update the fields based on your requirements
+ 
             existingTeam.setTeamName(updatedTeam.getTeamName());
             existingTeam.setIdea(updatedTeam.getIdea());
-
+ 
             // Update the participants
             existingTeam.setParticipants(updatedTeam.getParticipants());
-
+ 
             // Save the updated Team
             teamRepo.save(existingTeam);
         }
     }
-
+    
 
     public void deleteTeam(String teamId) {
         teamRepo.deleteById(teamId);
@@ -58,5 +57,14 @@ public class TeamService {
     public Team saveTeam(Team team)
     {
     	return teamRepo.save(team);
+    }
+	public Team findByTeamName(String teamName)
+	{
+		return teamRepo.findByTeamName(teamName);
+	}
+    
+    public List<Team> getTeamByPanelist(String panelistId) {
+    	List<Team> teams = teamRepo.findByPanelistId(panelistId);
+    	return teams;
     }
 }
