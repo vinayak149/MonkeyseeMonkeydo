@@ -1,0 +1,101 @@
+@keyframes typing {
+    0% {
+        width: 0;
+    }
+
+    50% {
+        width: 100%;
+    }
+
+    100% {
+        width: 0;
+    }
+}
+
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: #F0F0F0;
+    }
+}
+
+.title-heading {
+    border-right: .15em solid #F0F0F0;
+    font-size: 2em;
+    margin: 100px auto 0;
+    /* Adjusted to add margin at the top for gap */
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    animation: typing 8s steps(40, end) infinite, blink-caret .75s step-end infinite;
+    color: #F0F0F0;
+}
+
+.home {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 1;
+    flex: 1;
+    padding: 20px;
+    color: #EAEAEA;
+    padding-top: 80px;
+    /* scroll-snap-type: y mandatory */
+    height: 100vh;
+    scroll-behavior: smooth;
+    overflow: auto;
+    
+    /* Adjusted to ensure gap between navbar and content */
+}
+
+.description {
+    font-size: 1.2em;
+    max-width: 80%;
+    margin-bottom: 30px;
+    color: #EAEAEA;
+}
+
+.button {
+    padding: 15px 30px;
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #45A049;
+}
+
+.start-home{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 1;
+    flex: 1;
+    padding: 20px;
+    color: #EAEAEA;
+    /* padding-top: 80px; */
+    scroll-snap-align: start;
+    overflow: auto;
+    z-index: 10 ;
+}

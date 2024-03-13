@@ -1,0 +1,65 @@
+.footer-container {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background: rgba(10, 25, 47, 0.8);
+  color: #ffffff;
+  z-index: 1;
+}
+
+.footer-content {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.footer-content h1,
+.footer-content p,
+.social-links a {
+  color: #ffffff;
+}
+
+/* Increased margin-bottom for h1 to add space above social links */
+.footer-content h1 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 0 20px;
+  /* Added 20px bottom margin */
+}
+
+.footer-content p {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+.social-links {
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+  margin-top: 4px;
+}
+
+.social-links a {
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #ffd700;
+}
+
+.footer-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row;
+  padding-right: 8px;
+  /* Adjust if needed for visual alignment */
+  /* Added margin-right for "a bit to the right" adjustment, assuming the layout allows */
+  margin-right: 16px;
+  /* This will not move the element to the right since it's already aligned to the end. Adjust if there's specific alignment within its container needed. */
+}

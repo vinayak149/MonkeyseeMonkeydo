@@ -1,51 +1,46 @@
 // AssignIdeaForm.js
 import React, { useState } from 'react';
 
-const AssignIdeaForm = ({ ideas, panelists, onAssignIdea }) => {
-  const [selectedIdea, setSelectedIdea] = useState('');
-  const [selectedPanelist, setSelectedPanelist] = useState('');
+function AssignIdeaForm() {
+  const [ideaAssignment, setIdeaAssignment] = useState({
+    ideaId: '',
+    panelistId: ''
+  });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    onAssignIdea(selectedIdea, selectedPanelist);
-    // Reset form (optional)
-    setSelectedIdea('');
-    setSelectedPanelist('');
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setIdeaAssignment({ ...ideaAssignment, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Here you would typically send the assignment data to your backend for processing
+    console.log("Idea assigned:", ideaAssignment);
+    alert("Idea assigned successfully!");
+    // Implement the API call to save the assignment using fetch or axios
+    // Reset form fields after submission
+    setIdeaAssignment({
+      ideaId: '',
+      panelistId: ''
+    });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="ideaSelect">Select Idea:</label>
-        <select
-          id="ideaSelect"
-          value={selectedIdea}
-          onChange={(e) => setSelectedIdea(e.target.value)}
-          required
-        >
-          <option value="">Please choose an idea</option>
-          {ideas.map((idea) => (
-            <option key={idea.id} value={idea.id}>{idea.title}</option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <label htmlFor="panelistSelect">Assign to Panelist:</label>
-        <select
-          id="panelistSelect"
-          value={selectedPanelist}
-          onChange={(e) => setSelectedPanelist(e.target.value)}
-          required
-        >
-          <option value="">Please choose a panelist</option>
-          {panelists.map((panelist) => (
-            <option key={panelist.id} value={panelist.id}>{panelist.name}</option>
-          ))}
-        </select>
-      </div>
-      <button type="submit">Assign Idea</button>
-    </form>
+    <div className="assign-idea-form">
+      <h2>Assign Idea</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Idea ID:</label>
+          <input type="text" name="ideaId" value={ideaAssignment.ideaId} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>Panelist ID:</label>
+          <input type="text" name="panelistId" value={ideaAssignment.panelistId} onChange={handleChange} required />
+        </div>
+        <button type="submit">Assign Idea</button>
+      </form>
+    </div>
   );
-};
+}
 
 export default AssignIdeaForm;

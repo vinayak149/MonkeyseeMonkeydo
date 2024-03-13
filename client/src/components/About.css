@@ -1,0 +1,132 @@
+.prize-section {
+    margin: 80px auto;
+    max-width: 1200px;
+    padding: 40px;
+    border-radius: 12px;
+    background: rgba(10, 25, 47, 0.8);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    overflow: hidden;
+}
+ 
+.prize-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+ 
+.prize-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding: 20px;
+}
+ 
+.prize-item {
+    background: linear-gradient(135deg, #6e48aa, #9d50bb);
+    color: #FFFFFF;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+    position: relative;
+    overflow: hidden;
+    height: 320px;
+}
+ 
+.prize-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ffffff22, #ffffff55);
+    transition: left 0.3s ease;
+}
+ 
+.prize-item:hover::before {
+    left: 100%;
+}
+ 
+.prize-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+ 
+.image-placeholder {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #FFFFFF;
+    border-radius: 50%;
+    margin: 10px auto 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+ 
+.image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+ 
+.prize-item h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 2px;
+    text-align: center;
+}
+ 
+.role-description {
+    font-size: 14px;
+    text-align: center;
+    color: #DDD;
+    margin-bottom: 10px;
+}
+ 
+.prize-item p {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    line-height: 1.6;
+    color: #F0F0F0;
+}
+ 
+@media (max-width: 768px) {
+    .prize-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+ 
+@media (max-width: 480px) {
+    .prize-container {
+        grid-template-columns: 1fr;
+    }
+}
+ 
+/* Adjustments for social icons gap */
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ 
+.social-icons svg {
+    width: 24px;
+    height: 24px;
+    transition: color 0.3s ease;
+    margin-right: 15px; /* Space between icons */
+}
+ 
+.social-icons svg:last-child {
+    margin-right: 0; /* Ensures the last icon does not have a right margin */
+}
+ 
+.social-icons svg:hover {
+    color:#ffd700;
+}
