@@ -50,7 +50,7 @@ const JudgeDashboard = () => {
     <div>
       <Navbar2 />
       <div className="judge-dashboard">
-        <div className="container">
+        <div className="judge-container">
           {/* Left side: Project Details */}
           <div className="project-info">
             <div className="project-details">

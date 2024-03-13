@@ -4,7 +4,7 @@
     padding: 20px;
 }
 
-.container {
+.judge-container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;

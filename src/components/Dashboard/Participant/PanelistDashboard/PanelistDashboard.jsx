@@ -4,6 +4,7 @@ import Timer from "../Timer";
 import Navbar2 from "../../../Navbar/Navbar2";
 import axios from "axios";
 
+
 // import MyParticles from '../../Particles/Particles';
 // import CircularProgress from '@mui/joy/CircularProgress';
 
@@ -39,7 +40,7 @@ import axios from "axios";
   return (
     <div style={{ backgroundColor: "#040720" }}>
       {/* <MyParticles/> */}
-      {/* <Navbar2 /> */}
+      <Navbar2 />
         <div className="Box">
             <div style={{backgroundColor: "Black"}} className="Heading">
                 <h1>Panelist Dashboard</h1>
