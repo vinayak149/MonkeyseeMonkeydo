@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./JudgeDashboard2.css"; // Ensure you have corresponding JudgeDashboard CSS
+import "./JudgeDashboard2.css"; // Make sure this matches your CSS file's name
 import Timer from "../Participant/Timer";
 import AnimatedNumber from "../Participant/AnimatedNumber";
 import Navbar2 from "../../Navbar/Navbar2";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesome if you use it for icons
-import { faDownload } from '@fortawesome/free-solid-svg-icons'; // Example icon for download
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 
 const JudgeDashboard = () => {
   const [dashboardData, setDashboardData] = useState({
@@ -13,12 +13,11 @@ const JudgeDashboard = () => {
     currentProject: {
       name: "",
       description: "",
-      files: [], // Assuming an array of file info like { name: "file.pdf", url: "/path/to/file.pdf" }
+      files: [],
       score: {
         userInterface: 0,
         qualityOfCode: 0,
         workflow: 0,
-        // Add other scoring criteria here
       }
     },
   });
@@ -27,8 +26,10 @@ const JudgeDashboard = () => {
     UserInterface: 1,
     QualityOfCode: 1,
     Workflow: 1,
-    // Initialize with the rest of the criteria
   });
+
+  const [feedback, setFeedback] = useState("");
+  const maxWords = 200;
 
   useEffect(() => {
     const fetchDashboardData = async () => {
@@ -42,6 +43,19 @@ const JudgeDashboard = () => {
     setCurrentScore({ ...currentScore, [criteria]: value });
   };
 
+  const handleFeedbackChange = (e) => {
+    const enteredText = e.target.value;
+    const wordCount = enteredText.split(/\s+/).filter(n => n !== "").length;
+    if (wordCount <= maxWords) {
+      setFeedback(enteredText);
+    } else {
+      const trimmedText = enteredText.split(/\s+/).slice(0, maxWords).join(" ");
+      setFeedback(trimmedText);
+    }
+  };
+
+  const wordsLeft = maxWords - feedback.trim().split(/\s+/).filter(n => n !== "").length;
+
   const submitScores = () => {
     // API call to submit the scores
   };
@@ -51,7 +65,6 @@ const JudgeDashboard = () => {
       <Navbar2 />
       <div className="judge-dashboard">
         <div className="judge-container">
-          {/* Left side: Project Details */}
           <div className="project-info">
             <div className="project-details">
               <h2>Team Name</h2>
@@ -68,11 +81,8 @@ const JudgeDashboard = () => {
               ))}
             </div>
           </div>
-          
-          {/* Right side: Scoring Section */}
           <div className="scoring">
             <h2>Judgement Parameters</h2>
-            {/* Score Sliders */}
             {Object.keys(currentScore).map((criteria) => (
               <div key={criteria} className="score-slider">
                 <label>{criteria}:</label>
@@ -86,6 +96,17 @@ const JudgeDashboard = () => {
                 <AnimatedNumber number={currentScore[criteria]} />
               </div>
             ))}
+            <h2 style={{ marginBottom: "10px" }}>Feedback:</h2>
+            <div className="feedback-form">
+              <textarea
+                placeholder="Enter your feedback here (max 200 words)..."
+                value={feedback}
+                onChange={handleFeedbackChange}
+              />
+              <div className="word-count">
+                {wordsLeft >= 0 ? wordsLeft : 0} words left
+              </div>
+            </div>
             <button onClick={submitScores}>Submit Scores</button>
           </div>
         </div>

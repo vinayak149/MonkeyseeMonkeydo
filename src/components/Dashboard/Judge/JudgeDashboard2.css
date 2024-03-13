@@ -19,7 +19,6 @@
     padding: 20px;
     margin: 10px;
     min-width: 300px;
-    /* Adjust as necessary */
 }
 
 .project-details,
@@ -71,46 +70,51 @@ button:hover {
     background-color: #45A049;
 }
 
-/* Responsive design adjustments */
-@media only screen and (max-width: 768px) {
-    .container {
-        display: block;
-        /* Stack the containers on smaller screens */
-    }
-}
-
 .navigation-buttons {
     display: flex;
     justify-content: center;
-    /* Center the buttons if they have a smaller width */
     padding: 20px;
     margin-top: 20px;
-    /* Adjust based on your layout */
     gap: 20px;
-    /* Adds space between buttons */
 }
 
 .prev-button,
 .next-button {
     background-color: #21d4fd;
-    /* Button color */
     color: white;
-    /* Text color */
     border: none;
     border-radius: 20px;
-    /* Makes the buttons rounded */
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
     width: 120px;
-    /* Sets a specific width for the buttons */
 }
 
 .prev-button:hover,
 .next-button:hover {
     background-color: #0d8ecf;
-    /* Darker shade for hover effect */
     transform: scale(1.05);
-    /* Slightly increase button size on hover */
+}
+
+/* Feedback Form Styles */
+.feedback-form textarea {
+    width: 100%;
+    height: 120px;
+    background-color: #12263f;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    padding: 10px;
+    font-family: Quicksand, sans-serif;
+    margin-bottom: 5px; /* Reduced margin to move closer to the heading */
+}
+
+.feedback-form .word-count {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    background-color: transparent;
 }
