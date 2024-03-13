@@ -64,8 +64,6 @@
     border-radius: 4px;
   }
    */
-
-   [2:52 PM] Nitish Hans
 .Box {
     display: flex;
     flex-direction: column; /* Ensure children are stacked vertically */

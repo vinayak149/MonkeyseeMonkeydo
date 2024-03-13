@@ -43,8 +43,6 @@ function Routing() {
           <Route path='/' element={<Home/>}/>
           <Route path="/home" element={<Home />} />
           <Route path="/dashboard" element={<ParticipantDashboard />} />
-          <Route path="/judge" element={<JudgeDashboard/>}/>
-          <Route path="/judge2" element={<JudgeDashboard2/>}/>
           <Route path='/panelist' element={<PanelistDashboard/>}/>
           <Route path="/admin" element={<AdminDashboard/>}/>
           <Route path="/judge" element={<JudgeDashboard/>}/>
