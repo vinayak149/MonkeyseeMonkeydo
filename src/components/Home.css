@@ -53,6 +53,11 @@
     padding: 20px;
     color: #EAEAEA;
     padding-top: 80px;
+    /* scroll-snap-type: y mandatory */
+    height: 100vh;
+    scroll-behavior: smooth;
+    overflow: auto;
+    
     /* Adjusted to ensure gap between navbar and content */
 }
 
@@ -76,4 +81,21 @@
 
 .button:hover {
     background-color: #45A049;
+}
+
+.start-home{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 1;
+    flex: 1;
+    padding: 20px;
+    color: #EAEAEA;
+    /* padding-top: 80px; */
+    scroll-snap-align: start;
+    overflow: auto;
+    z-index: 10 ;
 }

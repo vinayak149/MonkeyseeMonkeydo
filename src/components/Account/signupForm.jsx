@@ -16,10 +16,10 @@ export function SignupForm(props) {
   return (
     <BoxContainer>
       <FormContainer>
-        <Input type="text" placeholder="Full Name" />
-        <Input type="email" placeholder="Email" />
-        <Input type="password" placeholder="Password" />
-        <Input type="password" placeholder="Confirm Password" />
+        <Input type="text" placeholder="Full Name"  required/>
+        <Input type="email" placeholder="Email" required/>
+        <Input type="password" placeholder="Password" required/>
+        <Input type="password" placeholder="Confirm Password" required/>
       </FormContainer>
       <Marginer direction="vertical" margin={10} />
       <SubmitButton type="submit" onClick={switchToOtp} >Signup</SubmitButton>
