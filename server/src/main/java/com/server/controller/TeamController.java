@@ -28,6 +28,10 @@ public class TeamController {
         this.participantService = participantService;
         this.ideaService = ideaService;
     }
+    @GetMapping("/allteams")
+    public List<Team> getallTeams() {
+        return teamService.getAllTeams();
+    }
 
     @PostMapping("/add-participant/{teamId}")
     public ResponseEntity<String> addParticipantToTeam(@PathVariable String teamId, @RequestBody Participant participant) {
