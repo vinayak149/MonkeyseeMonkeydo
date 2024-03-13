@@ -22,15 +22,18 @@ const Home = () => {
       <Navbar/>
       <MyParticles />
       <div className="content">
+        <div className='start-home'>
         <h1 className={`title-heading ${showTitle ? 'show' : ''}`}>
           {greeting}, Welcome to Our Hackathon Management System
         </h1>
         <p className="description">
          Join our internal hackathon to innovate, collaborate, and bring creative solutions to life alongside colleagues. Your ideas matter. Let's build something amazing together.
         </p>
+
         <Link className="button highlight-button" to="/auth">
           Submit Your Idea Now
         </Link>
+        </div>
         <About/>
       </div>
     </div>
