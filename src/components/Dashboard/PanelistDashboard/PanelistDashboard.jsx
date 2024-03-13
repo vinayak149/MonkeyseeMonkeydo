@@ -78,8 +78,8 @@
 // export default PanelistDashboard;
 import React, { useState, useEffect } from "react";
 import "./PanelistDashboard.css";
-import Timer from "../Timer";
-import Navbar2 from "../../../Navbar/Navbar2";
+import Timer from "../Participant/Timer";
+import Navbar2 from "../../Navbar/Navbar2";
 import axios from "axios";
 
 

@@ -12,7 +12,7 @@ import Login from '../Login/Login';
 import Signup from '../Signup/Signup';
 import { AccountBox } from '../Account/account'; 
 import RegistrationPage from '../RegistrationPage/RegistrationPage.js';
-import PanelistDashboard from '../Dashboard/Participant/PanelistDashboard/PanelistDashboard.jsx';
+import PanelistDashboard from '../Dashboard/PanelistDashboard/PanelistDashboard.jsx';
 import AdminDashboard from '../Dashboard/Admin Dashboard/AdminDashboard.js';
 import JudgeDashboard from '../Dashboard/Judge/JudgeDashboard.js';
 import JudgeDashboard2 from '../Dashboard/Judge/JudgeDashboard2.js';
