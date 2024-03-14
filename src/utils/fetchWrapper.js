@@ -36,7 +36,7 @@ export const useFetchWrapper = () => {
         }
       }
 
-      let fullUrl = `${import.meta.env.BACKEND_URL}/${url}`;
+      let fullUrl = `${import.meta.env.BACKEND_URL}/${url}`; //change this to localhost for backend
 
       return fetch(fullUrl, requestOptions).then(handleResponse);
     };

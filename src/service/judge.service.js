@@ -13,7 +13,7 @@ export const JudgeService = () => {
     return fetchWrapper.get(url);
   }
 
-  function addJudges()
+  // function addJudges()
 
   return {
     getJudges,
