@@ -7,6 +7,7 @@ import { SignupForm } from "./signupForm.jsx";
 import {forgotPassword, ForgotPasswordForm} from "./forgotPassword.jsx"
 import OtpInput from "./OtpInput.jsx"
 import MyParticles from '../Particles/Particles';
+import { SetPasswordForm } from "./setPassword.jsx";
 
 const BoxContainer = styled.div`
   width: 320px;
@@ -128,6 +129,13 @@ export function AccountBox(props) {
     }, 400);
   };
 
+  const switchToSetPassword = () => {
+    playExpandingAnimation();
+    setTimeout(() => {
+      setActive("setpass");
+    }, 400);
+  };
+
   const switchToOtp = () => {
     playExpandingAnimation();
     setTimeout(() => {
@@ -135,7 +143,7 @@ export function AccountBox(props) {
     }, 400);
   };
 
-  const contextValue = { switchToSignup, switchToSignin, switchToForgotPass, switchToOtp };
+  const contextValue = { switchToSignup, switchToSignin, switchToForgotPass, switchToOtp, switchToSetPassword };
 
   return (
     <div className="auth-container">
@@ -177,12 +185,20 @@ export function AccountBox(props) {
               <SmallText>Verify yourself!</SmallText>
             </HeaderContainer>
           )}
+          {active === "setpass" && (
+            <HeaderContainer>
+              <HeaderText>Make</HeaderText>
+              <HeaderText>New Password</HeaderText>
+              <SmallText>create a strong password</SmallText>
+            </HeaderContainer>
+          )}
         </TopContainer>
         <InnerContainer>
           {active === "signin" && <LoginForm />}
           {active === "signup" && <SignupForm />}
           {active === "forgotpass" && <ForgotPasswordForm/>}
           {active === "otp" && <OtpInput/>}
+          {active === "setpass" && <SetPasswordForm/>}
         </InnerContainer>
       </BoxContainer>
     </AccountContext.Provider>
