@@ -1,6 +1,7 @@
 package com.server.bean;
  
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
  
 @Document(collection = "ideas")
@@ -10,7 +11,8 @@ public class Idea {
 	private String id;
 	private String title;
 	private String description;
-	private double rating;
+	private String domain;
+	private String implementation;
 	private String feedback;
 	private String suggestion;
 	private String status;
@@ -20,6 +22,17 @@ public class Idea {
 	private int qualityofWork;
 	private int userInterface;
 	private int score;
+	@DBRef
+	private Team team;
+	
+ 
+	public Team getTeam() {
+		return team;
+	}
+ 
+	public void setTeam(Team team) {
+		this.team = team;
+	}
  
 	public int getScore() {
 		return score;
@@ -54,14 +67,9 @@ public class Idea {
 		this.description = description;
 	}
  
-	public double getRating() {
-		return rating;
-	}
  
-	public void setRating(double rating) {
-		this.rating = rating;
-	}
  
+	
 	public String getFeedback() {
 		return feedback;
 	}
@@ -74,8 +82,7 @@ public class Idea {
 		this.id = id;
 	}
  
-	public void updateRatingAndFeedback(double newRating, String newFeedback) {
-		this.rating = newRating;
+	public void updateFeedback( String newFeedback) {
 		this.feedback = newFeedback;
 	}
  
@@ -138,6 +145,21 @@ public class Idea {
  
 	public void setUserInterface(int userInterface) {
 		this.userInterface = userInterface;
+	}
+	public String getDomain() {
+		return domain;
+	}
+ 
+	public void setDomain(String domain) {
+		this.domain = domain;
+	}
+	
+	public String getImplementation() {
+		return implementation;
+	}
+ 
+	public void setImplementation(String implementation) {
+		this.implementation = implementation;
 	}
  
 	

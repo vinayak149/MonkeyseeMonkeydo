@@ -96,7 +96,7 @@ public class JudgeController {
 					idea.setWorkFlow(workFlow);
 					idea.setQualityofWork(qualityOfWork);
 					idea.setUserInterface(userInterface);
-					ideaService.updateRatingAndFeedback(ideaId, rating, feedback);
+					ideaService.updateRatingAndFeedback(ideaId, feedback);
 					idea.setScore((idea.getQualityofWork() + idea.getUserInterface() + idea.getWorkFlow()));
 					ideaService.updateIdea(ideaId, idea);
 

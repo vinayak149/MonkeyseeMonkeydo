@@ -1,8 +1,9 @@
 package com.server.controller;
-
+ 
 import com.server.bean.Idea;
 import com.server.bean.Participant;
 import com.server.bean.Team;
+import com.server.repo.TeamRepo;
 import com.server.service.IdeaService;
 import com.server.service.ParticipantService;
 import com.server.service.TeamService;
@@ -10,34 +11,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+ 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-
+ 
 @RestController
 @RequestMapping("/teams")
 public class TeamController {
-
+ 
     
     private  ParticipantService participantService;
     private  IdeaService ideaService;
     private TeamService teamService;
-
+ 
     @Autowired
     public TeamController(TeamService teamService, ParticipantService participantService, IdeaService ideaService) {
         this.teamService = teamService;
         this.participantService = participantService;
         this.ideaService = ideaService;
     }
-    @GetMapping("/allteams")
-    public List<Team> getallTeams() {
-        return teamService.getAllTeams();
-    }
     @GetMapping("/getTeambyPanelist/{id}")
     public List<Team> getTeambyPanelist(@PathVariable String id){
   	  return teamService.getTeamByPanelist(id);
     }
-
+    
     @PostMapping("/add-participant/{teamId}")
     public ResponseEntity<String> addParticipantToTeam(@PathVariable String teamId, @RequestBody Participant participant) {
         try {
@@ -68,27 +66,27 @@ public class TeamController {
                 .body("An error occurred while adding the participant to the team");
         }
     }
-
-
-
-
+ 
+ 
+ 
     @PostMapping("/assign-idea/{teamId}")
     public ResponseEntity<String> assignIdeaToTeam(@PathVariable String teamId, @RequestBody Idea idea) {
         try {
             Team team = teamService.getTeamById(teamId);
-
+ 
             if (team != null) {
                 // Check if the team already has an idea assigned
                 if (team.getIdea() != null) {
                     return ResponseEntity.badRequest().body("Team already has an idea assigned");
                 }
-
+                idea.setTeam(team);
                 // Assuming you have logic to create or retrieve the idea
                 Idea savedIdea = ideaService.addIdea(idea);
-
+ 
                 // Assign the idea to the team
                 team.setIdea(savedIdea);
-
+                idea.setTeam(team);
+                ideaService.updateIdea(idea.getId(), idea);
                 teamService.updateTeam(teamId, team);
                 return ResponseEntity.ok("Idea assigned to the team successfully");
             } else {
@@ -100,7 +98,7 @@ public class TeamController {
                 .body("An error occurred while assigning the idea to the team");
         }
     }
-
+ 
     @PostMapping("/add")
     public ResponseEntity<String> addTeam(@RequestBody Team team) {
     	Team existingTeam = teamService.findByTeamName(team.getTeamName());
@@ -122,7 +120,16 @@ public class TeamController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred while adding the team");
         }
     }
-    
+    @GetMapping("/allteamNames")
+    public List<String> getallTeamNames() {
+        return teamService.getAllTeamNames();
+    }
+    @GetMapping("/all")
+    public List<Team> getallTeams() {
+    	return teamService.getAllTeams();
+
+
+    }
     @PutMapping("/edit")
     public ResponseEntity<String> updateTeamName(@RequestBody Map<String, String> teamNames)
     {
@@ -131,6 +138,7 @@ public class TeamController {
     	teamService.updateTeam(savedTeam.getId(), savedTeam);
     	return ResponseEntity.ok("Team name has been Changed Successfully!!");
     }
+
+
     
-   
 }

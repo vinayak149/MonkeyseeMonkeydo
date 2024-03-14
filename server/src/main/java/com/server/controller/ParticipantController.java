@@ -70,7 +70,7 @@ public class ParticipantController {
     	String progress="0";
     	if(idea.getTitle()!=null) {
     		progress =  "40";
-    			if(idea.getRating()>0) {
+    			if(idea.getScore()>0) {
     				progress = "60";
     		}
     	}
