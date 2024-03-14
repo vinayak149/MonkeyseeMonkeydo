@@ -13,7 +13,9 @@ const Navbar = () => {
           <img src={monkeyGif} alt="Monkey GIF" className="gif" /> {/* Use the imported monkeyGif variable as the src */}
         </Link>
         <ul className="nav-menu">
-          {/* You can add other links here */}
+          <li className="nav-item">
+            <Link to="/" className="nav-links">Logout</Link>
+          </li>
         </ul>
       </div>
     </nav>
