@@ -9,6 +9,11 @@ export const TeamService = () => {
         return fetchWrapper.get(url);
     }
 
+    function getTeamByPanelist(id) {
+        const url = `${baseURL}/getTeambyPanelist/${id}`;
+        return fetchWrapper.get(url);
+    }
+
     function addParticipantToTeam(teamId, participant) {
         const url = `${baseURL}/add-participant/${teamId}`;
         return fetchWrapper.post(url, participant);
@@ -24,10 +29,17 @@ export const TeamService = () => {
         return fetchWrapper.post(url, team);
     }
 
+    function updateTeamName(teamNames) {
+        const url = `${baseURL}/edit`;
+        return fetchWrapper.put(url, teamNames);
+    }
+
     return {
         getAllTeams,
+        getTeamByPanelist,
         addParticipantToTeam,
         assignIdeaToTeam,
         addTeam,
+        updateTeamName,
     };
 };
