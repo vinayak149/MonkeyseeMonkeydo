@@ -12,16 +12,19 @@ import { AccountContext } from "./accountContext.js";
 // import { ForgotPasswordForm } from "./forgotPassword";
 // import Navbar2 from "../Navbar/Navbar2.jsx";
 import { AuthService } from "../../service/auth.service";
+import { useNavigate } from "react-router-dom";
 
 export function LoginForm(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate=useNavigate();
 
 const handleLogin = async () => {
   try {
     const authService =  AuthService();
     const response = await authService.login(email, password);
     console.log("Login successful:", response);
+    navigate('/');
     
   } catch (error) {
     console.error("Login failed:", error);
