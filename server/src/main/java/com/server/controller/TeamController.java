@@ -67,7 +67,15 @@ public class TeamController {
 					.body("An error occurred while adding the participant to the team");
 		}
 	}
-
+	@GetMapping("/getTeambyParticipant/{participantId}")
+    public ResponseEntity<Team> getTeamByParticipant(@PathVariable String participantId) {
+        Team team = teamService.getTeamByParticipant(participantId);
+        if (team != null) {
+            return ResponseEntity.ok(team);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 	@PostMapping("/assign-idea/{teamId}")
 	public ResponseEntity<String> assignIdeaToTeam(@PathVariable String teamId, @RequestBody Idea idea) {
 		try {
