@@ -100,10 +100,9 @@
 }
  
  
-@media screen and (max-width: 960px) {
+/* @media screen and (max-width: 960px) {
     .navbar {
         background: rgba(0, 0, 0, 0.8);
-        /* Consider updating for responsiveness */
     }
  
     .nav-menu {
@@ -113,7 +112,6 @@
         top: 80px;
         width: 100%;
         background: #333;
-        /* Consider updating for responsiveness */
         transition: opacity 0.5s ease;
     }
  
@@ -123,5 +121,45 @@
  
     .nav-links {
         padding: 2rem;
+    }
+} */
+@media screen and (max-width: 960px) {
+    .navbar {
+        background: rgba(0, 0, 0, 0.8);
+    }
+ 
+    .nav-menu {
+        display: none; /* Initially hidden */
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        width: 100%;
+        background: #333;
+        opacity: 0;
+        transition: opacity 0.5s ease, height 0.5s ease;
+    }
+ 
+    .nav-item {
+        border: none;
+    }
+ 
+    .nav-links {
+        padding: 2rem;
+    }
+
+    /* Example toggle button */
+    .nav-toggle {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    /* Styles to apply when nav-menu is active/toggled */
+    .nav-menu.active {
+        display: flex;
+        opacity: 1;
+        height: auto; /* Adjust based on content */
     }
 }
