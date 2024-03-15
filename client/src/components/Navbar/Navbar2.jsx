@@ -1,23 +1,55 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Navbar.css'; // Make sure to create and import the CSS file
-import monkeyGif from './Monkey.gif'
+import React, { useState } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import './Navbar.css';
+import monkeyGif from './Monkey.gif';
+import DialogBox from './DialogBox'; // Import the DialogBox component
+
+
 
 const Navbar = () => {
+  const [isDialogOpen, setDialogOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const handleLogoutClick = () => {
+    setDialogOpen(true); // Show the dialog
+  };
+
+  const handleConfirmLogout = () => {
+    setDialogOpen(false); // Close the dialog
+    // Perform your logout logic here, then redirect
+    navigate('/');
+  };
+
+  const handleClose = () => {
+    setDialogOpen(false); // Close the dialog without logging out
+  };
+
+    const isRegisterPage = location.pathname === '/register';
+
   return (
     <nav className="navbar flex min-h-screen flex-col z-10">
       <div className="navbar-container h-14 bg-0a192f">
         <Link to="/" className="navbar-logo">
-          <span className="small-text">MonkeySee</span> {/* Wrap "MonkeySee" in a span with a class */}
-          <span className="small-text">MonkeyDo</span> {/* "MonkeyDo" remains as it is */}
-          <img src={monkeyGif} alt="Monkey GIF" className="gif" /> {/* Use the imported monkeyGif variable as the src */}
+          <span className="small-text">MonkeySee</span>
+          <span className="small-text">MonkeyDo</span>
+          <img src={monkeyGif} alt="Monkey GIF" className="gif" />
         </Link>
         <ul className="nav-menu">
-          <li className="nav-item">
-            <Link to="/" className="nav-links">Logout</Link>
-          </li>
+          {!isRegisterPage && (
+            <li className="nav-item">
+              <div onClick={handleLogoutClick} className="nav-links" style={{ cursor: 'pointer' }}>Logout</div>
+            </li>
+          )}
         </ul>
       </div>
+      <DialogBox
+        isOpen={isDialogOpen}
+        onClose={handleClose}
+        onConfirm={handleConfirmLogout}
+        title="Confirm Logout"
+      >
+        Are you sure you want to logout?
+      </DialogBox>
     </nav>
   );
 };

@@ -1,0 +1,89 @@
+/* DialogBox.css */
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Overlay to soften the stark background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.dialog-box {
+    background-color: #1c2a3e; /* A lighter shade of the background for contrast */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2); /* Enhanced shadow for depth */
+    width: 400px;
+    animation: fadeInScaleUp 0.3s ease-out forwards;
+}
+
+@keyframes fadeInScaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.dialog-header {
+    margin-bottom: 20px;
+}
+
+.dialog-title {
+    font-size: 20px;
+    color: #64ffda; /* Using the specified color for the title for a vibrant contrast */
+}
+
+.dialog-content {
+    margin-bottom: 30px;
+    font-size: 16px;
+    color: #aab8c2; /* Lighter text color for readability */
+}
+
+.dialog-actions {
+    text-align: right;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+    transition: all 0.2s ease; /* Smooth transition for hover effects */
+}
+
+.cancel-btn {
+    background-color: #334e68; /* Muted color for cancel to keep focus on confirm */
+    color: #d1d9e6; /* Soft white for readability */
+}
+
+.confirm-btn {
+    background-color: #64ffda; /* Specified vibrant teal for confirm button */
+    color: #0a192f; /* Dark background color for text for contrast */
+}
+
+.btn:hover {
+    filter: brightness(1.1); /* Slightly brighter on hover for an interactive feel */
+}
+
+/* DialogBox.css */
+/* Other styles remain unchanged */
+
+.btn:hover {
+    background-color: #ffd700; /* Vivid gold for hover */
+    color: #0a192f; /* Ensuring text contrast against the bright hover background */
+    /* Retaining the transition for smooth effect */
+}
+
+.btn:active {
+    transform: scale(0.98); /* Slight press effect */
+}
