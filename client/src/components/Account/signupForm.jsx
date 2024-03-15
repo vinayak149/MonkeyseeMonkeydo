@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   BoldLink,
   BoxContainer,
@@ -9,20 +9,67 @@ import {
 } from "./common.jsx";
 import { Marginer } from "./marginer/index.jsx";
 import { AccountContext } from "./accountContext.js";
+import { AuthService } from "../../service/auth.service";
 
 export function SignupForm(props) {
+  // const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleSignup = async () => {
+    try {
+      if (password !== confirmPassword) {
+        throw new Error("Passwords do not match");
+      }
+      const authService = AuthService();
+      const response = await authService.register( email, password);
+      console.log("Registration successful:", response);
+      
+      switchToOtp();
+    } catch (error) {
+      console.error("Registration failed:", error.message);
+    }
+  };
+
   const { switchToSignin, switchToOtp } = useContext(AccountContext);
 
   return (
     <BoxContainer>
       <FormContainer>
-        <Input type="text" placeholder="Full Name"  required/>
-        <Input type="email" placeholder="Email" required/>
-        <Input type="password" placeholder="Password" required/>
-        <Input type="password" placeholder="Confirm Password" required/>
+        {/* <Input
+          type="text"
+          placeholder="Full Name"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+          required
+        /> */}
+        <Input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <Input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <Input
+          type="password"
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          required
+        />
       </FormContainer>
       <Marginer direction="vertical" margin={10} />
-      <SubmitButton type="submit" onClick={switchToOtp} >Signup</SubmitButton>
+      <SubmitButton type="submit" onClick={handleSignup} >
+        Signup
+      </SubmitButton>
       <Marginer direction="vertical" margin="1em" />
       <MutedLink href="#">
         Already have an account?
@@ -33,8 +80,3 @@ export function SignupForm(props) {
     </BoxContainer>
   );
 }
-
-// username
-// email 
-// password 
-// otp 

@@ -4,7 +4,9 @@ import Timer from "./Timer";
 import Widget from "./Widget";
 import AnimatedNumber from "./AnimatedNumber";
 import Navbar2 from "../../Navbar/Navbar2";
- 
+import { ParticipantService } from "../../../service/participant.service";
+import { TeamService } from "../../../service/team.service";
+
 // import MyParticles from '../../Particles/Particles';
 // import CircularProgress from '@mui/joy/CircularProgress';
  
@@ -52,6 +54,7 @@ const ParticipantDashboard = () => {
  
   useEffect(() => {
     const fetchDashboardData = async () => {
+      
       // Simulate fetching dashboard data
       const response = await fetch("/api/dashboard");
       const dashboard = await response.json();

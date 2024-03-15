@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
  
 import com.server.bean.Idea;
-import com.server.bean.Panelist;
-import com.server.bean.Participant;
 import com.server.repo.IdeaRepo;
  
 import java.util.List;

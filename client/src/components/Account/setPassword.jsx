@@ -9,28 +9,27 @@ import {
 } from "./common.jsx";
 import { Marginer } from "./marginer/index.jsx";
 import { AccountContext } from "./accountContext.js";
-import { SetPasswordForm } from "./setPassword.jsx";
 
-export function ForgotPasswordForm(props) {
+export function SetPasswordForm(props) {
     const { switchToSignin } = useContext(AccountContext);
 
   return (
     <BoxContainer>
       <FormContainer>
-        {/* <Input type="text" inputMode="numeric" placeholder="OTP" /> */}
-        <Input type="email" placeholder="Email" />
-        {/* <Input type="password" placeholder="New Password" /> */}
-        {/* <Input type="password" placeholder="Confirm Password" /> */}
+        <Input type="text" inputMode="numeric" placeholder="OTP" />
+        {/* <Input type="email" placeholder="Email" /> */}
+        <Input type="password" placeholder="New Password" />
+        <Input type="password" placeholder="Confirm Password" />
       </FormContainer>
       <Marginer direction="vertical" margin={10} />
-      <SubmitButton type="submit" onClick={SetPasswordForm}>Reset Password</SubmitButton>
+      <SubmitButton type="submit">Set Password</SubmitButton>
       <Marginer direction="vertical" margin="1em" />
-      <MutedLink href="#">
+      {/* <MutedLink href="#">
         Already have an account?
         <BoldLink href="#" onClick={switchToSignin}>
           Signin
-        </BoldLink>
-      </MutedLink>
+        </BoldLink> */}
+      {/* </MutedLink> */}
     </BoxContainer>
   );
 }

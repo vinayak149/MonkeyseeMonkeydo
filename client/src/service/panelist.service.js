@@ -1,22 +1,33 @@
-import { useFetchWrapper } from "../utils/fetchWrapper"
+import { useFetchWrapper } from "../utils/fetchWrapper";
 
-// const link = "http://localhost:8080"
 export const PanelistService = () => {
-    const fetchWrapper = useFetchWrapper()
-    const baseURL = 'panelist'
-    function getPanelists() {
-        let url = `${baseURL}`
-        return fetchWrapper.get(url)
-    } 
+    const fetchWrapper = useFetchWrapper();
+    const baseURL = 'panelists';
 
-    function getPanelistById(id) {
-      let url = `${baseURL}/${id}`;
-      return fetchWrapper.get(url);
-    } 
+    function getAllPanelists() {
+        const url = `${baseURL}/all`;
+        return fetchWrapper.get(url);
+    }
+
+    function getPanelistById(panelistId) {
+        const url = `${baseURL}/${panelistId}`;
+        return fetchWrapper.get(url);
+    }
+
+    function addPanelist(panelist) {
+        const url = `${baseURL}/add`;
+        return fetchWrapper.post(url, panelist);
+    }
+
+    function giveReview(panelistId, ideaId, reviewRequest) {
+        const url = `${baseURL}/${panelistId}/give-review/${ideaId}`;
+        return fetchWrapper.post(url, reviewRequest);
+    }
 
     return {
-      getPanelists,getPanelistById
-    }  
-    
-
-}
+        getAllPanelists,
+        getPanelistById,
+        addPanelist,
+        giveReview,
+    };
+};

@@ -8,6 +8,7 @@ export const useFetchWrapper = () => {
   };
 
   function request(method) {
+    //const fUrl = "http:/localhost:8080"
     // Cannot access Recoil state outside FC
     // This should never be undefined
     return (url, body, additionalHeaders, isJSON = true) => {
@@ -36,7 +37,7 @@ export const useFetchWrapper = () => {
         }
       }
 
-      let fullUrl = `${import.meta.env.BACKEND_URL}/${url}`;
+      let fullUrl = `http://localhost:8080${url}`; //change this to localhost for backend
 
       return fetch(fullUrl, requestOptions).then(handleResponse);
     };

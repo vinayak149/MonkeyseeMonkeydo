@@ -13,6 +13,8 @@ export const JudgeService = () => {
     return fetchWrapper.get(url);
   }
 
+  // function addJudges()
+
   return {
     getJudges,
     getJudgeById,

@@ -2,10 +2,15 @@ import { useFetchWrapper } from "../utils/fetchWrapper";
 
 export const TeamService = () => {
     const fetchWrapper = useFetchWrapper();
-    const baseURL = 'teams';
+    const baseURL = '/teams';
 
     function getAllTeams() {
         const url = `${baseURL}/allteams`;
+        return fetchWrapper.get(url);
+    }
+
+    function getTeamByPanelist(id) {
+        const url = `${baseURL}/getTeambyPanelist/${id}`;
         return fetchWrapper.get(url);
     }
 
@@ -24,10 +29,17 @@ export const TeamService = () => {
         return fetchWrapper.post(url, team);
     }
 
+    function updateTeamName(teamNames) {
+        const url = `${baseURL}/edit`;
+        return fetchWrapper.put(url, teamNames);
+    }
+
     return {
         getAllTeams,
+        getTeamByPanelist,
         addParticipantToTeam,
         assignIdeaToTeam,
         addTeam,
+        updateTeamName,
     };
 };

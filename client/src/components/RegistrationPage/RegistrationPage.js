@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import '../RegistrationPage/RegistrationPage.css';
 import Navbar2 from '../Navbar/Navbar2'; 
 import MyParticles from '../Particles/Particles.js'
+import { IdeaService } from '../../service/idea.service.js';
+import { TeamService } from '../../service/team.service.js';
 
 function RegistrationForm() {
   const [formData, setFormData] = useState({
@@ -12,6 +14,7 @@ function RegistrationForm() {
     domain: '',
   });
 
+  const [teamId, setTeamId] = useState(null);
   const handleChange = (e, field, index) => {
     if (index !== undefined) {
       const updatedParticipants = formData.participants.map((participant, idx) => {
@@ -29,19 +32,31 @@ function RegistrationForm() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const areFirstThreeParticipantsValid = formData.participants.slice(0, 3).every((p, index) => {
-      return index < 3 ? p.name && p.email : true;
-    });
-    const isFormValid = formData.teamName && areFirstThreeParticipantsValid && formData.problemStatement && formData.problemDescription && formData.domain;
-
-    if (!isFormValid) {
-      alert('Please fill in all required fields for the team and at least the first three participants.');
-      return;
+    const teamService = TeamService();
+    const ideaService = IdeaService();
+    const ideaData = {
+      teamName: formData.teamName,
+      participants: formData.participants,
+      title: formData.problemStatement,
+      description: formData.problemDescription,
+      domain: formData.domain,
+    };
+    try {
+      await teamService.assignIdeaToTeam(teamId,ideaData)
+      console.log("Idea registration successful:", ideaData);
+      // Adding the bloody participants
+      await Promise.all(
+        formData.participants.map(async (participant) => {
+          await teamService.addParticipantToTeam(teamId, participant);
+        })
+      );
+      alert("Idea registered!");
+    } catch (error) {
+      console.error("Idea registration failed:", error);
+      alert("Idea not registered!");
     }
-
-    console.log(formData);
   };
 
   const addParticipant = () => {
@@ -54,10 +69,17 @@ function RegistrationForm() {
     }
   };
 
-  const checkTeamNameValidity = () => {
-    // Implement the logic to check the team name's validity
-    console.log("Checking team name validity:", formData.teamName);
-    // This is where you could potentially call an API to check the team name's uniqueness or apply any custom validation logic
+  const checkTeamNameValidity = async() => {
+    try {
+      const teamService = TeamService()
+      const id  = await teamService.addTeam({ teamName: formData.teamName });
+      console.log('Team added successfully with ID:', id);
+      setTeamId(id);
+      
+    } catch (error) {
+      console.error('Error adding team:', error);
+      alert("team name not valid!");
+    }
   };
 
   const calculateRemainingCharacters = (text, maxLength) => maxLength - text.length;
