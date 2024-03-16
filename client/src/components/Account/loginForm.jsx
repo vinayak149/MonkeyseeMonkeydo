@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import {useAuth} from '../context/AuthContext.jsx'
 import {
   BoldLink,
   BoxContainer,
@@ -17,12 +18,14 @@ export function LoginForm(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate=useNavigate();
+  const { login } = useAuth();
 
 const handleLogin = async () => {
   try {
     const authService =  AuthService();
     const response = await authService.login(email, password);
     console.log("Login successful:", response);
+    login();
     navigate('/');
     
   } catch (error) {

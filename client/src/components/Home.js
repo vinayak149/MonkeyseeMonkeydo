@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css'; // Ensure this points to the correct CSS file
-import Navbar from './Navbar/Navbar';
+import Navbar from './Navbar/Navbar'
 import MyParticles from './Particles/Particles';
 import About from './About';
-
+import { useAuth } from './context/AuthContext';
 const Home = () => {
   const [showTitle, setShowTitle] = useState(false);
   const [greeting, setGreeting] = useState('');
+  const { isLoggedIn } = useAuth();
+  const [showWelcome, setShowWelcome] = useState(false);
 
   useEffect(() => {
     setShowTitle(true);
-    // Dynamic greeting based on the time of day
     const hour = new Date().getHours();
     const newGreeting = hour < 12 ? 'Good Morning' : hour < 18 ? 'Good Afternoon' : 'Good Evening';
     setGreeting(newGreeting);
   }, []);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      setShowWelcome(true);
+      setTimeout(() => setShowWelcome(false), 5000); // Hide the pop-up after 5 seconds
+    }
+  }, [isLoggedIn]);
 
   return (
     <div className="home">
