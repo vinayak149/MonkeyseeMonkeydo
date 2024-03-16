@@ -23,7 +23,7 @@ export function SignupForm(props) {
         throw new Error("Passwords do not match");
       }
       const authService = AuthService();
-      const response = await authService.register( email, password);
+      const response = await authService.register(email, password);
       console.log("Registration successful:", response);
       
       switchToOtp();
