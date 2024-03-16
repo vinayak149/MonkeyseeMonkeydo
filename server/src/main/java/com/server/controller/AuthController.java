@@ -3,7 +3,9 @@ package com.server.controller;
 import com.server.bean.User;
 import com.server.service.UserService;
 import com.server.service.OtpService;
- 
+
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
  
@@ -86,15 +88,21 @@ public class AuthController {
 	// Other authentication endpoints...
  
 	@PostMapping("/login")
-	public ResponseEntity<String> loginUser(@RequestBody User user) {
-		User storedUser = userService.getUserByEmail(user.getEmail());
- 
-		if (storedUser != null && storedUser.getPassword().equals(user.getPassword())) {
-			// No OTP verification during login, proceed with login
-			return ResponseEntity.ok("Login successful");
-		} else {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
-		}
+	public ResponseEntity<Map<String, String>> loginUser(@RequestBody User user) {
+	    User storedUser = userService.getUserByEmail(user.getEmail());
+	 
+	    if (storedUser != null && storedUser.getPassword().equals(user.getPassword())) {
+	        // Authentication successful
+	        // Construct response containing user's role
+	        Map<String, String> response = new HashMap<>();
+	        response.put("message", "Login successful");
+	        response.put("role", storedUser.getRole()); // Assuming getRole() method exists in User class
+	 
+	        return ResponseEntity.ok(response);
+	    } else {
+	        // Authentication failed
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Collections.singletonMap("message", "Invalid credentials"));
+	    }
 	}
  
 	@PostMapping("/resend-otp")
