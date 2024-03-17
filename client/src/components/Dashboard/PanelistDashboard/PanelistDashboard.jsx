@@ -40,10 +40,9 @@ function PanelistDashboard() {
           <h1>Panelist Dashboard</h1>
         </div>
         <div className="ToCan">
-          <h2>Total Candidates</h2>
+          <h2>Total Teams</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+            {teams.length}
           </p>
         </div>
       </div>

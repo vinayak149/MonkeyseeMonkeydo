@@ -4,7 +4,7 @@ import Navbar2 from '../Navbar/Navbar2';
 import MyParticles from '../Particles/Particles.js'
 import { IdeaService } from '../../service/idea.service.js';
 import { TeamService } from '../../service/team.service.js';
-
+import { useNavigate } from 'react-router-dom';
 function RegistrationForm() {
   const [formData, setFormData] = useState({
     teamName: '',
@@ -15,6 +15,7 @@ function RegistrationForm() {
   });
 
   const [teamId, setTeamId] = useState(null);
+  const navigate = useNavigate();
   const handleChange = (e, field, index) => {
     if (index !== undefined) {
       const updatedParticipants = formData.participants.map((participant, idx) => {
@@ -53,9 +54,11 @@ function RegistrationForm() {
         })
       );
       alert("Idea registered!");
+      navigate('/dashboard');
     } catch (error) {
       console.error("Idea registration failed:", error);
       alert("Idea not registered!");
+      
     }
   };
 
@@ -71,10 +74,12 @@ function RegistrationForm() {
 
   const checkTeamNameValidity = async() => {
     try {
-      const teamService = TeamService()
+      const teamService = TeamService();
       const id  = await teamService.addTeam({ teamName: formData.teamName });
       console.log('Team added successfully with ID:', id);
       setTeamId(id);
+      alert("Team name is valid")
+      
       
     } catch (error) {
       console.error('Error adding team:', error);
