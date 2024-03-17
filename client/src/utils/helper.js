@@ -24,5 +24,9 @@ export class UserInfo {
     getId() {
       return this._user ? this._user.id : null;
     }
+
+    getEmail() {
+        return this._user?.email
+    }
   }
   

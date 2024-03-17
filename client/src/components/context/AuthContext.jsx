@@ -46,6 +46,7 @@ export const AuthProvider = ({ children }) => {
   const login = (userObj) => {
     const userStr = JSON.stringify(userObj);
     setIsLoggedIn(true);
+    console.log(userObj)
     localStorage.setItem('isLoggedIn', 'true');
     localStorage.setItem('user', userStr)
   };
@@ -54,6 +55,7 @@ export const AuthProvider = ({ children }) => {
     setIsLoggedIn(false);
     localStorage.removeItem('isLoggedIn');
     console.log("get");
+    localStorage.removeItem('user')
   };
 
   return (

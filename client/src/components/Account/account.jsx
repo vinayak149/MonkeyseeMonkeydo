@@ -143,7 +143,9 @@ export function AccountBox(props) {
     }, 400);
   };
 
+   const [email, setEmail] = useState("")
   const contextValue = { switchToSignup, switchToSignin, switchToForgotPass, switchToOtp, switchToSetPassword };
+
 
   return (
     <div className="auth-container">
@@ -195,9 +197,9 @@ export function AccountBox(props) {
         </TopContainer>
         <InnerContainer>
           {active === "signin" && <LoginForm />}
-          {active === "signup" && <SignupForm />}
+            {active === "signup" && <SignupForm email={email} setEmail={setEmail}/>}
           {active === "forgotpass" && <ForgotPasswordForm/>}
-          {active === "otp" && <OtpInput/>}
+            {active === "otp" && <OtpInput email={email} />}
           {active === "setpass" && <SetPasswordForm/>}
         </InnerContainer>
       </BoxContainer>

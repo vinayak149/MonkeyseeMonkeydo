@@ -2,7 +2,7 @@ import { useFetchWrapper } from "../utils/fetchWrapper";
 
 export const PanelistService = () => {
     const fetchWrapper = useFetchWrapper();
-    const baseURL = 'panelists';
+    const baseURL = '/panelists';
 
     function getAllPanelists() {
         const url = `${baseURL}/all`;
@@ -21,6 +21,7 @@ export const PanelistService = () => {
 
     function giveReview(panelistId, ideaId, reviewRequest) {
         const url = `${baseURL}/${panelistId}/give-review/${ideaId}`;
+        console.log(url,reviewRequest);
         return fetchWrapper.post(url, reviewRequest);
     }
 

@@ -237,6 +237,7 @@ import "./JudgeDashboard.css";
 import Navbar2 from "../../Navbar/Navbar2";
 import JudgeDashboard2 from "./JudgeDashboard2";
 import axios from "axios";
+import { TeamService } from "../../../service/team.service";
 
 function JudgeDashboard() {
   const [teams, setTeams] = useState([]);
@@ -245,8 +246,8 @@ function JudgeDashboard() {
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/teams/all");
-        setTeams(response.data);
+        const data = await TeamService().getAllTeams()
+        setTeams(data);
       } catch (error) {
         console.error("Failed to fetch teams:", error);
       }

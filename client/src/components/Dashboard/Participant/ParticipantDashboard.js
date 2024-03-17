@@ -119,7 +119,8 @@ const ParticipantDashboard = () => {
       try {
         //parsed the userobj to get the id for service
         
-        const userId = new UserInfo().getId();
+        const userId = new UserInfo().getEmail();
+        
 
         if (userId) {
         const participantService = ParticipantService();
@@ -180,9 +181,9 @@ const ParticipantDashboard = () => {
       <div className="team">
         <div className="members">
           <h1>Team Members</h1>
-          {dashboardData.teamMembers.map((member, index) => (
+          {/* {dashboardData.teamMembers.map((member, index) => (
             <p key={index}>{member}</p>
-          ))}
+          ))} */}
         </div>
         <div className="project">
           <h1>Project Description</h1>

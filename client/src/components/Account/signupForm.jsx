@@ -11,9 +11,9 @@ import { Marginer } from "./marginer/index.jsx";
 import { AccountContext } from "./accountContext.js";
 import { AuthService } from "../../service/auth.service";
 
-export function SignupForm(props) {
+export function SignupForm({email, setEmail}) {
   // const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 

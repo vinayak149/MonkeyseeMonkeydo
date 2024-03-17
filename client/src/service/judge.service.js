@@ -2,7 +2,7 @@ import { useFetchWrapper } from "../utils/fetchWrapper";
 
 export const JudgeService = () => {
   const fetchWrapper = useFetchWrapper();
-  const baseURL = "judge";
+  const baseURL = "/judge";
 
   function getAllJudges() {
     let url = `${baseURL}/all`;

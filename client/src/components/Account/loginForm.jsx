@@ -25,7 +25,7 @@ const handleLogin = async () => {
     const authService =  AuthService();
     const response = await authService.login(email, password);
     console.log("Login successful:", response);
-    login();
+    login(response);
     navigate('/');
     
   } catch (error) {

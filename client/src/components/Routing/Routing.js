@@ -16,14 +16,14 @@ import PanelistDashboard from '../Dashboard/PanelistDashboard/PanelistDashboard.
 import AdminDashboard from '../Dashboard/Admin Dashboard/AdminDashboard.js';
 import JudgeDashboard from '../Dashboard/Judge/JudgeDashboard.js';
 import JudgeDashboard2 from '../Dashboard/Judge/JudgeDashboard2.js';
+import { UserInfo } from '../../utils/helper.js';
 // import PanelistDashboard from './components/Dashboard/PanelistDashboard.js'
 // import IdeaSubmissionForm from './components/IdeaSubmissionForm';
 // import Dashboard from './components/Dashboard';
 // import AddPanelistForm from './components/AddPanelistForm'; // Assuming you have this component
 // import AssignIdeaForm from './components/AssignIdeaForm'; // Assuming you have this component
 // import Login from './components/Login/Login.js'
-// import SignUp from './components/Signup/Signup.js';
-
+// import SignUp from './components/Signup/Signup.js
 
 function Routing() {
     const deadline = "2024-12-31T23:59:59.999Z";
@@ -31,6 +31,7 @@ function Routing() {
     console.log("Idea submitted:", idea);
     alert("Idea submitted successfully!");
   };
+  const user = new UserInfo()
   return (
     <div>
         <Router>
@@ -42,6 +43,7 @@ function Routing() {
           <Route path='/' element={<Home/>}/>
           <Route path="/home" element={<Home />} />
           <Route path="/dashboard" element={<ParticipantDashboard />} />
+          
           <Route path='/panelist' element={<PanelistDashboard/>}/>
           <Route path='/admin' element={<AdminDashboard/>}/>
           <Route path="/judge" element={<JudgeDashboard/>}/>

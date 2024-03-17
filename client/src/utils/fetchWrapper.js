@@ -38,7 +38,7 @@ export const useFetchWrapper = () => {
       }
 
       let fullUrl = `http://localhost:8080${url}`; //change this to localhost for backend
-
+      console.log(fullUrl,requestOptions);
       return fetch(fullUrl, requestOptions).then(handleResponse);
     };
   }

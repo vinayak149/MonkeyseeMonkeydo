@@ -5,7 +5,7 @@ export const TeamService = () => {
     const baseURL = '/teams';
 
     function getAllTeams() {
-        const url = `${baseURL}/allteams`;
+        const url = `${baseURL}/all`;
         return fetchWrapper.get(url);
     }
 
