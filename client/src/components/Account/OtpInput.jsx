@@ -10,72 +10,49 @@ import {
 import { Marginer } from "./marginer/index.jsx";
 import { AccountContext } from "./accountContext.js";
 
-
 const OtpInput = ({ length = 6, onOtpSubmit = () => {} }) => {
-    const [otp, setOtp] = useState(new Array(length).fill(""));
-    const inputRefs = useRef([]);
+    const [otp, setOtp] = useState("");
+    const inputRef = useRef(null);
 
     useEffect(() => {
-        if (inputRefs.current[0]) {
-            inputRefs.current[0].focus();
-        }
+        inputRef.current.focus();
     }, []);
 
-    const handleChange = (index, e) => {
+    const handleChange = (e) => {
         const value = e.target.value;
-        if (isNaN(value)) {
-            return;
-        }
-
-        const newOtp = [...otp];
-        newOtp[index] = value.substring(value.length - 1);
-        setOtp(newOtp);
-    };
-
-    const handleClick = (index) => {
-        inputRefs.current[index].setSelectionRange(1, 1);
-
-        // optional
-        if (index > 0 && !otp[index - 1]) {
-            inputRefs.current[otp.indexOf("")].focus();
+        if (!isNaN(value) && value.length <= length) {
+            setOtp(value);
         }
     };
 
-    const handleKeyDown = (index, e) => {
-        if (
-            e.key === "Backspace" &&
-            !otp[index] &&
-            index > 0 &&
-            inputRefs.current[index - 1]
-        ) {
+    const handleKeyDown = (e) => {
+        if (e.key === "Backspace") {
             // Move focus to the previous input field on backspace
-            inputRefs.current[index - 1].focus();
+            if (otp.length === 1) {
+                setOtp("");
+            }
         }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const combinedOtp = otp.join("");
-        if (combinedOtp.length === length) onOtpSubmit(combinedOtp);
+        if (otp.length === length) {
+            onOtpSubmit(otp);
+        }
     };
 
     return (
         <BoxContainer>
             <FormContainer>
-                {otp.map((value, index) => {
-                    return (
-                        <Input
-                            key={index}
-                            type="text"
-                            ref={(input) => (inputRefs.current[index] = input)}
-                            value={value}
-                            onChange={(e) => handleChange(index, e)}
-                            onClick={() => handleClick(index)}
-                            onKeyDown={(e) => handleKeyDown(index, e)}
-                            className="otpInput"
-                        />
-                    );
-                })}
+                <Input
+                    type="text"
+                    ref={inputRef}
+                    value={otp}
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown}
+                    maxLength={length}
+                    className="otpInput"
+                />
                 <SubmitButton type="button" onClick={handleSubmit}>
                     Submit
                 </SubmitButton>
