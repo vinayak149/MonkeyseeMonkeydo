@@ -15,7 +15,7 @@ import axios from "axios";
         useEffect(() => {
           const fetchTeams = async () => {
             try {
-              const response = await axios.get('/teams/allteams');
+              const response = await axios.get('http://localhost:8080/teams/all');
               setTeams(response.data); // Assuming the data is in the response's data property
             } catch (error) {
               console.error('Failed to fetch teams:', error);

@@ -20,7 +20,8 @@ const Navbar = () => {
   const handleConfirmLogout = () => {
     setDialogOpen(false); // Close the dialog
     logout(); // Perform your logout logic here, then redirect
-    navigate('/'); // Redirect to home page or login page as needed
+    navigate('/auth');
+    console.log("event"); // Redirect to home page or login page as needed
   };
 
   const handleClose = () => {

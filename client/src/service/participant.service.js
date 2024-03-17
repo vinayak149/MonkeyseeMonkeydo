@@ -2,7 +2,7 @@ import { useFetchWrapper } from "../utils/fetchWrapper";
 
 export const ParticipantService = () => {
     const fetchWrapper = useFetchWrapper();
-    const baseURL = 'participants';
+    const baseURL = '/participants';
 
     function getAllParticipants() {
         const url = `${baseURL}`;

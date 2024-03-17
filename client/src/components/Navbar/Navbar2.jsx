@@ -18,7 +18,7 @@ const Navbar = () => {
   const handleConfirmLogout = () => {
     setDialogOpen(false); // Close the dialog
     // Perform your logout logic here, then redirect
-    navigate('/');
+    navigate('/auth');
   };
 
   const handleClose = () => {
