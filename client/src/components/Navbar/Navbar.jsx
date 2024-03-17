@@ -4,11 +4,13 @@ import './Navbar.css'; // Make sure to create and import the CSS file
 import monkeyGif from './Monkey.gif'; // Import your GIF file
 import DialogBox from './DialogBox'; // Import the DialogBox component
 import { useAuth } from "../context/AuthContext";
+import { UserInfo } from '../../utils/helper';
 
 const Navbar = () => {
   const [isDialogOpen, setDialogOpen] = useState(false);
   const { isLoggedIn, logout } = useAuth();
   const navigate = useNavigate();
+  const userInfo = UserInfo()
 
   const handleLogoutClick = () => {
     // Only show the logout confirmation dialog if a user is logged in
@@ -45,11 +47,13 @@ const Navbar = () => {
           {isLoggedIn && (
             <>
               <li className="nav-item">
-                <Link to="/dashboard" className="nav-links">Participant Dashboard</Link>
+                {(userInfo.getRole() === 'PARTICIPANT') && <Link to="/dashboard" className="nav-links">Participant Dashboard</Link>}
+                {(userInfo.getRole() === 'PANELIST') && <Link to="/panelist" className="nav-links">Panelist Dashboard</Link>}
+                {(userInfo.getRole() === 'JUDGE') && <Link to="/judge" className="nav-links">Judge Dashboard</Link>}
               </li>
               <li className="nav-item">
                 {/* Changed to div for logout functionality */}
-                <div onClick={handleLogoutClick} className="nav-links" style={{cursor: 'pointer'}}>Logout</div>
+                <div onClick={handleLogoutClick} className="nav-links" style={{ cursor: 'pointer' }}>Logout</div>
               </li>
             </>
           )}

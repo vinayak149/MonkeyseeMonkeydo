@@ -4,7 +4,8 @@ import Timer from "./Timer";
 import Widget from "./Widget";
 import AnimatedNumber from "./AnimatedNumber";
 import Navbar2 from "../../Navbar/Navbar2";
-import { ParticipantService} from "../../../service/participant.service";
+import { ParticipantService } from "../../../service/participant.service";
+import { UserInfo } from "../../../utils/helper";
 
 const ParticipantDashboard = () => {
   const [dashboardData, setDashboardData] = useState({
@@ -22,9 +23,18 @@ const ParticipantDashboard = () => {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const participantService=ParticipantService();
-        const dashboard = await participantService.getDashboardProgress();
-        setDashboardData(dashboard);
+        //parsed the userobj to get the id for service
+        
+        const userId = UserInfo().getId();
+
+        if (userId) {
+        const participantService = ParticipantService();
+        const dashboard = await participantService.getDashboardProgress(
+          userId
+        );
+        setDashboardData(dashboard);}
+
+        
       } catch (error) {
         console.error("Failed to fetch dashboard data:", error);
       }

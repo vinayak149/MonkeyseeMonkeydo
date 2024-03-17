@@ -12,9 +12,11 @@ export const AuthProvider = ({ children }) => {
     setIsLoggedIn(authData === 'true');
   }, []);
 
-  const login = () => {
+  const login = (userObj) => {
+    const userStr = JSON.stringify(userObj);
     setIsLoggedIn(true);
     localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('user', userStr)
   };
 
   const logout = () => {
