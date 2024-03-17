@@ -22,7 +22,6 @@ public class User {
     {
     	
     }
-
 	public void setOtp(String otp) {
 		this.otp = otp;
 	}
