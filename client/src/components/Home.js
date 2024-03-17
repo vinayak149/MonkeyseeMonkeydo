@@ -5,6 +5,7 @@ import Navbar from './Navbar/Navbar'
 import MyParticles from './Particles/Particles';
 import About from './About';
 import { useAuth } from './context/AuthContext';
+
 const Home = () => {
   const [showTitle, setShowTitle] = useState(false);
   const [greeting, setGreeting] = useState('');
@@ -38,9 +39,16 @@ const Home = () => {
          Join our internal hackathon to innovate, collaborate, and bring creative solutions to life alongside colleagues. Your ideas matter. Let's build something amazing together.
         </p>
 
-        <Link className="button highlight-button" to="/auth">
-          Submit Your Idea Now
-        </Link>
+        {/* Conditional rendering for the button */}
+        {isLoggedIn ? (
+          <Link className="button highlight-button" to="/register">
+            Submit Your Idea Now
+          </Link>
+        ) : (
+          <Link className="button highlight-button" to="/auth">
+            Submit Your Idea Now
+          </Link>
+        )}
         </div>
         <About/>
       </div>
@@ -49,6 +57,3 @@ const Home = () => {
 };
 
 export default Home;
-
-
-

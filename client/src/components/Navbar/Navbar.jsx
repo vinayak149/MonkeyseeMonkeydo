@@ -1,45 +1,31 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css'; // Make sure to create and import the CSS file
 import monkeyGif from './Monkey.gif'; // Import your GIF file
+import DialogBox from './DialogBox'; // Import the DialogBox component
 import { useAuth } from "../context/AuthContext";
- 
-// const Navbar = () => {
-//   const { isLoggedIn, logout } = useAuth();
-//   return (
-//     <nav className="navbar flex min-h-screen flex-col z-10">
-//       <div className="navbar-container h-14 bg-0a192f">
-//         <Link to="/" className="navbar-logo">
-//           <span className="small-text">MonkeySee</span> {/* Wrap "MonkeySee" in a span with a class */}
-//           <span className="small-text">MonkeyDo</span> {/* "MonkeyDo" remains as it is */}
-//           <img src={monkeyGif} alt="Monkey GIF" className="gif" /> {/* Use the imported monkeyGif variable as the src */}
-//         </Link>
-//         {/* <ul className="nav-menu">
-//           <li className="nav-item">
-//             <Link to="/auth" className="nav-links">Login / Signup</Link>
-//           </li>
-//         </ul> */}
-//         <ul className="nav-menu">
-//         {!isLoggedIn && (
-//           <li className="nav-item">
-//             <Link to="/auth" className="nav-links">Login / Signup</Link>
-//           </li>
-//         )}
-//         {isLoggedIn && (
-//           <li className="nav-item">
-//             <button onClick={logout} className="logout">Logout</button>
-//           </li>
-//         )}
-//         </ul>
-//       </div>
-//     </nav>
-//   );
-// };
- 
-// export default Navbar;
 
 const Navbar = () => {
+  const [isDialogOpen, setDialogOpen] = useState(false);
   const { isLoggedIn, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogoutClick = () => {
+    // Only show the logout confirmation dialog if a user is logged in
+    if (isLoggedIn) {
+      setDialogOpen(true); // Show the dialog
+    }
+  };
+
+  const handleConfirmLogout = () => {
+    setDialogOpen(false); // Close the dialog
+    logout(); // Perform your logout logic here, then redirect
+    navigate('/'); // Redirect to home page or login page as needed
+  };
+
+  const handleClose = () => {
+    setDialogOpen(false); // Close the dialog without logging out
+  };
 
   return (
     <nav className="navbar flex min-h-screen flex-col z-10">
@@ -56,14 +42,28 @@ const Navbar = () => {
             </li>
           )}
           {isLoggedIn && (
-            <li className="nav-item">
-              {/* Use the same class as the login/signup links for consistency */}
-              <button onClick={logout} className="nav-links" style={{border: 'none', backgroundColor: 'transparent'}}>Logout</button>
-            </li>
+            <>
+              <li className="nav-item">
+                <Link to="/dashboard" className="nav-links">Participant Dashboard</Link>
+              </li>
+              <li className="nav-item">
+                {/* Changed to div for logout functionality */}
+                <div onClick={handleLogoutClick} className="nav-links" style={{cursor: 'pointer'}}>Logout</div>
+              </li>
+            </>
           )}
         </ul>
       </div>
+      <DialogBox
+        isOpen={isDialogOpen}
+        onClose={handleClose}
+        onConfirm={handleConfirmLogout}
+        title="Confirm Logout"
+      >
+        Are you sure you want to logout?
+      </DialogBox>
     </nav>
   );
 };
+
 export default Navbar;

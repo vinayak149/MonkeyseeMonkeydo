@@ -3,13 +3,14 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Navbar.css';
 import monkeyGif from './Monkey.gif';
 import DialogBox from './DialogBox'; // Import the DialogBox component
-
-
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const [isDialogOpen, setDialogOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { isLoggedIn } = useAuth();
+
   const handleLogoutClick = () => {
     setDialogOpen(true); // Show the dialog
   };
@@ -24,7 +25,8 @@ const Navbar = () => {
     setDialogOpen(false); // Close the dialog without logging out
   };
 
-    const isRegisterPage = location.pathname === '/register';
+  // Determine if the current page is the registration page
+  const isRegisterPage = location.pathname === '/register';
 
   return (
     <nav className="navbar flex min-h-screen flex-col z-10">
@@ -35,7 +37,8 @@ const Navbar = () => {
           <img src={monkeyGif} alt="Monkey GIF" className="gif" />
         </Link>
         <ul className="nav-menu">
-          {!isRegisterPage && (
+          {/* Only show the logout button if the user is logged in */}
+          {isLoggedIn && !isRegisterPage && (
             <li className="nav-item">
               <div onClick={handleLogoutClick} className="nav-links" style={{ cursor: 'pointer' }}>Logout</div>
             </li>
