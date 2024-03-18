@@ -31,7 +31,10 @@ public class UserService {
             user.setRole("PARTICIPANT");
         }
         user.setPassword(user.getPassword());
+        
         User savedUser = userRepository.save(user);
+        Participant newParticipant = new Participant(user.getUsername(),user.getEmail());
+        participantRepo.save(newParticipant);
  
         
  
