@@ -1,5 +1,6 @@
 package com.server.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.server.bean.Idea;
 import com.server.bean.Participant;
 import com.server.bean.Team;
+import com.server.dto.DashboardDTO;
 import com.server.service.ParticipantService;
+import com.server.service.TeamService;
  
  
 @RestController
@@ -26,9 +29,13 @@ public class ParticipantController {
 	
 	@Autowired
     private final ParticipantService participantService;
+	
+	@Autowired
+	private final TeamService teamService;
  
-    public ParticipantController(ParticipantService participantService) {
+    public ParticipantController(ParticipantService participantService,TeamService teamService) {
         this.participantService = participantService;
+        this.teamService = teamService;
     }
  
     @GetMapping
@@ -62,22 +69,36 @@ public class ParticipantController {
     }
     
     @GetMapping("/dashboard/{id}/progress")
-    public ResponseEntity<String> dashBoardProgress(@PathVariable String id){
+    public ResponseEntity<DashboardDTO> dashBoardProgress(@PathVariable String id){
+    	DashboardDTO dashboard =  new DashboardDTO();
     	try {
     	Participant participant = participantService.findByEmail(id);
     	Team team = participant.getTeam();
     	Idea idea = team.getIdea();
-    	String progress="0";
+    	Integer count = teamService.getAllTeamNames().size();
+    	dashboard.setTeamName(team.getTeamName());
+    	dashboard.setTotalCompetitors(count);
+    	Integer progress=0;
     	if(idea.getTitle()!=null) {
-    		progress =  "40";
+    		progress =  40;
     			if(idea.getScore()>0) {
-    				progress = "60";
+    				progress = 60;
     		}
     	}
-    	return new ResponseEntity<String>(progress,HttpStatus.OK);
+    	dashboard.setProjectStatus(idea.getStatus());
+    	List<Participant> participants = team.getParticipants();
+    	ArrayList<String> teamMembers = new ArrayList<String>();
+    	for(Participant participant1 :participants) {
+    		teamMembers.add(participant1.getName());
+    	}
+    	dashboard.setTeamMembers(teamMembers);
+    	dashboard.setProjectName(idea.getTitle());
+    	dashboard.setProjectDescription(idea.getDescription());
+    	dashboard.setProjectCompletionPercentage(progress);
+    	return new ResponseEntity<DashboardDTO>(dashboard,HttpStatus.OK);
     	}
     	catch(Exception e) {
-    		return new ResponseEntity<String>(e.toString(),HttpStatus.BAD_REQUEST);
+    		return new ResponseEntity<DashboardDTO>(dashboard,HttpStatus.BAD_REQUEST);
     	}
     }
 }
