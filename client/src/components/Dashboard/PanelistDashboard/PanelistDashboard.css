@@ -107,38 +107,38 @@ button {
   align-items: center;
   border: 1px solid #ccc;
 }
-
+ 
 .Head {
   text-align: center;
   color: white;
   width: 100%;
 }
-
+ 
 .ToCan {
   text-align: center;
   color: white;
 }
-
+ 
 .cuTa {
   width: 100%;
   border-collapse: collapse;
 }
-
+ 
 th,
 td {
   text-align: left;
   padding: 8px;
 }
-
+ 
 th {
   background-color: #04AA6D;
   color: white;
 }
-
+ 
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
-
+ 
 button.hi {
   margin-right: 5px;
   background-color: #04AA6D;
@@ -152,7 +152,7 @@ button.hi {
   cursor: pointer;
   border-radius: 4px;
 }
-
+ 
 .contentabovefooter {
   margin-top: 20px;
   padding: 20px;
@@ -161,8 +161,15 @@ button.hi {
   color: #333;
   text-align: center;
 }
-
+ 
 .app-footer {
   margin-top: 30px;
 }
-
+ 
+.trLight {
+  background-color: #ffffff; /* Light color */
+}
+ 
+.trDark {
+  background-color: #f2f2f2; /* Darker color */
+}
