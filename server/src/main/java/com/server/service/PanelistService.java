@@ -30,7 +30,7 @@ public class PanelistService {
     }
 
     public Panelist getPanelistById(String panelistId) {
-        Optional<Panelist> optionalPanelist = panelistRepository.findById(panelistId);
+        Optional<Panelist> optionalPanelist = panelistRepository.findByEmail(panelistId);
         return optionalPanelist.orElse(null);
     }
 

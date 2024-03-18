@@ -45,9 +45,9 @@ public class TeamController {
 			if (team != null) {
 				// Check if the participant already exists by username and email
 				Participant existingParticipant = participantService.findByEmail(participant.getEmail());
-
 				if (existingParticipant != null) {
 					// Participant exists, add them to the team
+					existingParticipant.setName(participant.getName());
 					existingParticipant.setTeam(team);
 					team.getParticipants().add(existingParticipant);
 					// Update both the participant and the team
