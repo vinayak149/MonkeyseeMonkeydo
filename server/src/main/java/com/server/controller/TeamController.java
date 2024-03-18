@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -160,5 +161,16 @@ public class TeamController {
 		teamService.updateTeam(savedTeam.getId(), savedTeam);
 		return ResponseEntity.ok("Team name has been Changed Successfully!!");
 	}
+	@GetMapping("/approved-teams")
+    public ResponseEntity<List<Team>> getAllApprovedTeams() {
+        List<Team> teams = teamService.getAllTeams();
+        List<Team> approvedTeams = new ArrayList<>();
+        for (Team team : teams) {
+            if (team.getIdea() != null && "Approved".equals(team.getIdea().getStatus())) {
+                approvedTeams.add(team);
+            }
+        }
+        return ResponseEntity.ok(approvedTeams);
+    }
 
 }
