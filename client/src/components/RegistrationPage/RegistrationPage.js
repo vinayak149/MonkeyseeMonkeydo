@@ -45,12 +45,12 @@ function RegistrationForm() {
       domain: formData.domain,
     };
     try {
+      await teamService.assignIdeaToTeam(teamId,ideaData)
       await Promise.all(
         formData.participants.map(async (participant) => {
           await teamService.addParticipantToTeam(teamId, participant);
         })
       );
-      await teamService.assignIdeaToTeam(teamId,ideaData)
       console.log("Idea registration successful:", ideaData);
       // Adding the bloody participants
       
