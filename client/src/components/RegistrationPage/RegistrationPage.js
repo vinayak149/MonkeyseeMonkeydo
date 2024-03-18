@@ -46,13 +46,14 @@ function RegistrationForm() {
     };
     try {
       await teamService.assignIdeaToTeam(teamId,ideaData)
-      console.log("Idea registration successful:", ideaData);
-      // Adding the bloody participants
       await Promise.all(
         formData.participants.map(async (participant) => {
           await teamService.addParticipantToTeam(teamId, participant);
         })
       );
+      console.log("Idea registration successful:", ideaData);
+      // Adding the bloody participants
+      
       alert("Idea registered!");
       navigate('/dashboard');
     } catch (error) {
