@@ -47,8 +47,8 @@ export default function CircularWithValueLabel() {
     const fetchProgress = async () => {
       // Simulate fetching progress from an API
       // This would be replaced with your actual API call
-      //const response = await fetch('your-api-endpoint');
-      //const data = await response.json();
+      // const response = await fetch('http://localhost:8080/participants/dashboard//progress');
+      // const data = await response.json();
       // setProgress(data.progress);
 
       // Simulating progress update for demonstration
