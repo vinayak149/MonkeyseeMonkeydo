@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import '../RegistrationPage/RegistrationPage.css';
-import Navbar2 from '../Navbar/Navbar2'; 
+import Navbar2 from '../Navbar/Navbar2';
 import MyParticles from '../Particles/Particles.js'
 import { IdeaService } from '../../service/idea.service.js';
 import { TeamService } from '../../service/team.service.js';
 import { useNavigate } from 'react-router-dom';
-function RegistrationForm() {
+ 
+function TeamRegistrationForm() {
   const [formData, setFormData] = useState({
     teamName: '',
     participants: [{ name: '', email: '' }],
@@ -13,9 +14,10 @@ function RegistrationForm() {
     problemDescription: '',
     domain: '',
   });
-
+ 
   const [teamId, setTeamId] = useState(null);
   const navigate = useNavigate();
+ 
   const handleChange = (e, field, index) => {
     if (index !== undefined) {
       const updatedParticipants = formData.participants.map((participant, idx) => {
@@ -32,7 +34,7 @@ function RegistrationForm() {
       setFormData({ ...formData, [field]: e.target.value });
     }
   };
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const teamService = TeamService();
@@ -45,25 +47,21 @@ function RegistrationForm() {
       domain: formData.domain,
     };
     try {
-      
       await teamService.assignIdeaToTeam(teamId,ideaData)
       await Promise.all(
         formData.participants.map(async (participant) => {
           await teamService.addParticipantToTeam(teamId, participant);
         })
       );
-      console.log("Idea registration successful:", ideaData);
-      // Adding the bloody participants
-      
-      alert("Idea registered!");
+      console.log("Team registration successful:", ideaData);
+      alert("Team registered!");
       navigate('/dashboard');
     } catch (error) {
-      console.error("Idea registration failed:", error);
-      alert("Idea not registered!");
-      
+      console.error("Team registration failed:", error);
+      alert("Team not registered!");
     }
   };
-
+ 
   const addParticipant = () => {
     if (formData.participants.length < 4) {
       const newParticipant = { name: '', email: '' };
@@ -73,31 +71,37 @@ function RegistrationForm() {
       }));
     }
   };
-
+ 
+  const removeParticipant = (index) => {
+    const updatedParticipants = formData.participants.filter((participant, idx) => idx !== index);
+    setFormData({
+      ...formData,
+      participants: updatedParticipants,
+    });
+  };
+ 
   const checkTeamNameValidity = async() => {
     try {
       const teamService = TeamService();
       const id  = await teamService.addTeam({ teamName: formData.teamName });
       console.log('Team added successfully with ID:', id);
       setTeamId(id);
-      alert("Team name is valid")
-      
-      
+      alert("Team name is valid");
     } catch (error) {
       console.error('Error adding team:', error);
-      alert("team name not valid!");
+      alert("Team name not valid!");
     }
   };
-
+ 
   const calculateRemainingCharacters = (text, maxLength) => maxLength - text.length;
-
+ 
   return (
     <div>
       <MyParticles/>
       <Navbar2/>
       <form onSubmit={handleSubmit} className="registrationForm">
-        <h2>Registration Form</h2>
-
+        <h2>Team Registration Form</h2>
+ 
         <label htmlFor="teamName">Team Name <span className="requiredIndicator">*</span></label>
         <div className="teamNameContainer">
           <input
@@ -109,7 +113,7 @@ function RegistrationForm() {
           />
           <button type="button" onClick={checkTeamNameValidity} className="checkValidityButton">Check Validity</button>
         </div>
-
+ 
         {formData.participants.map((participant, index) => (
           <div key={index}>
             <h3>Participant-{index + 1} {index < 3 ? <span className="requiredIndicator">*</span> : ''}</h3>
@@ -121,7 +125,7 @@ function RegistrationForm() {
               onChange={(e) => handleChange(e, 'name', index)}
               required={index < 3} // Require name for first three participants
             />
-
+ 
             <label htmlFor={`email-${index}`}>Email</label>
             <input
               type="email"
@@ -130,13 +134,17 @@ function RegistrationForm() {
               onChange={(e) => handleChange(e, 'email', index)}
               required={index < 3} // Require email for first three participants
             />
+ 
+            {index > 0 && ( // Ensure the first participant cannot be removed
+              <button type="button" onClick={() => removeParticipant(index)} className="removeParticipantButton">Remove Participant</button>
+            )}
           </div>
         ))}
-
+ 
         {formData.participants.length < 4 && (
           <button type="button" onClick={addParticipant} className="addParticipantButton">Add Participant</button>
         )}
-
+ 
         <label htmlFor="problemStatement">Problem Statement <span className="requiredIndicator">*</span></label>
         <div className="textarea-container">
           <textarea
@@ -150,7 +158,7 @@ function RegistrationForm() {
             {calculateRemainingCharacters(formData.problemStatement, 500)} characters left
           </div>
         </div>
-
+ 
         <label htmlFor="problemDescription">Problem Description <span className="requiredIndicator">*</span></label>
         <div className="textarea-container">
           <textarea
@@ -164,7 +172,7 @@ function RegistrationForm() {
             {calculateRemainingCharacters(formData.problemDescription, 500)} characters left
           </div>
         </div>
-
+ 
         <label htmlFor="domain">Select Domain <span className="requiredIndicator">*</span></label>
         <select
           id="domain"
@@ -179,11 +187,11 @@ function RegistrationForm() {
           <option value="Experience Design">Experience Design</option>
           <option value="Operations Transformation">Operations Transformation</option>
         </select>
-
+ 
         <button type="submit">Submit</button>
-      </form> 
+      </form>
     </div>
   );
 }
-
-export default RegistrationForm;
+ 
+export default TeamRegistrationForm;

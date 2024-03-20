@@ -5,27 +5,29 @@ import Navbar from './Navbar/Navbar'
 import MyParticles from './Particles/Particles';
 import About from './About';
 import { useAuth } from './context/AuthContext';
-
+import { UserInfo } from '../utils/helper';
+ 
 const Home = () => {
   const [showTitle, setShowTitle] = useState(false);
   const [greeting, setGreeting] = useState('');
   const { isLoggedIn } = useAuth();
   const [showWelcome, setShowWelcome] = useState(false);
-
+  const userInfo = new UserInfo();
+ 
   useEffect(() => {
     setShowTitle(true);
     const hour = new Date().getHours();
     const newGreeting = hour < 12 ? 'Good Morning' : hour < 18 ? 'Good Afternoon' : 'Good Evening';
     setGreeting(newGreeting);
   }, []);
-
+ 
   useEffect(() => {
     if (isLoggedIn) {
       setShowWelcome(true);
       setTimeout(() => setShowWelcome(false), 5000); // Hide the pop-up after 5 seconds
     }
   }, [isLoggedIn]);
-
+ 
   return (
     <div className="home">
       <Navbar/>
@@ -38,22 +40,18 @@ const Home = () => {
         <p className="description">
          Join our internal hackathon to innovate, collaborate, and bring creative solutions to life alongside colleagues. Your ideas matter. Let's build something amazing together.
         </p>
-
+ 
         {/* Conditional rendering for the button */}
-        {isLoggedIn ? (
-          <Link className="button highlight-button" to="/register">
-            Submit Your Idea Now
-          </Link>
-        ) : (
-          <Link className="button highlight-button" to="/auth">
-            Submit Your Idea Now
-          </Link>
-        )}
+        {userInfo.getRole() === 'PARTICIPANT' && isLoggedIn ? (
+  <Link className="button highlight-button" to="/register">
+    Submit Your Idea Now
+  </Link>
+) : null}
         </div>
         <About/>
       </div>
     </div>
   );
 };
-
+ 
 export default Home;

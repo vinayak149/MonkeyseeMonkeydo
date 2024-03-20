@@ -3,12 +3,12 @@
   max-width: 100%;
   z-index: 10;
 }
-
+ 
 .boxes {
   display: flex;
   width: 50%;
 }
-
+ 
 .box1,
 .box2,
 .box3,
@@ -18,7 +18,7 @@
   margin: 2vh 2vh;
   border-radius: 10px;
 }
-
+ 
 .box1 h2,
 .box2 h2,
 .box3 h2,
@@ -28,7 +28,7 @@
   color: #fff;
   padding: 10px;
 }
-
+ 
 .box1 p,
 .box2 p,
 .box3 p,
@@ -38,12 +38,12 @@
   color: #ccc;
   padding-left: 2px;
 }
-
+ 
 .team {
   display: flex;
   margin: 1vh 1vh;
 }
-
+ 
 .members,
 .project {
   flex: 1;
@@ -53,48 +53,48 @@
   min-width: 45%;
   margin-bottom: 1.7rem;
 }
-
+ 
 .members h1,
 .project h1 {
   color: #fff;
   padding: 10px;
 }
-
+ 
 .members p,
 .project p {
   color: #ccc;
   padding-left: 15px;
 }
-
+ 
 .team {
   justify-content: space-between;
   margin-bottom: 0.001rem;
 }
-
+ 
 .members p {
   margin-bottom: 10px;
 }
-
+ 
 .box5,
 .box6 {
   max-width: 50vh;
-
+ 
   margin: 3vh 2vh;
   border-radius: 10px;
 }
-
+ 
 @keyframes bounce {
-
+ 
   0%,
   100% {
     transform: scale(1);
   }
-
+ 
   50% {
     transform: scale(1.05);
   }
 }
-
+ 
 /* Hover effect */
 .box1:hover,
 .box2:hover,
@@ -107,7 +107,7 @@
   animation: bounce 0.5s ease forwards;
   /* animation: typing 2s steps(40, end) infinite, blink-caret .15s step-end infinite */
 }
-
+ 
 @media only screen and (max-width: 768px) {
   .container {
     display: flex;
@@ -116,14 +116,14 @@
     align-items: center;
     max-width: 100%;
   }
-
+ 
   .boxes {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-
+ 
   .box1,
   .box2 {
     padding: 0.5rem;

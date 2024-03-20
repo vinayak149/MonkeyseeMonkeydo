@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
-
+ 
 body {
   background-color: #f6f8fb;
   color: #333;
@@ -7,8 +7,8 @@ body {
   line-height: 1.6;
   position: relative;
 }
-
-.registrationForm {
+ 
+/* .registrationForm {
   width: 80%;
   max-width: 800px;
   margin: 50px auto;
@@ -18,22 +18,45 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 1;
+} */
+ 
+ 
+.registrationForm {
+  width: 80%;
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 40px;
+  background-color: rgba(0, 0, 0, 0.5); /* Light black */
+  color: #fff; /* Text color white */
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
 }
-
-.registrationForm h2 {
+ 
+ 
+/* .registrationForm h2 {
   margin-bottom: 20px;
   text-align: center;
   color: #0d84a3;
   font-weight: 600;
   font-size: 24px;
+} */
+ 
+.registrationForm h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #00b894; /* Green color */
+  font-weight: 600;
+  font-size: 26px; /* Increased font size */
 }
-
+ 
 .teamNameContainer {
   display: flex;
-  align-items: center; 
+  align-items: center;
   gap: 10px;
 }
-
+ 
 .checkValidityButton {
   padding: 8px 16px;
   background-color: #3498db;
@@ -44,11 +67,11 @@ body {
   font-size: 14px;
   transition: background-color 0.3s;
 }
-
+ 
 .checkValidityButton:hover {
   background-color: #2980b9;
 }
-
+ 
 #particles-js {
   position: absolute;
   top: 0;

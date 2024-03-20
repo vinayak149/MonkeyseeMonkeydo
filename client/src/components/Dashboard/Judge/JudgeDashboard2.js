@@ -101,21 +101,22 @@ import Navbar2 from "../../Navbar/Navbar2";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios";
+import { UserInfo } from "../../../utils/helper";
 
 const JudgeDashboard2 = ({ teams, currentIndex, handleNext, handlePrev }) => {
   const [currentScore, setCurrentScore] = useState({
-    UserInterface: 1,
-    QualityOfCode: 1,
-    Workflow: 1,
+    userInterface: 1,
+    qualityOfWork: 1,
+    workFlow: 1,
   });
   const [feedback, setFeedback] = useState("");
   const maxWords = 200;
 
   useEffect(() => {
     setCurrentScore({
-      UserInterface: 1,
-      QualityOfCode: 1,
-      Workflow: 1,
+      userInterface: 1,
+      qualityOfWork: 1,
+      workFlow: 1,
     });
     setFeedback("");
   }, [currentIndex, teams]);
@@ -139,14 +140,15 @@ const JudgeDashboard2 = ({ teams, currentIndex, handleNext, handlePrev }) => {
 
   const submitScores = () => {
     // Assuming judgeId is passed as a prop or retrieved from the component's state
-    const judgeId = '123'; 
+    const judgeId = (new UserInfo()).getEmail()
+    console.log(judgeId);
   
     // Assuming currentTeam contains the ideaId
     const ideaId = teams[currentIndex].idea.id; // Assuming teams array contains currentTeam
   
     // Making the API call with judgeId and ideaId
-    axios.post(`/${judgeId}/giverating/${ideaId}`, {
-      scores: currentScore,
+    axios.put(`http://localhost:8080/judge/${judgeId}/giverating/${ideaId}`, {
+      ...currentScore,
       feedback: feedback
     })
     .then(response => {

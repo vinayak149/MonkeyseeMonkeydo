@@ -5,10 +5,10 @@ import Navbar2 from "../../Navbar/Navbar2";
 import axios from "axios";
 import { PanelistService } from "../../../service/panelist.service";
 import { UserInfo } from "../../../utils/helper";
-
+ 
 function PanelistDashboard() {
   const [teams, setTeams] = useState([]);
-
+ 
   useEffect(() => {
     const fetchTeams = async () => {
       try {
@@ -18,28 +18,25 @@ function PanelistDashboard() {
         console.error("Failed to fetch teams:", error);
       }
     };
-
+ 
     fetchTeams();
   }, []);
-
+ 
   const handleStatusChange = async (ideaId, newStatus) => {
     try {
-      const panelistId = (new UserInfo()).getEmail()
+      const panelistId = (new UserInfo()).getEmail();
       console.log(panelistId);
-
-      const data = await PanelistService().giveReview(panelistId, ideaId, { "suggestion": '', "status": newStatus })
+ 
+      const data = await PanelistService().giveReview(panelistId, ideaId, { "suggestion": '', "status": newStatus });
       const updatedTeams = teams.map((team) =>
-        team.idea.id === ideaId ? data : team
+        team.idea && team.idea.id === ideaId ? { ...team, idea: { ...team.idea, status: newStatus } } : team
       );
       setTeams(updatedTeams);
-
-
-    }
-    catch (e) {
+    } catch (e) {
       console.error("Failed to update status:", e);
     }
   };
-
+ 
   return (
     <div style={{ backgroundColor: "#040720" }}>
       <Navbar2 />
@@ -58,7 +55,7 @@ function PanelistDashboard() {
         <thead>
           <tr>
             <th>Team Name</th>
-            <th>Team ID</th>
+            <th>Idea Title</th>
             <th>Problem Description</th>
             <th>Status</th>
           </tr>
@@ -67,7 +64,7 @@ function PanelistDashboard() {
           {teams.map((team, index) => (
             <tr key={team.id} className={index % 2 === 0 ? "trLight" : "trDark"}>
               <td>{team.teamName}</td>
-              <td>{team.id}</td>
+              <td>{team.idea ? team.idea.title : ""}</td>
               <td>{team.idea ? team.idea.description : ""}</td>
               <td>
                 <button className="hi" onClick={() => handleStatusChange(team.idea?.id, "Approved")}>
@@ -76,17 +73,13 @@ function PanelistDashboard() {
                 <button className="hi" onClick={() => handleStatusChange(team.idea?.id, "Disapproved")}>
                   Disapprove
                 </button>
-                {/* <button onClick={() => handleStatusChange(team.id, "Review")}>
-                  Review
-                </button> */}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-    
     </div>
   );
 }
-
+ 
 export default PanelistDashboard;

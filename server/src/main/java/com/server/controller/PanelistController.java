@@ -71,8 +71,9 @@ public class PanelistController {
                 if (idea.getId() == null) {
                     ideaService.addIdea(idea);
                 }
+                idea.updateSuggestionAndStatus(suggestion, status);
                 idea.setReviewedBy(panelist.getName());
-
+ 
                 ideaService.updateSuggestionAndStatus(ideaId, suggestion, status);
                 ideaService.updateIdea(ideaId, idea);
  

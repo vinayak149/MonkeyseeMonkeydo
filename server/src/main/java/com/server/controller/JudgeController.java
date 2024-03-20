@@ -59,58 +59,55 @@ public class JudgeController {
 	}
 
 	// for submit the rating of the Idea by the judge
-	@PutMapping("{judgeId}/giverating/{ideaId}")
-	public ResponseEntity<String> updateRatingAndFeedback(@PathVariable String judgeId, @PathVariable String ideaId,
-			@RequestBody Map<String, Object> requestBody) {
-
-		if (requestBody.containsKey("rating") && requestBody.containsKey("feedback")
-				&& requestBody.containsKey("workFlow") && requestBody.containsKey("qualityOfWork")
-				&& requestBody.containsKey("userInterface")) {
-
-			Object ratingObject = requestBody.get("rating");
-			Object feedbackObject = requestBody.get("feedback");
-			Object workFlowObject = requestBody.get("workFlow");
-			Object qualityOfWorkObject = requestBody.get("qualityOfWork");
-			Object userInterfaceObject = requestBody.get("userInterface");
-
-			if (ratingObject instanceof Double && feedbackObject instanceof String && workFlowObject instanceof Integer
-					&& qualityOfWorkObject instanceof Integer && userInterfaceObject instanceof Integer) {
-
-				double rating = (double) ratingObject;
-				String feedback = (String) feedbackObject;
-				int workFlow = (int) workFlowObject;
-				int qualityOfWork = (int) qualityOfWorkObject;
-				int userInterface = (int) userInterfaceObject;
-
-				Optional<Judge> judgeOptional = judgeService.getJudgeById(judgeId);
-				Idea idea = ideaService.getIdeaById(ideaId);
-
-				if (judgeOptional.isPresent() && idea != null) {
-					Judge judge = judgeOptional.get();
-
-					// Set the ratedBy field in the Idea
-					idea.setRatedBy(judge.getName());
-					ideaService.updateIdea(ideaId, idea);
-
-					// Update the Idea with the new rating, feedback, and additional fields
-					idea.setWorkFlow(workFlow);
-					idea.setQualityofWork(qualityOfWork);
-					idea.setUserInterface(userInterface);
-					ideaService.updateRatingAndFeedback(ideaId, feedback);
-					idea.setScore((idea.getQualityofWork() + idea.getUserInterface() + idea.getWorkFlow()));
-					ideaService.updateIdea(ideaId, idea);
-
-					return ResponseEntity.ok("Rating, Feedback, and additional fields updated successfully");
+		@PutMapping("{judgeId}/giverating/{ideaId}")
+		public ResponseEntity<String> updateRatingAndFeedback(@PathVariable String judgeId, @PathVariable String ideaId,
+				@RequestBody Map<String, Object> requestBody) {
+	 
+			if ( requestBody.containsKey("feedback")
+					&& requestBody.containsKey("workFlow") && requestBody.containsKey("qualityOfWork")
+					&& requestBody.containsKey("userInterface")) {
+	 
+				Object feedbackObject = requestBody.get("feedback");
+				String workFlowObject = (String) requestBody.get("workFlow");
+				String qualityOfWorkObject = (String) requestBody.get("qualityOfWork");
+				String userInterfaceObject = (String) requestBody.get("userInterface");
+	 
+				if ( feedbackObject instanceof String) {
+	 
+					String feedback = (String) feedbackObject;
+					int workFlow = Integer.parseInt(workFlowObject);
+					int qualityOfWork = Integer.parseInt(qualityOfWorkObject);
+					int userInterface = Integer.parseInt(userInterfaceObject);
+	 
+					Optional<Judge> judgeOptional = judgeService.getJudgeById(judgeId);
+					Idea idea = ideaService.getIdeaById(ideaId);
+	 
+					if (judgeOptional.isPresent() && idea != null) {
+						Judge judge = judgeOptional.get();
+	 
+						// Set the ratedBy field in the Idea
+						idea.setRatedBy(judge.getName());
+						ideaService.updateIdea(ideaId, idea);
+	 
+						// Update the Idea with the new rating, feedback, and additional fields
+						idea.setWorkFlow(workFlow);
+						idea.setQualityofWork(qualityOfWork);
+						idea.setUserInterface(userInterface);
+						ideaService.updateRatingAndFeedback(ideaId, feedback);
+						idea.setScore((idea.getQualityofWork() + idea.getUserInterface() + idea.getWorkFlow()));
+						ideaService.updateIdea(ideaId, idea);
+	 
+						return ResponseEntity.ok("Rating, Feedback, and additional fields updated successfully");
+					} else {
+						return ResponseEntity.badRequest().body("Invalid judge or idea ID");
+					}
 				} else {
-					return ResponseEntity.badRequest().body("Invalid judge or idea ID");
+					return ResponseEntity.badRequest().body("Invalid types for rating, feedback, or additional fields");
 				}
 			} else {
-				return ResponseEntity.badRequest().body("Invalid types for rating, feedback, or additional fields");
+				return ResponseEntity.badRequest()
+						.body("Rating, Feedback, and additional fields are required in the request payload");
 			}
-		} else {
-			return ResponseEntity.badRequest()
-					.body("Rating, Feedback, and additional fields are required in the request payload");
 		}
-	}
 
 }

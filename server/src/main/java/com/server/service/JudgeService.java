@@ -24,7 +24,7 @@ public class JudgeService {
     }
 
     public Optional<Judge> getJudgeById(String id) {
-        return judgeRepository.findById(id);
+        return judgeRepository.findByEmail(id);
     }
 
     public Judge addJudge(Judge judge) {
