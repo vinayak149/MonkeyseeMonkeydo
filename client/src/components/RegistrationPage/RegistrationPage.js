@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import '../RegistrationPage/RegistrationPage.css';
 import Navbar2 from '../Navbar/Navbar2';
 import MyParticles from '../Particles/Particles.js'
-import { IdeaService } from '../../service/idea.service.js';
 import { TeamService } from '../../service/team.service.js';
+import { ParticipantService } from '../../service/participant.service.js';
 import { useNavigate } from 'react-router-dom';
  
 function TeamRegistrationForm() {
@@ -38,7 +38,7 @@ function TeamRegistrationForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const teamService = TeamService();
-    const ideaService = IdeaService();
+    const participantService = ParticipantService();
     const ideaData = {
       teamName: formData.teamName,
       participants: formData.participants,
@@ -47,12 +47,13 @@ function TeamRegistrationForm() {
       domain: formData.domain,
     };
     try {
-      await teamService.assignIdeaToTeam(teamId,ideaData)
-      await Promise.all(
-        formData.participants.map(async (participant) => {
-          await teamService.addParticipantToTeam(teamId, participant);
-        })
-      );
+      // await teamService.assignIdeaToTeam(teamId,ideaData)
+      // await Promise.all(
+      //   formData.participants.map(async (participant) => {
+      //     await teamService.addParticipantToTeam(teamId, participant);
+      //   })
+      // );
+      await participantService.registerIdea(ideaData);
       console.log("Team registration successful:", ideaData);
       alert("Team registered!");
       navigate('/dashboard');

@@ -79,7 +79,10 @@ public class TeamService {
 	public Team findByTeamName(String teamName) {
 		return teamRepo.findByTeamName(teamName);
 	}
-
+	public String addParticipantToTeam(String participantId,String teamId) {
+		
+		return null;
+	}
 	public List<Team> getTeamByPanelist(String panelistId) {
 		List<Team> teams = teamRepo.findByPanelistId(panelistId);
 		return teams;

@@ -1,10 +1,9 @@
-// DialogBox.jsx
 import React from 'react';
 import './DialogBox.css'; // Import the CSS file for styling
-
+ 
 const DialogBox = ({ isOpen, onClose, onConfirm, title, children }) => {
   if (!isOpen) return null;
-
+ 
   return (
     <div className="dialog-overlay">
       <div className="dialog-box">
@@ -20,5 +19,5 @@ const DialogBox = ({ isOpen, onClose, onConfirm, title, children }) => {
     </div>
   );
 };
-
-export default DialogBox;
+ 
+export default DialogBox

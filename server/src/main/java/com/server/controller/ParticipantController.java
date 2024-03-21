@@ -19,6 +19,7 @@ import com.server.bean.Idea;
 import com.server.bean.Participant;
 import com.server.bean.Team;
 import com.server.dto.DashboardDTO;
+import com.server.dto.RegisterPageDTO;
 import com.server.service.ParticipantService;
 import com.server.service.TeamService;
  
@@ -100,5 +101,10 @@ public class ParticipantController {
     	catch(Exception e) {
     		return new ResponseEntity<DashboardDTO>(dashboard,HttpStatus.BAD_REQUEST);
     	}
+    }
+    @PostMapping("/registerIdea")
+    public ResponseEntity<String> registerIdea(@RequestBody RegisterPageDTO registerPageDTO){
+    	String res = participantService.registerIdeaService(registerPageDTO);
+    	return new ResponseEntity<String>(res,HttpStatus.OK);
     }
 }

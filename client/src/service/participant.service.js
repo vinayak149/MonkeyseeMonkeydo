@@ -34,6 +34,11 @@ export const ParticipantService = () => {
         return fetchWrapper.get(url);
     }
 
+    function registerIdea(teamData){
+        const url = `${baseURL}/registerIdea`;
+        return fetchWrapper.post(url,teamData);
+    }
+
     return {
         getAllParticipants,
         getParticipantById,
@@ -41,5 +46,6 @@ export const ParticipantService = () => {
         updateParticipant,
         deleteParticipant,
         getDashboardProgress,
+        registerIdea,
     };
 };

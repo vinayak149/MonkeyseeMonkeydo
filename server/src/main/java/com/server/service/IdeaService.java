@@ -13,13 +13,10 @@ import java.util.Optional;
 public class IdeaService {
 
 	private IdeaRepo ideaRepository;
-	@Autowired
-	private ParticipantService participantService;
 
 	@Autowired
-	public IdeaService(IdeaRepo ideaRepository, ParticipantService participantService) {
+	public IdeaService(IdeaRepo ideaRepository) {
 		this.ideaRepository = ideaRepository;
-		this.participantService = participantService;
 	}
 
 	public List<Idea> getAllIdeas() {
