@@ -173,3 +173,38 @@ button.hi {
 .trDark {
   background-color: #f2f2f2; /* Darker color */
 }
+.dialog-box {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the dialog box horizontally and vertically */
+  background-color: #007bff;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  text-align: center;
+}
+
+.dialog-box p {
+  margin: 0;
+}
+
+.dialog-box button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #0056b3;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dialog-box button:hover {
+  background-color: #004080;
+}
