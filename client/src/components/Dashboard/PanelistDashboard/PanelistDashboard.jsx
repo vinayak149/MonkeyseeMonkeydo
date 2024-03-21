@@ -289,7 +289,7 @@ function PanelistDashboard() {
         </tbody>
       </table>
       {showDialog && (
-        <div className="dialog-box">
+        <div className="dialogbox">
           <p>{dialogMessage}</p>
           <button onClick={handleCloseDialog}>Close</button>
         </div>
