@@ -1,5 +1,7 @@
 package com.server.bean;
  
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,38 +15,56 @@ public class Idea {
 	private String description;
 	private String domain;
 	private String implementation;
-	private String feedback;
 	private String suggestion;
 	private String status;
-	private String ratedBy;
 	private String reviewedBy;
-	private int workFlow;
-	private int qualityofWork;
-	private int userInterface;
-	private int score;
+	private List<Score> scores;
+	private int finalScore;
 	@DBRef
 	private Team team;
+	public Idea() {}
+	public Idea(String title, String description) {
+		this.title = title;
+		this.description = description;
+	}
 	
- 
+	public Idea(String title, String description, String domain, String implementation,
+			String suggestion, String status, String reviewedBy, List<Score> scores, int finalScore, Team team) {
+		super();
+		this.title = title;
+		this.description = description;
+		this.domain = domain;
+		this.implementation = implementation;
+		this.suggestion = suggestion;
+		this.status = status;
+		this.reviewedBy = reviewedBy;
+		this.scores = scores;
+		this.finalScore = finalScore;
+		this.team = team;
+	}
+
+	public List<Score> getScores() {
+		return scores;
+	}
+
+	public void setScores(List<Score> scores) {
+		this.scores = scores;
+	}
+
+	public int getFinalScore() {
+		return finalScore;
+	}
+
+	public void setFinalScore(int finalScore) {
+		this.finalScore = finalScore;
+	}
+	
 	public Team getTeam() {
 		return team;
 	}
  
 	public void setTeam(Team team) {
 		this.team = team;
-	}
- 
-	public int getScore() {
-		return score;
-	}
- 
-	public void setScore(int score) {
-		this.score = score;
-	}
- 
-	public Idea(String title, String description) {
-		this.title = title;
-		this.description = description;
 	}
  
 	public String getId() {
@@ -68,22 +88,8 @@ public class Idea {
 	}
  
  
- 
-	
-	public String getFeedback() {
-		return feedback;
-	}
- 
-	public void setFeedback(String feedback) {
-		this.feedback = feedback;
-	}
- 
 	public void setId(String id) {
 		this.id = id;
-	}
- 
-	public void updateFeedback( String newFeedback) {
-		this.feedback = newFeedback;
 	}
  
 	public String getSuggestion() {
@@ -106,14 +112,7 @@ public class Idea {
 		this.suggestion = newSuggestion;
 		this.status = newStatus;
 	}
- 
-	public String getRatedBy() {
-		return ratedBy;
-	}
- 
-	public void setRatedBy(String ratedBy) {
-		this.ratedBy = ratedBy;
-	}
+
  
 	public String getReviewedBy() {
 		return reviewedBy;
@@ -122,30 +121,7 @@ public class Idea {
 	public void setReviewedBy(String reviewedBy) {
 		this.reviewedBy = reviewedBy;
 	}
- 
-	public int getWorkFlow() {
-		return workFlow;
-	}
- 
-	public void setWorkFlow(int workFlow) {
-		this.workFlow = workFlow;
-	}
- 
-	public int getQualityofWork() {
-		return qualityofWork;
-	}
- 
-	public void setQualityofWork(int qualityofWork) {
-		this.qualityofWork = qualityofWork;
-	}
- 
-	public int getUserInterface() {
-		return userInterface;
-	}
- 
-	public void setUserInterface(int userInterface) {
-		this.userInterface = userInterface;
-	}
+	
 	public String getDomain() {
 		return domain;
 	}

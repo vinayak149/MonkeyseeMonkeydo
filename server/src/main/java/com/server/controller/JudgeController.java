@@ -2,9 +2,11 @@ package com.server.controller;
 
 import com.server.bean.Idea;
 import com.server.bean.Judge;
+import com.server.bean.Score;
 import com.server.service.IdeaService;
 import com.server.service.JudgeService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -81,20 +83,29 @@ public class JudgeController {
 	 
 					Optional<Judge> judgeOptional = judgeService.getJudgeById(judgeId);
 					Idea idea = ideaService.getIdeaById(ideaId);
+					Score score = new Score();
 	 
 					if (judgeOptional.isPresent() && idea != null) {
 						Judge judge = judgeOptional.get();
 	 
 						// Set the ratedBy field in the Idea
-						idea.setRatedBy(judge.getName());
-						ideaService.updateIdea(ideaId, idea);
+						score.setRatedBy(judge.getId());
 	 
 						// Update the Idea with the new rating, feedback, and additional fields
-						idea.setWorkFlow(workFlow);
-						idea.setQualityofWork(qualityOfWork);
-						idea.setUserInterface(userInterface);
-						ideaService.updateRatingAndFeedback(ideaId, feedback);
-						idea.setScore((idea.getQualityofWork() + idea.getUserInterface() + idea.getWorkFlow()));
+						score.setWorkFlow(workFlow);
+						score.setQualityofWork(qualityOfWork);
+						score.setUserInterface(userInterface);
+						score.setFeedback(feedback);
+						score.setScore((score.getQualityofWork() + score.getUserInterface() + score.getWorkFlow()));
+						if(idea.getScores()==null) {
+							List<Score> scores = new ArrayList<Score>();
+							scores.add(score);
+							idea.setScores(scores);
+						}
+						else {
+							idea.getScores().add(score);
+						}
+						idea.setFinalScore(idea.getFinalScore()+score.getScore());
 						ideaService.updateIdea(ideaId, idea);
 	 
 						return ResponseEntity.ok("Rating, Feedback, and additional fields updated successfully");
