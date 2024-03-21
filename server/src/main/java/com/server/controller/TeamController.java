@@ -125,17 +125,8 @@ public class TeamController {
 			return ResponseEntity.badRequest().body("Team already exist");
 
 		}
+		return ResponseEntity.ok("Team name available..");
 
-		try {
-			// Save the team to the database
-			Team savedTeam = teamService.saveTeam(team);
-
-			return ResponseEntity.ok(savedTeam.getId());
-		} catch (Exception e) {
-			e.printStackTrace();
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-					.body("An error occurred while adding the team");
-		}
 	}
 
 	@GetMapping("/allteamNames")

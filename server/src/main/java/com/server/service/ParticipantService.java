@@ -15,120 +15,94 @@ import java.util.Optional;
 @Service
 public class ParticipantService {
 
-	private ParticipantRepo participantRepository;
-	private TeamService teamService;
-	private IdeaService ideaService;
+    private final ParticipantRepo participantRepository;
+    private final TeamService teamService;
+    private final IdeaService ideaService;
 
-	@Autowired
-	public ParticipantService(ParticipantRepo participantRepository, TeamService teamService, IdeaService ideaService) {
-		this.participantRepository = participantRepository;
-		this.teamService = teamService;
-		this.ideaService = ideaService;
-	}
+    @Autowired
+    public ParticipantService(ParticipantRepo participantRepository, TeamService teamService, IdeaService ideaService) {
+        this.participantRepository = participantRepository;
+        this.teamService = teamService;
+        this.ideaService = ideaService;
+    }
 
-	public List<Participant> getAllParticipants() {
-		return participantRepository.findAll();
-	}
+    public List<Participant> getAllParticipants() {
+        return participantRepository.findAll();
+    }
 
-	public Participant getParticipantById(String id) {
-		Optional<Participant> optionalParticipant = participantRepository.findById(id);
-		return optionalParticipant.orElse(null);
-	}
+    public Participant getParticipantById(String id) {
+        return participantRepository.findById(id).orElse(null);
+    }
 
-	public Participant addParticipant(Participant participant) {
-		// Save the Idea first to get the generated ID
+    public Participant addParticipant(Participant participant) {
+        return participantRepository.save(participant);
+    }
 
-		Participant savedParticipant = participantRepository.save(participant);
+    public Participant updateParticipant(String id, Participant updatedParticipant) {
+        Optional<Participant> optionalExistingParticipant = participantRepository.findById(id);
+        return optionalExistingParticipant.map(existingParticipant -> {
+            existingParticipant.setTeam(updatedParticipant.getTeam());
+            existingParticipant.setName(updatedParticipant.getName());
+            existingParticipant.setEmail(updatedParticipant.getEmail());
+            return participantRepository.save(existingParticipant);
+        }).orElse(null);
+    }
 
-		return savedParticipant;
-	}
+    public void deleteParticipant(String id) {
+        participantRepository.deleteById(id);
+    }
 
-	public Participant updateParticipant(String id, Participant updatedParticipant) {
-		Optional<Participant> optionalExistingParticipant = participantRepository.findById(id);
+    public Participant findByEmail(String email) {
+        return participantRepository.findByEmail(email);
+    }
 
-		if (optionalExistingParticipant.isPresent()) {
-			Participant existingParticipant = optionalExistingParticipant.get();
+    public Participant findByUsernameAndEmail(String username, String email) {
+        return participantRepository.findByNameAndEmail(username, email);
+    }
 
-			// Update the fields based on your requirements
-			existingParticipant.setTeam(updatedParticipant.getTeam());
-			existingParticipant.setName(updatedParticipant.getName());
-			existingParticipant.setEmail(updatedParticipant.getEmail());
+    public String registerIdeaService(RegisterPageDTO registerPageDTO) {
+        Team existingTeam = teamService.findByTeamName(registerPageDTO.getTeamName());
+        if (registerPageDTO.getTeamName() == null || registerPageDTO.getTeamName().isEmpty()) {
+            return "Team name should not be empty!!";
+        } else if (existingTeam != null) {
+            return "Team already exists";
+        }
 
-			// Save the updated Idea (if needed)
+        try {
+            Team team = new Team();
+            team.setTeamName(registerPageDTO.getTeamName());
+            Team savedTeam = teamService.saveTeam(team);
 
-			// Save the updated Participant
-			return participantRepository.save(existingParticipant);
-		}
+            List<Participant> participants = registerPageDTO.getParticipant();
+            for (Participant participant : participants) {
+                Participant existingParticipant = findByEmail(participant.getEmail());
+                if (existingParticipant != null) {
+                    existingParticipant.setName(participant.getName());
+                    existingParticipant.setTeam(savedTeam);
+                    savedTeam.getParticipants().add(existingParticipant);
+                    updateParticipant(existingParticipant.getId(), existingParticipant);
+                    teamService.updateTeam(savedTeam.getId(), savedTeam);
+                } else {
+                    return "Participant not found";
+                }
+            }
 
-		return null; // Participant with the given ID not found
-	}
+            Idea idea = new Idea();
+            idea.setTitle(registerPageDTO.getTitle());
+            idea.setDescription(registerPageDTO.getDescription());
+            idea.setDomain(registerPageDTO.getDomain());
+            idea.setTeam(savedTeam);
+            Idea savedIdea = ideaService.addIdea(idea);
 
-	public void deleteParticipant(String id) {
-		participantRepository.deleteById(id);
-	}
+            savedTeam.setIdea(savedIdea);
+            idea.setTeam(savedTeam);
+            ideaService.updateIdea(savedIdea.getId(), idea);
+            teamService.updateTeam(savedTeam.getId(), savedTeam);
 
-	public void saveParticipant(Participant participant) {
-		participantRepository.save(participant);
-	}
-
-	public Participant findByEmail(String email) {
-		return participantRepository.findByEmail(email);
-	}
-
-	public Participant findByUsernameAndEmail(String username, String email) {
-		return participantRepository.findByNameAndEmail(username, email);
-	}
-
-	public String registerIdeaService(RegisterPageDTO registerPageDTO) {
-		Team existingTeam = teamService.findByTeamName(registerPageDTO.getTeamName());
-		if (registerPageDTO.getTeamName() == null || registerPageDTO.getTeamName().isEmpty()) {
-			return "Team name should not be empty!!";
-		} else if (existingTeam != null) {
-			return "Team already exist";
-
-		}
-
-		try {
-			// Save the team to the database
-			Team team = new Team();
-			team.setTeamName(registerPageDTO.getTeamName());
-			Team savedTeam = teamService.saveTeam(team);
-			String teamId = savedTeam.getId();
-			// Check if the participant already exists by username and email
-			List<Participant> participants = registerPageDTO.getParticipant();
-			System.out.println(participants);
-			for (Participant participant : participants) {
-				Participant existingParticipant = findByEmail(participant.getEmail());
-				System.out.println(existingParticipant.toString());
-				if (existingParticipant != null) {
-					// Participant exists, add them to the team
-					existingParticipant.setName(participant.getName());
-					existingParticipant.setTeam(savedTeam);
-					team.getParticipants().add(existingParticipant);
-					// Update both the participant and the team
-					updateParticipant(existingParticipant.getId(), existingParticipant);
-					teamService.updateTeam(teamId, savedTeam);
-
-				} else {
-					// Participant not found, you can choose to handle this case
-					return "participant not found";
-				}
-				}
-				Idea idea = new Idea();
-				idea.setTitle(registerPageDTO.getTitle());
-				idea.setDescription(registerPageDTO.getDescription());
-				idea.setDomain(registerPageDTO.getDomain());
-				idea.setTeam(team);
-				Idea savedIdea = ideaService.addIdea(idea);
-
-				// Assign the idea to the team
-				team.setIdea(savedIdea);
-				idea.setTeam(team);
-				ideaService.updateIdea(idea.getId(), idea);
-				teamService.updateTeam(teamId, team);
-				return "Team Registered Successfully";
-			}catch(Exception e){
-				return "";
-	}
-}
+            return "Team Registered Successfully";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "An error occurred while registering the team";
+        }
+    }
 }
