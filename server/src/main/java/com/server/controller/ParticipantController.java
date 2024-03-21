@@ -81,7 +81,7 @@ public class ParticipantController {
     	Integer progress=0;
     	if(idea.getTitle()!=null) {
     		progress =  40;
-    			if(idea.getScore()>0) {
+    			if(idea.getFinalScore()>0) {
     				progress = 60;
     		}
     	}
