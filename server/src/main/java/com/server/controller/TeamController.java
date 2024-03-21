@@ -172,5 +172,23 @@ public class TeamController {
         }
         return ResponseEntity.ok(approvedTeams);
     }
+	@GetMapping("/top-3-winners")
+    public ResponseEntity<List<Team>> getTop3Winners() {
+        List<Team> top3Winners = teamService.getTop3Teams();
+        return ResponseEntity.ok(top3Winners);
+    }
+	@GetMapping("/winnerNames")
+	public ResponseEntity<List<String>> showWinnerNames()
+	{
+		 List<Team> top3Winners = teamService.getTop3Teams();
+		 List<String> winnerNames = new ArrayList<>();
+		 for(Team teams : top3Winners)
+		 {
+			 winnerNames.add(teams.getTeamName());
+		 }
+		 return ResponseEntity.ok(winnerNames);
+	}
+ 
+
 
 }
