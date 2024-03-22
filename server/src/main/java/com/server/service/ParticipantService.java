@@ -77,13 +77,16 @@ public class ParticipantService {
             for (Participant participant : participants) {
                 Participant existingParticipant = findByEmail(participant.getEmail());
                 if (existingParticipant != null) {
-                    existingParticipant.setName(participant.getName());
-                    existingParticipant.setTeam(savedTeam);
-                    savedTeam.getParticipants().add(existingParticipant);
-                    updateParticipant(existingParticipant.getId(), existingParticipant);
-                    teamService.updateTeam(savedTeam.getId(), savedTeam);
+                	if(existingParticipant.getTeam()==null)
+                	{
+                        existingParticipant.setName(participant.getName());
+                        existingParticipant.setTeam(savedTeam);
+                        savedTeam.getParticipants().add(existingParticipant);
+                        updateParticipant(existingParticipant.getId(), existingParticipant);
+                        teamService.updateTeam(savedTeam.getId(), savedTeam);
+                	}
                 } else {
-                    return "Participant not found";
+                    return "Participant not found or already associated with another Team!!";
                 }
             }
 
