@@ -3,13 +3,14 @@ package com.server.bean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "users")
 public class User {
 
     @Id
     private String id;
-
+    
     private String username;
     private String password;
     private String email; 

@@ -30,9 +30,7 @@ const ParticipantDashboard = () => {
  
         if (userId) {
         const participantService = ParticipantService();
-        const dashboard = await participantService.getDashboardProgress(
-          userId
-        );
+        const dashboard = await participantService.getDashboardProgress();
         setDashboardData(dashboard);}
  
        

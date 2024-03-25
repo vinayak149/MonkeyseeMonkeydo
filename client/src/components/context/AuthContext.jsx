@@ -45,6 +45,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = (userObj) => {
     const userStr = JSON.stringify(userObj);
+    localStorage.setItem('TOKEN',userObj.token)
     setIsLoggedIn(true);
     console.log(userObj)
     localStorage.setItem('isLoggedIn', 'true');

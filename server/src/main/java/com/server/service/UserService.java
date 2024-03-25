@@ -58,5 +58,14 @@ public class UserService {
 	public User getUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+	
+    public boolean authenticate(String username, String password) {
+    	System.out.println(username);
+        User user = findByEmail(username);
+        if (user != null && password.equals(user.getPassword())) {
+            return true;
+        }
+        return false;
+    }
  
 }

@@ -1,8 +1,12 @@
 package com.server.controller;
 
+import com.server.bean.JwtAuthenticationResponse;
 import com.server.bean.User;
+import com.server.dto.LoginDTO;
+import com.server.jwt.JwtTokenProvider;
 import com.server.service.UserService;
 import com.server.service.OtpService;
+import com.server.service.UserDetailsServiceImpl;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -11,6 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,12 +27,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 	private UserService userService;
 	private OtpService otpService;
+	private UserDetailsServiceImpl userDetailsService;
+	private JwtTokenProvider jwtTokenProvider;
+	
 	private Map<String, User> temporaryUserDetails = new ConcurrentHashMap<>();
 
 	@Autowired
-	public AuthController(UserService userService, OtpService otpService) {
+	public AuthController(UserService userService, OtpService otpService,UserDetailsServiceImpl userDetailsService,JwtTokenProvider jwtTokenProvider) {
 		this.userService = userService;
 		this.otpService = otpService;
+		this.userDetailsService = userDetailsService;
+		this.jwtTokenProvider = jwtTokenProvider;
 	}
 
 	@PostMapping("/register")
@@ -75,24 +85,23 @@ public class AuthController {
 	}
 
 // Other authentication endpoints...
-	@PostMapping("/login")
-	public ResponseEntity<User> loginUser(@RequestBody User user) {
-		User storedUser = userService.getUserByEmail(user.getEmail());
-
-		if (storedUser != null && storedUser.getPassword().equals(user.getPassword())) {
-// Authentication successful
-// Construct response containing user's role and the entire user object
-			Map<String, Object> response = new HashMap<>();
-// response.put("message", "Login successful");
-// response.put("user", storedUser);
-// response.put("role", storedUser.getRole()); // Assuming getRole() method exists in User class
-
-			return ResponseEntity.ok(storedUser);
-		} else {
-// Authentication failed
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
-		}
-	}
+    @PostMapping("/login")
+    public ResponseEntity<?> authenticateUser(@RequestBody User loginRequest) {
+        if (userService.authenticate(loginRequest.getEmail(), loginRequest.getPassword())) {
+            UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getEmail());
+            System.out.println("user details: "+userDetails.getUsername());
+            String token = jwtTokenProvider.GenerateToken(userDetails.getUsername());
+            LoginDTO logindto = new LoginDTO();
+            logindto.setEmail(userDetails.getUsername());
+            String role = userDetails.getAuthorities().toString();
+            role = role.substring(1,role.length()-1);
+            logindto.setRole(role);
+            logindto.setToken(token);
+            return ResponseEntity.ok(logindto);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+        }
+    }
 
 	@PostMapping("/resend-otp")
 	public ResponseEntity<String> sendOtp(@RequestBody User user) {

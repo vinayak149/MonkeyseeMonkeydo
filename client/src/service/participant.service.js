@@ -29,8 +29,8 @@ export const ParticipantService = () => {
         return fetchWrapper.delete(url);
     }
 
-    function getDashboardProgress(id) {
-        const url = `${baseURL}/dashboard/${id}/progress`;
+    function getDashboardProgress() {
+        const url = `${baseURL}/dashboard/progress`;
         return fetchWrapper.get(url);
     }
 
