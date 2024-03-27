@@ -22,6 +22,7 @@ export function LoginForm(props) {
 
 const handleLogin = async () => {
   try {
+    localStorage.clear();
     const authService =  AuthService();
     const response = await authService.login(email, password);
     console.log("Login successful:", response);
