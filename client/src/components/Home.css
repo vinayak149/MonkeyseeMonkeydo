@@ -126,13 +126,13 @@
   }
   
   .faq-section h2 {
-    font-size: 2em;
+    font-size: 1.5em;
     margin-bottom: 20px;
     color: #fff; /* Adjust text color to match */
   }
   
   .faq-section p {
-    font-size: 1.1em;
+    font-size: 0.85em;
     margin-bottom: 30px;
     color: #ccc; /* Adjust text color to match */
   }
@@ -188,6 +188,8 @@
   /* Remaining styles remain the same */
   /* Home.css */
 
+/* Home.css */
+
 .theme-section-container {
     margin: 80px auto;
     max-width: 1200px;
@@ -223,7 +225,7 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
     position: relative;
     overflow: hidden;
-    height: 320px;
+    height: auto; /* Adjusted height to fit content */
   }
   
   .theme::before {
@@ -258,5 +260,10 @@
     font-size: 16px;
     line-height: 1.6;
     color: #F0F0F0;
+    margin-bottom: 10px; /* Added margin for space */
   }
-  
+
+  .theme-image {
+    max-width: 100%; /* Set maximum width for images */
+    height: auto; /* Ensure aspect ratio is maintained */
+  }
