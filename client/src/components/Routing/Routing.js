@@ -17,6 +17,7 @@ import AdminDashboard from '../Dashboard/Admin Dashboard/AdminDashboard.js';
 import JudgeDashboard from '../Dashboard/Judge/JudgeDashboard.js';
 import JudgeDashboard2 from '../Dashboard/Judge/JudgeDashboard2.js';
 import { UserInfo } from '../../utils/helper.js';
+import Prize from '../prize.js';
 // import PanelistDashboard from './components/Dashboard/PanelistDashboard.js'
 // import IdeaSubmissionForm from './components/IdeaSubmissionForm';
 // import Dashboard from './components/Dashboard';
@@ -59,6 +60,7 @@ function Routing() {
               onSubmit={handleIdeaSubmit} 
             />
           } />
+          <Route path='/prize' element={<Prize/>}/>
         </Routes>
         </Router>
     </div>
