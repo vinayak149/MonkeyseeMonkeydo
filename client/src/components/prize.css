@@ -8,7 +8,7 @@
   justify-content: space-around;
   align-items: flex-end; /* Align items to the bottom */
   margin: 50px auto;
-  /* Add background video */
+  /* Add background GIF */
   background-image: url('https://i.pinimg.com/originals/96/2f/b5/962fb5922d0e4085b2043a7b99120251.gif');
   background-size: cover;
   background-position: center;
@@ -28,29 +28,37 @@
 }
 
 .first {
-  background-color: #ffd700; /* Gold */
+  background-color: #394867; /* Updated background color */
   z-index: 2; /* Ensure first place is above second and third */
 }
 
 .second {
-  background-color: #c0c0c0; /* Silver */
+  background-color: #293241; /* Updated background color */
 }
 
 .third {
-  background-color: #cd7f32; /* Bronze */
+  background-color: #1f2933; /* Updated background color */
 }
 
 .bar h2 {
   font-size: 24px; /* Adjusted font size for headings */
   margin-bottom: 10px; /* Reduced margin for headings */
+  color: #ffffff; /* Updated text color to white */
 }
 
 .bar p {
   font-size: 18px; /* Adjusted font size for paragraphs */
   margin-bottom: 10px; /* Added margin bottom for paragraphs */
+  color: #ffffff; /* Updated text color to white */
 }
 
 .bar img {
   max-width: 100%; /* Ensure image does not exceed container width */
   margin-bottom: 10px; /* Added margin bottom for images */
 }
+
+.bar h3 {
+  color: #ffffff; /* Updated text color to white */
+}
+
+
