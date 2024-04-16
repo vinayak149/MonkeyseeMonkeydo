@@ -1,0 +1,55 @@
+/* FAQCard.css */
+
+.faq-card {
+    background: linear-gradient(135deg, #6e48aa, #9d50bb);
+    color: #fff;
+    width: calc(50% - 20px);
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+    position: relative;
+    overflow: hidden;
+    height: auto;
+    cursor: pointer;
+    /* Change cursor to pointer for clickable effect */
+}
+
+.faq-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ffffff22, #ffffff55);
+    transition: left 0.3s ease;
+}
+
+.faq-card:hover::before {
+    left: 100%;
+}
+
+.faq-card h3 {
+    margin-bottom: 10px;
+}
+
+.answer {
+    display: none;
+}
+
+.faq-card.open .answer {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
